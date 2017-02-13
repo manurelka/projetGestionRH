@@ -32,4 +32,15 @@ public class ListeCompetences extends ArrayList<Competence>{
 	public void ajouterCompetence(ListeCompetences comps){
 		addAll(comps);
 	}
+	
+	/*
+	 * Affiche la liste des compétences.
+	 */
+	public void afficher(){
+		System.out.println("-- Liste de compétences --");
+		
+		for (Competence cmpt : this) {
+			cmpt.afficher();
+		}
+	}
 }

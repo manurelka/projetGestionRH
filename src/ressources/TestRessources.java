@@ -1,4 +1,7 @@
 package ressources;
+
+import readerwriter.LecteurCompetences;
+
 /*
  * C'est une classe de test des fonctionnalités liées à la gestion des ressources.
  * Les ressources comprennent le personnel et les compétences.
@@ -24,10 +27,26 @@ public class TestRessources {
 		// TODO ---- Représentation des données dans l'application ----
 		
 		// Personne (collaborateur)
-		Personne manu = new Personne("Manuela", "Ivanova", 1, 31, 9, 2016);
-		manu.afficher();
+		Date date;
+		try {
+			date = new Date(30, 9, 2016);
+			Personne manu = new Personne("Manuela", "Ivanova", 1, date);
+			manu.afficher();
+		} catch (DateErronneeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		// TODO Compétence (classe)
+		// Compétence (classe)
+		Competence cmpt = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...", "Libellé en français...");
+		cmpt.afficher();
+		
+		// TODO Gestion d'une liste de compétences
+		ListeCompetences lcmpts = new ListeCompetences();
+		lcmpts.add(cmpt);
+		lcmpts.add(new Competence(DomaineCompetences.A, 2, "Libellé en anglais...", "Libellé en français..."));
+		lcmpts.add(new Competence(DomaineCompetences.B, 1, "Libellé en anglais...", "Libellé en français..."));
+		lcmpts.afficher();
 		
 		// TODO Gestion des compétences d'une personne
 		
@@ -41,6 +60,9 @@ public class TestRessources {
 		// TODO Lecture de la liste du personnel (fichier csv)
 		
 		// TODO Lecture de la liste des compétences (fichier csv)
+		LecteurCompetences reader = LecteurCompetences.Instance();
+		lcmpts = reader.lireCompetences();
+		lcmpts.afficher();
 		
 		// TODO Ajout de compétences par personne (lecture de la liste compétences personnel) (fichier csv)
 		

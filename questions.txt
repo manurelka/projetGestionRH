@@ -1,0 +1,6 @@
+1) Est-ce qu'on peut avoir dans le système une personne dont on ne connait pas la date d'entrée en entreprise ?
+
+2) Rque : il ne faut pas y avoir deux compétences qui utilisent le même domaine plus le même code : 
+	chaque compétene dans la liste doit être unique.
+	Solutions possibles :
+	- la liste de compétences peut être un set ;

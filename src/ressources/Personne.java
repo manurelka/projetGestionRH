@@ -14,23 +14,15 @@ public class Personne {
 	private String nom;
 	private String prenom;
 	private Date dateEntree;
-	private ListeCompetences competences;
+	private ListeCompetences competences = new ListeCompetences();
 	
-	public Personne(String prenom, String nom, int id, int jour, int mois, int annee) {
-		this(prenom, nom, id);
-		try {
-			Date newDate = new Date(jour, mois, annee);
-			this.dateEntree = newDate;
-		} catch (DateErronneeException e) {
-			System.out.println(e.getMessage() + "\nSpécifier la date plus tard.");
-		}
-	}
-	
-	private Personne(String prenom, String nom, int id){
-		this.nom = nom;
+	public Personne(String prenom, String nom, int id, Date dateEntree) {
 		this.prenom = prenom;
+		this.nom = nom; 
 		this.ID = id;
+		this.dateEntree = dateEntree;
 	}
+	
 	/*
 	 * Renvoie un String représentant les données d'un employé sous la forme suivante :
 	 * "prenom;nom;date d'entrée en entreprise;identifiant"
@@ -45,6 +37,6 @@ public class Personne {
 	 * Affiche les données d'une instance de la classe dans la console.
 	 */
 	public void afficher(){
-		System.out.println(toString());
+		System.out.println(getClass().getSimpleName() + " : " + toString());
 	}
 }
