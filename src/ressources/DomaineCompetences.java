@@ -10,7 +10,8 @@ public enum DomaineCompetences {
 	B ("B"),
 	C ("C"),
 	D ("D"),
-	E ("E");
+	E ("E"),
+	UNDEFINED ("non défini");
 	
 	private String str; // La chaîne de caractères correspondant audomine de compétences
 	
@@ -29,7 +30,7 @@ public enum DomaineCompetences {
 		case "C" : return DomaineCompetences.C;
 		case "D" : return DomaineCompetences.D;
 		case "E" : return DomaineCompetences.E;
-		default : return null;
+		default : return DomaineCompetences.UNDEFINED;
 		}
 	}
 }

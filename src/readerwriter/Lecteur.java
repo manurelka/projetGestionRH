@@ -5,8 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
-public abstract class Lecteur {
+/*
+ * Voir ILecteur
+ * 
+ * @author Emma, Manuela
+ * @version 0.1
+ */
+public abstract class Lecteur implements ILecteur{
 	private BufferedReader flux;
 	private String chemin;
 	
@@ -14,26 +19,27 @@ public abstract class Lecteur {
 		this.chemin = str;
 	}
 	
+	@Override
 	public void openFlux () throws FileNotFoundException{
 		if (flux == null){
 			flux = new BufferedReader (new FileReader (chemin));
 		}
 	}
-
+	
+	@Override
 	public void closeFlux () throws IOException{
 		if (flux != null){
 			flux.close();
 		}
 	}
 
-	
-	public ArrayList<String> readLine () throws IOException{
-		ArrayList<String> rep = new ArrayList<>();
+	@Override
+	public void remplir(IConteneurStr conteneur) throws IOException{
 		if(flux == null){
 			openFlux();
 		}
 		while ( flux.ready()){
-			rep.add(flux.readLine());		}
-		return rep;
+			conteneur.addLine(flux.readLine());
+		}
 	}
 }

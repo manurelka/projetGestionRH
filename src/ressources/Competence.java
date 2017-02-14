@@ -10,7 +10,7 @@ package ressources;
  */
 public class Competence {
 	private final DomaineCompetences DOMAINE;
-	private final int CODE;
+	private final Integer CODE;
 	// TODO gestion de la traduction
 	private LibelleCompetence libelle;
 	
@@ -40,5 +40,59 @@ public class Competence {
 	 */
 	public void afficher(){
 		System.out.println(getClass().getSimpleName() + " : " + toString());
+	}
+	
+	public DCCompetence getDC(){
+		return new DCCompetence(DOMAINE, CODE);
+	}
+	
+	/*
+	 * Permet de savoir si une compétence a le libellé spécifié
+	 * 
+	 * @param libelle Le libellé recherché
+	 */
+	public boolean aLibelle(LibelleCompetence libelle){
+		return this.libelle.equals(libelle);
+	}
+	
+	public boolean aLibelle(String libelle){
+		return aLibGB(libelle) || aLibFR(libelle);
+	}
+	/*
+	 * Permet de savoir si une compétence a le libellé spécifié (an anglais)
+	 * 
+	 * @param libelle Le libellé recherché en anglais sous forme de String
+	 */
+	public boolean aLibGB(String libelle){
+		return this.libelle.aLibGB(libelle);
+	}
+	
+	/*
+	 * Permet de savoir si une compétence a le libellé spécifié (an français)
+	 * 
+	 * @param libelle Le libellé recherché en français sous forme de String
+	 */
+	public boolean aLibFR(String libelle){
+		return this.libelle.aLibFR(libelle);
+	}
+	
+	public boolean equals(Object o){
+		boolean rep = false;
+		try {
+			Competence cmpt = (Competence) o;
+			rep = this.getDC().equals(cmpt.getDC()) && this.aLibelle(cmpt.libelle); 
+		} catch(ClassCastException e) {
+			System.out.println(TypeDifferentExceptionMSG.MESSAGE_ERREUR);
+			e.printStackTrace();
+		}
+		return rep;
+	}
+	
+	public boolean aDomaine(DomaineCompetences domaine){
+		return this.DOMAINE.equals(domaine);
+	}
+	
+	public boolean aCode(int code){
+		return this.CODE.equals(code);
 	}
 }

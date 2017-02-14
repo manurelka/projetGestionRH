@@ -39,14 +39,52 @@ public class TestRessources {
 		
 		// Compétence (classe)
 		Competence cmpt = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...", "Libellé en français...");
+		Competence cmpt1 = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...", "Libellé en français...");
+		Competence cmpt2 = new Competence(DomaineCompetences.A, 3, "Libellé en anglais...", "Libellé en français...");
+		Competence cmpt3 = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...différent", "Libellé en français...");
+		Competence cmpt4 = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...", "Libellé en français...différent");
+		Competence cmpt5 = new Competence(DomaineCompetences.D, 1, "Libellé en anglais...", "Libellé en français...");
+		
 		cmpt.afficher();
 		
+		//Comparation de deux compétences identiques
+		System.out.println("-- Egalité des compétences --");
+		System.out.println(cmpt.equals(cmpt1)); // Résultat attendu : true
+		
+		//Comparation de deux compétences dont le code est différent
+		System.out.println(cmpt.equals(cmpt2)); // Résultat attandu : false
+		
+		//Comparation de deux compétences dont le libellé en anglais est différent
+		System.out.println(cmpt.equals(cmpt3)); // Résultat attandu : false
+		
+		//Comparation de deux compétences dont le libellé en français est différent
+		System.out.println(cmpt.equals(cmpt4)); // Résultat attandu : false
+		
+		//Comparation de deux compétences dont le domaine est différent
+		System.out.println(cmpt.equals(cmpt5)); // Résultat attandu : false
+		
+		//Comparaison d'une compétence et un autre objet
+		System.out.println(cmpt.equals("Quelque chose d'autre")); // gère une exception ClassCastException, résultat : false
+		
+		//SRegarder si une compétence a le libellé donnée
+		System.out.println("-- Recherche libellé --");
+		System.out.println(cmpt.aLibelle("Libellé en anglais...")); // Résultat attandu : true
+		System.out.println(cmpt.aLibelle("Libellé en français...")); // Résultat attandu : true
+		System.out.println(cmpt.aLibelle("Autre chose...")); // Résultat attandu : false
+		
+		//SRegarder si une compétence a le domaine / code donnée
+		System.out.println("-- Recherche domaine et code --");
+		System.out.println(cmpt.aDomaine(DomaineCompetences.A)); // Résultat attandu : true
+		System.out.println(cmpt.aDomaine(DomaineCompetences.B)); // Résultat attandu : false
+		System.out.println(cmpt.aCode(1)); // Résultat attandu : true
+		System.out.println(cmpt.aCode(2)); // Résultat attandu : false
+		
 		// TODO Gestion d'une liste de compétences
-		ListeCompetences lcmpts = new ListeCompetences();
-		lcmpts.add(cmpt);
-		lcmpts.add(new Competence(DomaineCompetences.A, 2, "Libellé en anglais...", "Libellé en français..."));
-		lcmpts.add(new Competence(DomaineCompetences.B, 1, "Libellé en anglais...", "Libellé en français..."));
-		lcmpts.afficher();
+		/*ListeCompetences lcmpts = new ListeCompetences();
+		lcmpts.ajouter(cmpt);
+		lcmpts.ajouter(new Competence(DomaineCompetences.A, 2, "Libellé en anglais...", "Libellé en français..."));
+		lcmpts.ajouter(new Competence(DomaineCompetences.B, 1, "Libellé en anglais...", "Libellé en français..."));
+		lcmpts.afficher();*/
 		
 		// TODO Gestion des compétences d'une personne
 		
@@ -59,10 +97,10 @@ public class TestRessources {
 		
 		// TODO Lecture de la liste du personnel (fichier csv)
 		
-		// TODO Lecture de la liste des compétences (fichier csv)
-		LecteurCompetences reader = LecteurCompetences.Instance();
+		// Lecture de la liste des compétences (fichier csv)
+		/*LecteurCompetences reader = LecteurCompetences.Instance();
 		lcmpts = reader.lireCompetences();
-		lcmpts.afficher();
+		lcmpts.afficher();*/
 		
 		// TODO Ajout de compétences par personne (lecture de la liste compétences personnel) (fichier csv)
 		
