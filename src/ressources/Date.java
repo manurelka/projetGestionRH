@@ -1,5 +1,5 @@
 package ressources;
-/*
+/**
  * La classe Date représente une date.
  * 
  * @author Emma, Manuela
@@ -10,7 +10,7 @@ public class Date implements Comparable{
 	private int mois;
 	private int annee;
 	
-	/*
+	/**
 	 * Crée un objet Date à partir de trois entiers.
 	 * Une exception est levée si les entiers passés en paramètre ne correspondent pas
 	 * aux valeurs possibles pour une date.
@@ -56,7 +56,7 @@ public class Date implements Comparable{
 		}
 	}
 	
-	/*
+	/**
 	 * Retourne la date sous la forme suivante :
 	 * "jour/mois/année"
 	 * 
@@ -70,7 +70,7 @@ public class Date implements Comparable{
 		return annee;
 	}
 	
-	/*
+	/**
 	 * Deux dates sont égales si elles représentent le même jour du même mois de la même année.
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)

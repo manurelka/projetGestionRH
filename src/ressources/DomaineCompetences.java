@@ -1,5 +1,5 @@
 package ressources;
-/*
+/**
  * L'énumération DomaineCompetences permet de lister les différents domaines de compétences.
  * 
  * @author Emma, Manuela

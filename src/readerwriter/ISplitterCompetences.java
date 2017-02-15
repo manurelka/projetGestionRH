@@ -1,7 +1,7 @@
 package readerwriter;
 import ressources.ListeCompetences;
 import ressources.DomaineCompetences;
-/*
+/**
  * Interface qui fait le lien entre un conteneur de données et des compétences
  * 
  * @author Emma, Manuela

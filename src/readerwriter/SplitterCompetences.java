@@ -2,7 +2,7 @@ package readerwriter;
 import ressources.DomaineCompetences;
 import ressources.ListeCompetences;
 import ressources.Competence;
-/*
+/**
  * Permet de transformer les données d'un contenuer de compétences
  * en forme compatible avec la classe Competence.
  * 

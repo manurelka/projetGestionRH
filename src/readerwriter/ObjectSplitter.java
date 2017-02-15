@@ -1,6 +1,6 @@
 package readerwriter;
-/*
- * Diviser les chaînes de caractères par ";"
+/**
+ * Ce splitter permet de diviser les chaînes de caractères par le délimitéteur ";"
  * 
  * @author Emma, Manuela
  * @version 0.1

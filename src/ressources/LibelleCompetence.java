@@ -1,5 +1,5 @@
 package ressources;
-/*
+/**
  * La classe LibelleCompetence repésente le libellé d'une compétence en français et en anglais.
  * 
  * @author Emma, Manuela

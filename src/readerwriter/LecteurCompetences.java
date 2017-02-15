@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import ressources.Competence;
 import ressources.DomaineCompetences;
 import ressources.ListeCompetences;
-/*
+/**
  * Voir ILecteurCompetences
  * 
  * @author Emma, Manuela

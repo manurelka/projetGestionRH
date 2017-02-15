@@ -1,7 +1,7 @@
 package readerwriter;
 
 import java.util.regex.Pattern;
-/*
+/**
  * Utiliser cette classe pour séparer le domaine et le code d'une compétence.
  * L'état initial du string étant "Domaine.Code. ", le but est d'avoir
  * un dmaine et un code séparés.

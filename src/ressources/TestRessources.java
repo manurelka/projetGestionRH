@@ -2,7 +2,7 @@ package ressources;
 
 import readerwriter.LecteurCompetences;
 
-/*
+/**
  * C'est une classe de test des fonctionnalités liées à la gestion des ressources.
  * Les ressources comprennent le personnel et les compétences.
  * (Les missions ne sont pas de resources)
@@ -80,11 +80,53 @@ public class TestRessources {
 		System.out.println(cmpt.aCode(2)); // Résultat attandu : false
 		
 		// TODO Gestion d'une liste de compétences
-		/*ListeCompetences lcmpts = new ListeCompetences();
+		// Initialisation d'une liste de compétences
+		ListeCompetences lcmpts = new ListeCompetences();
+		
+		// Ajout des compétences qui ne sont pas dans la liste 
 		lcmpts.ajouter(cmpt);
 		lcmpts.ajouter(new Competence(DomaineCompetences.A, 2, "Libellé en anglais...", "Libellé en français..."));
-		lcmpts.ajouter(new Competence(DomaineCompetences.B, 1, "Libellé en anglais...", "Libellé en français..."));
-		lcmpts.afficher();*/
+		lcmpts.ajouter(new Competence(DomaineCompetences.B, 1, "Libellé ...", "Libellé ..."));
+		
+		// Ajouter une compétence qui existe déjà dans la liste => elle ne doit pas s'ajouter
+		lcmpts.ajouter(new Competence(DomaineCompetences.A, 2, "Libellé en anglais...", "Libellé en français..."));
+		
+		// Affichage de la liste
+		lcmpts.afficher();
+		
+		// Recherche de compétences
+		System.out.println("-- Recherche compétence --");
+		
+		// Par code & domaine compétence existante
+		System.out.println("-- a : par domaine et code --");
+		lcmpts.get(new DCCompetence(DomaineCompetences.A, 2)).afficher();
+		
+		// Par code & domaine compétence inexistante (ne doit rien trouver)
+		try {
+			lcmpts.get(new DCCompetence(DomaineCompetences.A, 5)).afficher();
+		} catch (NullPointerException e) {
+			System.out.println("(Domaine erronné) La compétence n'est pas trouvée");
+		}
+		
+		//Par libellé existant
+		System.out.println("-- b : par libellé --");
+		lcmpts.get("Libellé en anglais...").afficher();
+		
+		//Par libellé inexistant
+		lcmpts.get("Libellé inexistant").afficher(); // Résultat attendu : une liste vide
+		
+		//Par domain existant
+		System.out.println("-- c : par domaine --");
+		lcmpts.get(DomaineCompetences.A).afficher();
+		
+		//Par domaine inexistant
+		lcmpts.get(DomaineCompetences.D).afficher(); // Liste vide
+		
+		//Par code existant
+		System.out.println("-- d : par code --");
+		lcmpts.get(1).afficher();
+		//Par code inexistant
+		lcmpts.get(3).afficher(); // Liste vide
 		
 		// TODO Gestion des compétences d'une personne
 		
@@ -98,9 +140,13 @@ public class TestRessources {
 		// TODO Lecture de la liste du personnel (fichier csv)
 		
 		// Lecture de la liste des compétences (fichier csv)
-		/*LecteurCompetences reader = LecteurCompetences.Instance();
+		System.out.println("-- Leture des compétences --");
+		LecteurCompetences reader = LecteurCompetences.Instance();
 		lcmpts = reader.lireCompetences();
-		lcmpts.afficher();*/
+		lcmpts.afficher();
+		
+		// TODO corriger la recherche par libellé  
+		lcmpts.get("Service Level Management").afficher(); // ne marche pas
 		
 		// TODO Ajout de compétences par personne (lecture de la liste compétences personnel) (fichier csv)
 		

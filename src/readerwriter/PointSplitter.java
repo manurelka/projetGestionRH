@@ -1,6 +1,6 @@
 package readerwriter;
-/*
- * Diviser les chaînes de caractères par "."
+/**
+ * Permet de diviser les chaînes de caractères par "."
  * 
  * @author Emma, Manuela
  * @version 0.1

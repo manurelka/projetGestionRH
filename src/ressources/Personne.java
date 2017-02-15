@@ -1,5 +1,5 @@
 package ressources;
-/*
+/**
  * La classe Personne représente un collaborateur de la liste du personnel.
  * Elle permet de réaliser les fonctionnalités suivantes :
  * a) créer un objet de type Personne (collaborateur)
@@ -23,7 +23,7 @@ public class Personne {
 		this.dateEntree = dateEntree;
 	}
 	
-	/*
+	/**
 	 * Renvoie un String représentant les données d'un employé sous la forme suivante :
 	 * "prenom;nom;date d'entrée en entreprise;identifiant"
 	 * @see java.lang.Object#toString()
@@ -33,7 +33,7 @@ public class Personne {
 		return str;
 	}
 	
-	/*
+	/**
 	 * Affiche les données d'une instance de la classe dans la console.
 	 */
 	public void afficher(){

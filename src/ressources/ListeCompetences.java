@@ -1,7 +1,9 @@
 package ressources;
 import java.util.HashMap;
+import java.util.Collection;
 import java.util.Map;
-/*
+import java.util.ArrayList;
+/**
  * La classe ListeCompetences permet de gérer une collection de compétences.
  * 
  * Elle implante les fonctionnaliés suivantes :
@@ -14,34 +16,95 @@ import java.util.Map;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class ListeCompetences{
+public class ListeCompetences implements IListeCompetences{
 	private Map<DCCompetence, Competence> competences = new HashMap<>();
-	/*
-	 * Ajoute une compétence dans la liste des compétences.
-	 * 
-	 * @param comp La compétence à ajouter
-	 */
+	
+	@Override
 	public void ajouter(Competence comp){
-		competences.put(comp.getDC(), comp);
+		if(! estAjoute(comp)){
+			competences.put(comp.getDC(), comp);
+		}
 	}
 	
-	/*
-	 * Ajoute plusieurs compétences dans la liste des compétences.
-	 * 
-	 * @param comps La liste de compétences à ajouter
-	 */
-	public void ajouter(ListeCompetences comps){
-		competences.putAll(comps.competences);
+	@Override
+	public void ajouter(IListeRessources<Competence> comps){
+		try {
+			for(DCCompetence key : ((ListeCompetences) comps).competences.keySet()){
+				ajouter(((ListeCompetences) comps).competences.get(key));
+			}
+		} catch (ClassCastException e){
+			System.out.println(TypeDifferentExceptionMSG.LISTE_COMP);
+			e.printStackTrace();
+		}
 	}
 	
-	/*
-	 * Affiche la liste des compétences.
-	 */
+	@Override
 	public void afficher(){
 		System.out.println("-- Liste de compétences --");
 		
 		for (DCCompetence key : competences.keySet()) {
 			competences.get(key).afficher();
 		}
+	}
+	
+	@Override
+	public boolean estAjoute(Competence comp){
+		return competences.containsKey(comp.getDC());
+	}
+	
+	@Override
+	public ListeCompetences get(String libelle){
+		ListeCompetences rep = new ListeCompetences();
+		Competence comp;
+		
+		for(DCCompetence key : competences.keySet()) {
+			comp = competences.get(key);
+			if (comp.aLibelle(libelle)){
+				rep.ajouter(comp);
+			}
+		}
+		
+		return rep;
+	}
+	
+	@Override
+	public ListeCompetences get(int code){
+		ListeCompetences rep = new ListeCompetences();
+		Competence comp;
+		
+		for(DCCompetence key : competences.keySet()) {
+			comp = competences.get(key);
+			if (comp.aCode(code)){
+				rep.ajouter(comp);
+			}
+		}
+		
+		return rep;		
+	}
+	
+	@Override
+	public ListeCompetences get(DomaineCompetences domaine){
+		ListeCompetences rep = new ListeCompetences();
+		Competence comp;
+		
+		for(DCCompetence key : competences.keySet()) {
+			comp = competences.get(key);
+			if (comp.aDomaine(domaine)){
+				rep.ajouter(comp);
+			}
+		}
+		
+		return rep;
+	}
+	
+	@Override
+	public Competence get(DCCompetence dc){
+		return this.competences.get(dc);
+	}
+	
+	@Override
+	public Collection<Competence> ordonner(){
+		// TODO
+		return new ArrayList<Competence>();
 	}
 }

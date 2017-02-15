@@ -3,6 +3,7 @@ package ressources;
 public abstract class Couple<T, S> {
 	private T prem;
 	private S sec;
+	private final int HASH_CODE = 0;
 	
 	protected Couple(T prem, S sec){
 		this.prem = prem;
@@ -17,6 +18,7 @@ public abstract class Couple<T, S> {
 		return this.sec;
 	}
 	
+	@Override
 	public boolean equals(Object o){
 		boolean rep = false;
 		try {
@@ -27,5 +29,14 @@ public abstract class Couple<T, S> {
 			e.printStackTrace();
 		}
 		return rep;
+	}
+	
+	@Override
+	public int hashCode(){
+		return HASH_CODE;
+	}
+	
+	public void afficher(){
+		System.out.println(prem.toString() + " " + sec.toString());
 	}
 }

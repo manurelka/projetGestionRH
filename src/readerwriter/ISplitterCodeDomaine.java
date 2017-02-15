@@ -1,5 +1,5 @@
 package readerwriter;
-/*
+/**
  * Interface qui fait le lien entre un conteneur de données et le domaine et le code d'une compétence
  * 
  * @author Emma, Manuela

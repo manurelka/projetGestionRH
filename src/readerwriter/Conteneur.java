@@ -2,7 +2,7 @@ package readerwriter;
 import java.util.Set;
 import java.util.HashSet;
 
-/*
+/**
  * Un conteneur de données
  * 
  * @author Emma, Manuela

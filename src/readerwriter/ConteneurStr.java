@@ -1,5 +1,5 @@
 package readerwriter;
-/*
+/**
  * Permet de contenir les lignes d'un fichier csv en lecture, sous forme de chaînes de caractères
  * 
  * @author Emma, Manuela

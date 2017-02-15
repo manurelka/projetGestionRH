@@ -1,5 +1,5 @@
 package readerwriter;
-/*
+/**
  * Diviser les chaînes de caractères représentant des objets par mots représentant des attributs 
  * 
  * @author Emma, Manuela

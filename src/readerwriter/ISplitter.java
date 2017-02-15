@@ -1,5 +1,5 @@
 package readerwriter;
-/*
+/**
  * Interface qui fait le lien entre un conteneur de données et les objets métier
  * 
  * @author Emma, Manuela
