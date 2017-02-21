@@ -128,6 +128,14 @@ public class TestRessources {
 		//Par code inexistant
 		lcmpts.get(3).afficher(); // Liste vide
 		
+		//Comparaison de compétences (plus petite / plus grande)
+		System.out.println(cmpt.compareTo(cmpt1)); // Doivent être égales don 0
+		System.out.println(cmpt.compareTo(cmpt2)); // cmpt2 doit être plus grande, donc -1;
+		System.out.println(cmpt2.compareTo(cmpt1)); // ici 1
+		// est avec des domaines différents
+		System.out.println(cmpt.compareTo(cmpt5)); // ici -1
+		System.out.println(cmpt5.compareTo(cmpt)); // ici 1
+		
 		// TODO Gestion des compétences d'une personne
 		
 		// TODO Personnel
@@ -140,13 +148,13 @@ public class TestRessources {
 		// TODO Lecture de la liste du personnel (fichier csv)
 		
 		// Lecture de la liste des compétences (fichier csv)
-		System.out.println("-- Leture des compétences --");
+		/*System.out.println("-- Leture des compétences --");
 		LecteurCompetences reader = LecteurCompetences.Instance();
 		lcmpts = reader.lireCompetences();
-		lcmpts.afficher();
+		lcmpts.afficher();*/
 		
 		// TODO corriger la recherche par libellé  
-		lcmpts.get("Service Level Management").afficher(); // ne marche pas
+		//lcmpts.get("Service Level Management").afficher(); // ne marche pas
 		
 		// TODO Ajout de compétences par personne (lecture de la liste compétences personnel) (fichier csv)
 		

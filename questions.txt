@@ -4,3 +4,5 @@
 	chaque compétene dans la liste doit être unique.
 	Solutions possibles :
 	- la liste de compétences peut être un set ;
+	
+3) Voir classes lecteur/ecriteur généraliser ?

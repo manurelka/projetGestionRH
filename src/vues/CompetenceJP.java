@@ -1,6 +1,9 @@
 //La vue comp�tence
 package vues;
 
+import ressources.Competence;
+import readerwriter.LecteurCompetences;
+
 public class CompetenceJP extends javax.swing.JPanel {
 
 	public CompetenceJP() {
@@ -26,27 +29,19 @@ public class CompetenceJP extends javax.swing.JPanel {
 		
 		// La liste des comp�tences
 		jList1.setModel(new javax.swing.AbstractListModel<String>() {
-			String[] strings = {
-					"A.1. IS and Business Strategy Alignment Informatique et alignement stratégique métier",
-					"A.2. Service Level Management Gestion des niveaux de service",
-					"A.3. Business Plan Development Développement du plan d’activités",
-					"A.4.Product or Project Planning Planification des produits ou des projets",
-					"A.5. Architecture Design Conception de l’architecture",
-					"A.6. Application Design Conception des applications",
-					"A.7. Technology Watching Veille technologique ",
-					"A.8. Sustainable Development Développement durable",
-					"B.1. Design and Development Conception et développement",
-					"B.2. Systems Integration Intégration des systèmes", "B.3. Testing Tests" };
+			LecteurCompetences lecteur = LecteurCompetences.Instance();
+			Competence[] competences = lecteur.lireCompetences().getTab();
 
 			public int getSize() {
-				return strings.length;
+				return competences.length;
 			}
 
 			public String getElementAt(int i) {
-				return strings[i];
+				return competences[i].toString();
 			}
 		});
 		
+		jList1.setSize(300, 500);
 		jScrollPane1.setViewportView(jList1);
 		jButton1.setText("Supprimer");
 		
@@ -90,7 +85,7 @@ public class CompetenceJP extends javax.swing.JPanel {
 												javax.swing.GroupLayout.DEFAULT_SIZE,
 												javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addComponent(jButton2)
-								.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
+								.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, Short.MAX_VALUE))
 						.addGap(18, 18, 18).addComponent(jButton1).addGap(34, 34, 34))
 						.addGroup(layout.createSequentialGroup()
 								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +107,7 @@ public class CompetenceJP extends javax.swing.JPanel {
 				.addGroup(layout.createSequentialGroup().addGap(19, 19, 19)
 						.addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(2, 2, 2)
+						.addGap(18, 18, 18)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
 								.addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,7 +119,7 @@ public class CompetenceJP extends javax.swing.JPanel {
 						.addGap(18, 18, 18)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 								.addComponent(jButton1).addComponent(jScrollPane1,
-										javax.swing.GroupLayout.PREFERRED_SIZE, 71,
+										javax.swing.GroupLayout.PREFERRED_SIZE, 500,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 132, Short.MAX_VALUE)
 						.addComponent(jLabel1).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

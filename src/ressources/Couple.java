@@ -1,6 +1,6 @@
 package ressources;
 
-public abstract class Couple<T, S> {
+public abstract class Couple<T, S> implements Comparable{
 	private T prem;
 	private S sec;
 	private final int HASH_CODE = 0;
@@ -38,5 +38,27 @@ public abstract class Couple<T, S> {
 	
 	public void afficher(){
 		System.out.println(prem.toString() + " " + sec.toString());
+	}
+	
+	@Override
+	public int compareTo(Object o){
+		int ret = 0;
+		
+		Couple couple = (Couple) o;
+		if (((Comparable) this.prem).compareTo(couple.prem) > 0) {
+			ret = 1;
+		} else {
+			if (((Comparable) this.prem).compareTo(couple.prem) < 0) {
+				ret = -1;
+			} else {
+				if (((Comparable) this.sec).compareTo(couple.sec) > 0){
+					ret = 1;
+				} else if (((Comparable) this.sec).compareTo(couple.sec) < 0) {
+					ret = -1;
+				}
+			}
+		}
+		
+		return ret;
 	}
 }

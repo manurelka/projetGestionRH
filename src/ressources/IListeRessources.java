@@ -42,4 +42,9 @@ public interface IListeRessources<T> {
 	 * Renvoit une colléction ordonnée.
 	 */
 	public abstract Collection<T> ordonner();
+	
+	/**
+	 * Renvoit la liste des ressources sous forme d'un tableau.
+	 */
+	public abstract T[] getTab();
 }

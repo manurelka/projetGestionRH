@@ -1,6 +1,7 @@
 package ressources;
 import java.util.HashMap;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.ArrayList;
 /**
@@ -104,7 +105,14 @@ public class ListeCompetences implements IListeCompetences{
 	
 	@Override
 	public Collection<Competence> ordonner(){
-		// TODO
-		return new ArrayList<Competence>();
+		ArrayList<Competence> liste_trier = new ArrayList<>();
+		liste_trier.addAll(competences.values());
+		Collections.sort(liste_trier);
+		return liste_trier;
+	}
+	
+	@Override
+	public Competence[] getTab(){
+		return ordonner().toArray(new Competence[competences.size()]);
 	}
 }

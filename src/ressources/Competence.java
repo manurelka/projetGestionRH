@@ -119,8 +119,9 @@ public class Competence implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Object objet) {
+		Competence cmp = (Competence) objet;
+		
+		return this.getDC().compareTo(cmp.getDC());
 	}
 }

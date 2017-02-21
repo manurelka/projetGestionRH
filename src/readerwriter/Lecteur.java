@@ -11,12 +11,11 @@ import java.util.ArrayList;
  * @author Emma, Manuela
  * @version 0.1
  */
-public abstract class Lecteur implements ILecteur{
+public abstract class Lecteur extends GestionnaireFlux implements ILecteur{
 	private BufferedReader flux;
-	private String chemin;
 	
 	public Lecteur(String str){
-		this.chemin = str;
+		super(str);
 	}
 	
 	@Override
