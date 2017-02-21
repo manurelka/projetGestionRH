@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 import ressources.ListeCompetences;
 import ressources.DomaineCompetences;
 /**

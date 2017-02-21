@@ -10,8 +10,8 @@ public class LibelleCompetence {
 	private String libGB;
 	
 	public LibelleCompetence(String libGB, String libFR){
-		this.libGB = libGB;
-		this.libFR = libFR;
+		this.libGB = libGB.trim();
+		this.libFR = libFR.trim();
 	}
 	
 	String getLibFR(){
@@ -37,10 +37,10 @@ public class LibelleCompetence {
 	}
 	
 	public boolean aLibGB(String libGB){
-		return this.libGB.equals(libGB);
+		return this.libGB.equals(libGB.trim());
 	}
 	
 	public boolean aLibFR(String libFR){
-		return this.libFR.equals(libFR);
+		return this.libFR.equals(libFR.trim());
 	}
 }

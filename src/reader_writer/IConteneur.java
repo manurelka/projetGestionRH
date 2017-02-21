@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 import java.util.Set;
 /**
  * Interface permettant d'acceder aux données du conteneur

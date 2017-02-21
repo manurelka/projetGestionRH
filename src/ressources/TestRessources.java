@@ -1,6 +1,7 @@
 package ressources;
 
-import readerwriter.LecteurCompetences;
+import reader_writer.EcriteurCompetences;
+import reader_writer.LecteurCompetences;
 
 /**
  * C'est une classe de test des fonctionnalités liées à la gestion des ressources.
@@ -94,6 +95,15 @@ public class TestRessources {
 		// Affichage de la liste
 		lcmpts.afficher();
 		
+		//Comparaison de compétences (plus petite / plus grande)
+		System.out.println("-- Comparaison compétence --");
+		System.out.println(cmpt.compareTo(cmpt1)); // Doivent être égales don 0
+		System.out.println(cmpt.compareTo(cmpt2)); // cmpt2 doit être plus grande, donc -1;
+		System.out.println(cmpt2.compareTo(cmpt1)); // ici 1
+		// est avec des domaines différents
+		System.out.println(cmpt.compareTo(cmpt5)); // ici -1
+		System.out.println(cmpt5.compareTo(cmpt)); // ici 1
+		
 		// Recherche de compétences
 		System.out.println("-- Recherche compétence --");
 		
@@ -128,13 +138,7 @@ public class TestRessources {
 		//Par code inexistant
 		lcmpts.get(3).afficher(); // Liste vide
 		
-		//Comparaison de compétences (plus petite / plus grande)
-		System.out.println(cmpt.compareTo(cmpt1)); // Doivent être égales don 0
-		System.out.println(cmpt.compareTo(cmpt2)); // cmpt2 doit être plus grande, donc -1;
-		System.out.println(cmpt2.compareTo(cmpt1)); // ici 1
-		// est avec des domaines différents
-		System.out.println(cmpt.compareTo(cmpt5)); // ici -1
-		System.out.println(cmpt5.compareTo(cmpt)); // ici 1
+		
 		
 		// TODO Gestion des compétences d'une personne
 		
@@ -148,10 +152,36 @@ public class TestRessources {
 		// TODO Lecture de la liste du personnel (fichier csv)
 		
 		// Lecture de la liste des compétences (fichier csv)
-		/*System.out.println("-- Leture des compétences --");
+		lcmpts = null;
+		
+		System.out.println("-- Lecture des compétences --");
 		LecteurCompetences reader = LecteurCompetences.Instance();
 		lcmpts = reader.lireCompetences();
-		lcmpts.afficher();*/
+		lcmpts.afficher();
+		
+		// Recherche de compétences dans la liste
+		System.out.println("-- Recherche de compétences --");
+		
+		// Par code et domaine (DCCompetence)
+		lcmpts.get(new DCCompetence(DomaineCompetences.A, 1)).afficher();
+		
+		// Par code
+		lcmpts.get(1).afficher();
+		
+		// Par domaine
+		lcmpts.get(DomaineCompetences.B).afficher();
+		
+		// Par libellé
+		lcmpts.get("Forecast Development").afficher();
+		lcmpts.get("Conception et développement").afficher();
+		lcmpts.get("Tests").afficher();
+		
+		//Ajout de nouvelles compétences
+		lcmpts.ajouter((new Competence(DomaineCompetences.A, 20, "Libellé en anglais...éàè", "Libellé en français...")));
+		//Ecriture de la liste des compétences (Dans un fichier liste_competences_ecr.csv pour le moment)
+		System.out.println("-- Ecriture des compétences --");
+		EcriteurCompetences writer = EcriteurCompetences.Instance();
+		writer.ecrireCompetences(lcmpts);
 		
 		// TODO corriger la recherche par libellé  
 		//lcmpts.get("Service Level Management").afficher(); // ne marche pas

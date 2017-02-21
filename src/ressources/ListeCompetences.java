@@ -1,5 +1,5 @@
 package ressources;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @version 0.0
  */
 public class ListeCompetences implements IListeCompetences{
-	private Map<DCCompetence, Competence> competences = new HashMap<>();
+	private Map<DCCompetence, Competence> competences = new TreeMap<>();
 	
 	@Override
 	public void ajouter(Competence comp){
@@ -104,15 +104,7 @@ public class ListeCompetences implements IListeCompetences{
 	}
 	
 	@Override
-	public Collection<Competence> ordonner(){
-		ArrayList<Competence> liste_trier = new ArrayList<>();
-		liste_trier.addAll(competences.values());
-		Collections.sort(liste_trier);
-		return liste_trier;
-	}
-	
-	@Override
 	public Competence[] getTab(){
-		return ordonner().toArray(new Competence[competences.size()]);
+		return competences.values().toArray(new Competence[competences.size()]);
 	}
 }

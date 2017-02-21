@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 /**
  * Ce splitter permet de diviser les chaînes de caractères par le délimitéteur ";"
  * 

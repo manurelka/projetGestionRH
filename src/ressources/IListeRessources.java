@@ -39,11 +39,6 @@ public interface IListeRessources<T> {
 	public abstract void afficher();
 	
 	/**
-	 * Renvoit une colléction ordonnée.
-	 */
-	public abstract Collection<T> ordonner();
-	
-	/**
 	 * Renvoit la liste des ressources sous forme d'un tableau.
 	 */
 	public abstract T[] getTab();

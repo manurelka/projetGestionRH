@@ -6,3 +6,4 @@
 	- la liste de compétences peut être un set ;
 	
 3) Voir classes lecteur/ecriteur généraliser ?
+4) Comment améliorer l'affichage des compétences (un tableau peut être ?)

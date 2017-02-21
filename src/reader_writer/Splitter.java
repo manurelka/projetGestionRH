@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 /**
  * Diviser les chaînes de caractères représentant des objets par mots représentant des attributs 
  * 

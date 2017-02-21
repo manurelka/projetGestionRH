@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 /**
  * Interface permettant la communication entre un client et le type ConteneurStr
  * 

@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 /**
  * Permet de diviser les chaînes de caractères par "."
  * 

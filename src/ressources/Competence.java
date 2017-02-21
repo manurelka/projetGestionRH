@@ -31,7 +31,7 @@ public class Competence implements Comparable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){
-		String str = DOMAINE.getStr() + "." + CODE + ". ;" + libelle.getLibGB() + ";" + libelle.getLibFR();
+		String str = DOMAINE.getStr() + "." + CODE + ".;" + libelle.getLibGB() + ";" + libelle.getLibFR();
 		return str;
 	}
 	

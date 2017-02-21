@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 /**
  * Interface permettant de lire un flux d'entré et de rmeplir un conteneur de données
  * 
@@ -6,13 +6,14 @@ package readerwriter;
  * @version 0.1
  */
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.io.IOException;
 
 public interface ILecteur {
 	/**
 	 * Ouvrir un flux d'entrée.
 	 */
-	public abstract void openFlux() throws FileNotFoundException;
+	public abstract void openFlux() throws FileNotFoundException, UnsupportedEncodingException;
 	
 	/**
 	 * Fermer un flux d'entrée.

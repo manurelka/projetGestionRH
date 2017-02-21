@@ -1,4 +1,4 @@
-package readerwriter;
+package reader_writer;
 /**
  * Permet de contenir les lignes d'un fichier csv en lecture, sous forme de chaînes de caractères
  * 

@@ -1,6 +1,10 @@
-package readerwriter;
+package reader_writer;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,9 +23,9 @@ public abstract class Lecteur extends GestionnaireFlux implements ILecteur{
 	}
 	
 	@Override
-	public void openFlux () throws FileNotFoundException{
+	public void openFlux () throws FileNotFoundException, UnsupportedEncodingException{
 		if (flux == null){
-			flux = new BufferedReader (new FileReader (chemin));
+			flux = new BufferedReader (new InputStreamReader( new FileInputStream( new File(chemin)), "UTF8"));
 		}
 	}
 	
@@ -37,7 +41,9 @@ public abstract class Lecteur extends GestionnaireFlux implements ILecteur{
 		if(flux == null){
 			openFlux();
 		}
+		flux.readLine();// on n'a pas besoin de la première ligne pour l'instant
 		while ( flux.ready()){
+			//System.out.println(flux.readLine()); // debug
 			conteneur.addLine(flux.readLine());
 		}
 	}
