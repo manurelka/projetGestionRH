@@ -107,6 +107,10 @@ public class TestRessources {
 		// Recherche de compétences
 		System.out.println("-- Recherche compétence --");
 		
+		// Par mot clé
+		System.out.println("-- x : par mot clé --");
+		lcmpts.get("LiBellé").afficher();
+		
 		// Par code & domaine compétence existante
 		System.out.println("-- a : par domaine et code --");
 		lcmpts.get(new DCCompetence(DomaineCompetences.A, 2)).afficher();

@@ -43,4 +43,22 @@ public class LibelleCompetence {
 	public boolean aLibFR(String libFR){
 		return this.libFR.equals(libFR.trim());
 	}
+
+	public boolean aMotCle(String motCle) {
+		String[] mots = mots();
+		int i = 0;
+		while(i < mots.length && !mots[i].toLowerCase().equals(motCle.toLowerCase().trim())){
+			i++;
+		}
+		return !(i == mots.length);
+	}
+	
+	private String concatener(){
+		return this.libGB + " " + this.libFR;
+	}
+	
+	private String[] mots(){
+		//System.out.println(concatener()); // debug
+		return concatener().split(" ");
+	}
 }

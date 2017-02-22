@@ -67,6 +67,16 @@ public class Competence implements Comparable {
 	}
 	
 	/**
+	 * Permet de savoir si le libellé d'une compétence a un mot clé spécifié (en français ou en anglais)
+	 * 
+	 * @param motCle Le mot clé recherchéde type String
+	 * @return boolean
+	 */
+	public boolean aMotCle(String motCle){
+		return libelle.aMotCle(motCle);
+	}
+	
+	/**
 	 * Permet de savoir si une compétence a le libellé spécifié (an anglais)
 	 * 
 	 * @param libelle Le libellé recherché en anglais sous forme de String

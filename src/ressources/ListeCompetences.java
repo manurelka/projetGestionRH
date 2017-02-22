@@ -54,13 +54,13 @@ public class ListeCompetences implements IListeCompetences{
 	}
 	
 	@Override
-	public ListeCompetences get(String libelle){
+	public ListeCompetences get(String motCle){
 		ListeCompetences rep = new ListeCompetences();
 		Competence comp;
 		
 		for(DCCompetence key : competences.keySet()) {
 			comp = competences.get(key);
-			if (comp.aLibelle(libelle)){
+			if (comp.aMotCle(motCle)){
 				rep.ajouter(comp);
 			}
 		}

@@ -24,12 +24,12 @@ public interface IListeCompetences extends IListeRessources<Competence>{
 	public abstract ListeCompetences get(int code);
 	
 	/**
-	 * Recherche des compétences par libellé.
+	 * Recherche des compétences par mot clé.
 	 * 
-	 * @param libelle Le libellé recherhcé de type String
+	 * @param motCle Le mot clé recherhcé de type String
 	 * @return Une collection de compétences
 	 */
-	public abstract ListeCompetences get(String libelle);
+	public abstract ListeCompetences get(String motCle);
 
 	/**
 	 * Recherche des compétences par domaine et code.

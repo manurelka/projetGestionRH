@@ -28,7 +28,7 @@ public class Principale extends javax.swing.JFrame {
     	a = new Ajouter();
     	m = new Modifier();
     	s = new Supprimer();
-    	l = new Listecpt();
+    	l = new Listecpt2();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -172,6 +172,6 @@ public class Principale extends javax.swing.JFrame {
     private Ajouter a;
     private Modifier m;
     private Supprimer s;
-    private Listecpt l;
+    private Listecpt2 l;
     // End of variables declaration                   
 }
