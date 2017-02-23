@@ -1,11 +1,11 @@
 package vues;
 
-public class Modifier extends javax.swing.JPanel {
+public class Modifier2 extends javax.swing.JPanel {
 
     /**
      * Creates new form Modifier
      */
-    public Modifier() {
+    public Modifier2() {
         initComponents();
     }
 

@@ -22,23 +22,21 @@ public abstract class Lecteur extends GestionnaireFlux implements ILecteur{
 		super(str);
 	}
 	
-	@Override
-	public void openFlux () throws FileNotFoundException, UnsupportedEncodingException{
-		if (flux == null){
+	protected void openFlux () throws FileNotFoundException, UnsupportedEncodingException{
+		if (!isInit()){
 			flux = new BufferedReader (new InputStreamReader( new FileInputStream( new File(chemin)), "UTF8"));
 		}
 	}
 	
-	@Override
-	public void closeFlux () throws IOException{
-		if (flux != null){
+	protected void closeFlux () throws IOException{
+		if (isInit()){
 			flux.close();
+			flux = null;
 		}
 	}
 
-	@Override
-	public void remplir(IConteneurStr conteneur) throws IOException{
-		if(flux == null){
+	protected void remplir(IConteneurStr conteneur) throws IOException{
+		if(!isInit()){
 			openFlux();
 		}
 		flux.readLine();// on n'a pas besoin de la première ligne pour l'instant
@@ -46,5 +44,9 @@ public abstract class Lecteur extends GestionnaireFlux implements ILecteur{
 			//System.out.println(flux.readLine()); // debug
 			conteneur.addLine(flux.readLine());
 		}
+	}
+	
+	private boolean isInit(){
+		return !(flux == null);
 	}
 }

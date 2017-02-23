@@ -17,14 +17,18 @@ import java.util.ArrayList;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class ListeCompetences implements IListeCompetences{
-	private Map<DCCompetence, Competence> competences = new TreeMap<>();
+public class ListeCompetences implements IListeCompetences, IListeModifiable {
+	
+	private Map<DCCompetence, Competence> competences = new TreeMap<DCCompetence, Competence>();
+	private ArrayList<IModifEcouteur> ecouteurs = new ArrayList<IModifEcouteur>();
 	
 	@Override
 	public void ajouter(Competence comp){
 		if(! estAjoute(comp)){
 			competences.put(comp.getDC(), comp);
 		}
+		
+		modifContenu(ModifType.AJOUT);
 	}
 	
 	@Override
@@ -37,6 +41,8 @@ public class ListeCompetences implements IListeCompetences{
 			System.out.println(TypeDifferentExceptionMSG.LISTE_COMP);
 			e.printStackTrace();
 		}
+		
+		modifContenu(ModifType.AJOUT);
 	}
 	
 	@Override
@@ -107,4 +113,22 @@ public class ListeCompetences implements IListeCompetences{
 	public Competence[] getTab(){
 		return competences.values().toArray(new Competence[competences.size()]);
 	}
+	
+	@Override
+	public void modifContenu(ModifType type){
+		ModifEvenement evt = new ModifEvenement(type);
+		
+		for (IModifEcouteur e : ecouteurs){
+			e.reagir(evt);
+		}
+	}
+	
+	public void addModifEcouteur(IModifEcouteur e){
+		this.ecouteurs.add(e);
+	}
+	
+	public void removeModifEcouteur(IModifEcouteur e){
+		this.ecouteurs.remove(e);
+	}
+	
 }

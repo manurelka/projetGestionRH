@@ -29,6 +29,7 @@ public class LecteurCompetences extends Lecteur implements ILecteurCompetences {
 	}
 
 	public  ListeCompetences lireCompetences (){
+		//System.out.println("Je lis les compétences");//debug
 		ListeCompetences liste = new ListeCompetences();
 		try {
 			// Ovrir le flux d'entrée

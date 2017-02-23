@@ -1,6 +1,7 @@
 package vues;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,17 +16,22 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import reader_writer.EcriteurCompetences;
+import reader_writer.IHMCompetencesAccessor;
 import reader_writer.LecteurCompetences;
 import ressources.Competence;
 import ressources.DomaineCompetences;
+import ressources.IModifEcouteur;
 import ressources.ListeCompetences;
+import ressources.ModifEvenement;
 
-public class Listecpt2 extends javax.swing.JPanel {
+public class Listecpt2 extends javax.swing.JPanel implements IModifEcouteur{
 
     /**
      * Creates new form Listecpt
      */
     public Listecpt2() {
+    	initCompetences();
         initComponents();
     }
 
@@ -50,6 +56,8 @@ public class Listecpt2 extends javax.swing.JPanel {
         jbtn_rehcercher = new javax.swing.JButton();
         //Bouton de supression des paramètres de tri
         jbtn_toutes = new javax.swing.JButton();
+        //Bouton d'enrégistrement de la liste
+        jbtn_enregistrer = new javax.swing.JButton();
         //Libellé de la recherche par domaine
         jlab_triDomaine = new javax.swing.JLabel();
         //Combo box qui affiche le choix de domaine
@@ -64,16 +72,20 @@ public class Listecpt2 extends javax.swing.JPanel {
         //La liste des copétences
         jlist_competences = new javax.swing.JList<Competence>();
         
-        jlab_titre.setText("Liste des compétence");
+        jlab_titre.setText(TITRE);
         
         //Libellés
         jtf_rechercheParLib.setText(rechercheParLib_TEXTE);
-        jlab_triDomaine.setText("Trier par domaine : ");
-        jlab_triCode.setText("Trier par code : ");
+        jlab_triDomaine.setText(trieParDomaine_TEXTE);
+        jlab_triCode.setText(trieParCode_TEXTE);
         
         //Boutons
-        jbtn_rehcercher.setText("Rechercher");
-        jbtn_toutes.setText("Toutes les compétences");
+        jbtn_rehcercher.setText(btnRechercher_TEXTE);
+        jbtn_toutes.setText(btnToutes_TEXTE);
+        jbtn_enregistrer.setText(btnEnregistrer_TEXTE);
+        
+        //Combo box
+        jcombo_domaines.setSelectedItem(DomaineCompetences.UNDEFINED);
         
         this.setLayout(new BorderLayout(20, 20));
         this.add(jlab_titre, BorderLayout.NORTH);
@@ -84,7 +96,7 @@ public class Listecpt2 extends javax.swing.JPanel {
         jpan_general.add(jscroll_listeCompetences, BorderLayout.CENTER);
         jpan_general.setBorder(new EmptyBorder(10, 20, 20, 20));
         
-        jpan_tri.setName("Trier la liste");
+        jpan_tri.setName(jpan_tri_NAME);
         jpan_tri.setLayout(new GridLayout(4, 2, 15, 10));
         jpan_tri.setBorder(new EmptyBorder(10, 0, 10, 180));
         
@@ -95,11 +107,15 @@ public class Listecpt2 extends javax.swing.JPanel {
         jpan_tri.add(jtf_rechercheParLib);
         jpan_tri.add(jbtn_rehcercher);
         jpan_tri.add(jbtn_toutes);
+        jpan_tri.add(jbtn_enregistrer);
         
+        // Liste
         jlist_competences.setModel(new javax.swing.AbstractListModel<Competence>() {
             public int getSize() { return competences.length; }
             public Competence getElementAt(int i) { return competences[i]; }
         });
+        
+        jlist_competences.setListData(competences);
         
         jscroll_listeCompetences.setViewportView(jlist_competences);
         
@@ -132,37 +148,23 @@ public class Listecpt2 extends javax.swing.JPanel {
 			}
         	
         });
-        //javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        //this.setLayout(layout);
-        /*layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jscroll_listeCompetences, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jtf_rechercheParLib, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(68, 68, 68)
-                            .addComponent(jbtn_rehcercher, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-                        .addComponent(jlab_titre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(131, Short.MAX_VALUE))
-        );*/
-        /*layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jlab_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtf_rechercheParLib)
-                    .addComponent(jbtn_rehcercher, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
-                .addComponent(jscroll_listeCompetences, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
-        );*/
+        
+        
+        jbtn_enregistrer.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				jbtn_enregistrerActPerf(evt);
+			}
+        });
+        
+        //ajouter à la liste des ecouteurs de modification de la liste des compétences
+        IHMCompetencesAccessor.addModifEcouteur(this);
+        
     }// </editor-fold>                        
 
+    private void initCompetences(){
+    	competences = IHMCompetencesAccessor.competences_init.getTab();
+    }
 
     // Variables declaration - do not modify
     private javax.swing.JLabel jlab_titre;
@@ -171,21 +173,30 @@ public class Listecpt2 extends javax.swing.JPanel {
     private javax.swing.JPanel jpan_tri;
     private javax.swing.JButton jbtn_rehcercher;
     private javax.swing.JButton jbtn_toutes;
+    private javax.swing.JButton jbtn_enregistrer;
     private javax.swing.JTextField jtf_rechercheParLib;
-    private final String rechercheParLib_TEXTE = "Rehcerche par mot clé...";
     private javax.swing.JLabel jlab_triDomaine;
     private javax.swing.JComboBox jcombo_domaines;
     private javax.swing.JLabel jlab_triCode;
     private javax.swing.JTextField jtf_code;
     
     private javax.swing.JList<Competence> jlist_competences;
-    private javax.swing.JScrollPane jscroll_listeCompetences;
+    private javax.swing.JScrollPane jscroll_listeCompetences;    
     
-    private final LecteurCompetences LC = LecteurCompetences.Instance();
-    private final ListeCompetences COMPETENCES_INIT = LC.lireCompetences();
-    private Competence[] competences = COMPETENCES_INIT.getTab();
+    //Libellés
+    private final String TITRE = "Liste des compétences";
+    private final String rechercheParLib_TEXTE = "Rehcerche par mot clé...";
+    private final String trieParDomaine_TEXTE = "Trier par domaine :";
+    private final String trieParCode_TEXTE = "Trier par code :";
+    private final String btnRechercher_TEXTE = "Rechercher";
+    private final String btnToutes_TEXTE = "Toutes les compétences";
+    private final String btnEnregistrer_TEXTE = "Enrégistrer la liste";
+    private final String jpan_tri_NAME = "Trier la liste";
+    
+    private Competence[] competences;
     
     private final DomaineCompetences[] DOMAINES = DomaineCompetences.values();
+    private int codeCpt = 0;
     // End of variables declaration
     
     //Réacion à l'appuyi sur le bouton rechercher
@@ -193,9 +204,11 @@ public class Listecpt2 extends javax.swing.JPanel {
     	jtf_code.setText("");
     	if (jtf_rechercheParLib.getText().trim().equals("")) {
     		jtf_rechercheParLib.setText(rechercheParLib_TEXTE);
-    		competences = COMPETENCES_INIT.getTab();
+    		initCompetences();
+    		jlist_competences.setListData(competences);
     	} else {
-    		competences = COMPETENCES_INIT.get(jtf_rechercheParLib.getText()).getTab();
+    		competences = IHMCompetencesAccessor.competences_init.get(jtf_rechercheParLib.getText()).getTab();
+    		jlist_competences.setListData(competences);
     	}
     	this.repaint();
     }
@@ -204,7 +217,8 @@ public class Listecpt2 extends javax.swing.JPanel {
     public void jcombo_selectedActPerf(ActionEvent evt){
     	jtf_rechercheParLib.setText(rechercheParLib_TEXTE);
     	jtf_code.setText("");
-    	competences = COMPETENCES_INIT.get((DomaineCompetences) jcombo_domaines.getSelectedItem()).getTab();
+    	competences = IHMCompetencesAccessor.competences_init.get((DomaineCompetences) jcombo_domaines.getSelectedItem()).getTab();
+    	jlist_competences.setListData(competences);
     	this.repaint();
     }
     
@@ -213,20 +227,55 @@ public class Listecpt2 extends javax.swing.JPanel {
     	jtf_rechercheParLib.setText(rechercheParLib_TEXTE);
     	jtf_code.setText("");
     	jcombo_domaines.setSelectedItem(DomaineCompetences.UNDEFINED);
-    	competences = COMPETENCES_INIT.getTab();
+    	initCompetences();
+    	jlist_competences.setListData(competences);
     	this.repaint();
     }
     
     //Réation de l'appuyi sur une touche clavier pour le champ code
-    //pend en compte les valeurs entre 0 et 9
-    //TODO valeurs de deux chiffres (10, 11, 12 etc.)
+    //prend en compte les valeurs entre 0 et 99
     public void jtf_codeKeyTyped(KeyEvent evt){
     	jtf_rechercheParLib.setText(rechercheParLib_TEXTE);
+    	
     	if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
-    		System.out.println(evt.getKeyChar());
-    		competences = COMPETENCES_INIT.get(Character.getNumericValue(evt.getKeyChar())).getTab();
+    		//System.out.println(evt.getKeyChar()); //debug
+    		codeCptMAJ(Character.getNumericValue(evt.getKeyChar()));
+    		competences = IHMCompetencesAccessor.competences_init.get(codeCpt).getTab();
+    		jlist_competences.setListData(competences);
+    		
+    		if(jtf_code.getText().length() == 2){
+    			jtf_code.setText("");
+    		}
+    		
+    	} else {
+    		jtf_code.setText("");
+    		codeCptINIT();
     	}
-    	jtf_code.setText("");
     	this.repaint();
+    }
+    
+    public void codeCptMAJ(int characterNumericValue) {
+    	if (codeCpt*10 >= 100) {
+    		codeCpt = characterNumericValue;
+    	} else {
+    		codeCpt *= 10;
+    		codeCpt += characterNumericValue;
+    	}
+    }
+    
+    public void codeCptINIT(){
+    	codeCpt = 0;
+    }
+    
+    //Enrégistrement de la liste
+    public void jbtn_enregistrerActPerf(ActionEvent evt){
+    	IHMCompetencesAccessor.EC.ecrireCompetences(IHMCompetencesAccessor.competences_init);
+    	this.repaint();
+    }
+    
+    @Override
+    public void reagir(ModifEvenement evt){
+    	initCompetences();
+    	jlist_competences.setListData(competences);
     }
 }

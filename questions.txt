@@ -8,3 +8,4 @@
 3) Voir classes lecteur/ecriteur généraliser ?
 4) Comment améliorer l'affichage des compétences (un tableau peut être ?)
 5) Recherche par mot clé plutôt que par libellé
+	Remarque : pas de gestion des liaisons

@@ -9,8 +9,9 @@ package ressources;
  * @version 0.0
  */
 public class Competence implements Comparable {
-	private final DomaineCompetences DOMAINE;
-	private final Integer CODE;
+	private final DCCompetence DC;
+	//private final DomaineCompetences DOMAINE;
+	//private final Integer CODE;
 	// TODO gestion de la traduction
 	private LibelleCompetence libelle;
 	
@@ -21,8 +22,14 @@ public class Competence implements Comparable {
 	 * @param libFR Le libellé de la compétance en français
 	 */
 	public Competence(DomaineCompetences domaine, int code, String libGB, String libFR){
-		this.DOMAINE = domaine;
-		this.CODE = code;
+		//this.DOMAINE = domaine;
+		//this.CODE = code;
+		this.DC = new DCCompetence(domaine, code);
+		this.libelle = new LibelleCompetence(libGB, libFR);
+	}
+	
+	public Competence(DomaineCompetences domaine, String libGB, String libFR){
+		this.DC = new DCCompetence(domaine, DCCompetence.nextCode(domaine));
 		this.libelle = new LibelleCompetence(libGB, libFR);
 	}
 	
@@ -31,7 +38,7 @@ public class Competence implements Comparable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){
-		String str = DOMAINE.getStr() + "." + CODE + ".;" + libelle.getLibGB() + ";" + libelle.getLibFR();
+		String str = DC.toString() + ";" + libelle.getLibGB() + ";" + libelle.getLibFR();
 		return str;
 	}
 	
@@ -43,7 +50,7 @@ public class Competence implements Comparable {
 	}
 	
 	public DCCompetence getDC(){
-		return new DCCompetence(DOMAINE, CODE);
+		return DC;
 	}
 	
 	/**
@@ -115,7 +122,7 @@ public class Competence implements Comparable {
 	 * @return boolean
 	 */
 	public boolean aDomaine(DomaineCompetences domaine){
-		return this.DOMAINE.equals(domaine);
+		return DC.aDomaine(domaine);
 	}
 	
 	/**
@@ -125,7 +132,7 @@ public class Competence implements Comparable {
 	 * @return boolean
 	 */
 	public boolean aCode(int code){
-		return this.CODE.equals(code);
+		return DC.aCode(code);
 	}
 
 	@Override

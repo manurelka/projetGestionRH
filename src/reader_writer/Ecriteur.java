@@ -16,21 +16,28 @@ public abstract class Ecriteur extends GestionnaireFlux implements IEcriteur{
 		super(chemin);
 	}
 	
-	@Override
-	public void openWriter() throws FileNotFoundException, IOException {
-		if (writer == null){
+	protected void openWriter() throws FileNotFoundException, IOException {
+		if (!isInit()){
 			FileOutputStream fileStream = new FileOutputStream(new File(chemin));
 			writer = new OutputStreamWriter(fileStream, "UTF-8");
 		}
 	}
 
-	@Override
-	public void closeWriter() throws IOException {
-		writer.close();
+	protected void closeWriter() throws IOException {
+		if(isInit()){
+			writer.close();
+			writer = null;
+		}	
 	}
 
-	@Override
-	public void ecrire(String ligne) throws IOException{
+	protected void ecrire(String ligne) throws IOException{
+		if(!isInit()){
+			openWriter();
+		}
 		writer.write(ligne + "\n");
+	}
+	
+	private boolean isInit(){
+		return !(writer == null);
 	}
 }

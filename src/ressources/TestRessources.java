@@ -45,8 +45,11 @@ public class TestRessources {
 		Competence cmpt3 = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...différent", "Libellé en français...");
 		Competence cmpt4 = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...", "Libellé en français...différent");
 		Competence cmpt5 = new Competence(DomaineCompetences.D, 1, "Libellé en anglais...", "Libellé en français...");
+		Competence cmpt6 = new Competence(DomaineCompetences.A, "Libellé en anglais...", "Libellé en français...différent");
 		
 		cmpt.afficher();
+		System.out.println("-- compétence créer en utilisant nextCode() --");
+		cmpt6.afficher();
 		
 		//Comparation de deux compétences identiques
 		System.out.println("-- Egalité des compétences --");
@@ -182,11 +185,12 @@ public class TestRessources {
 		
 		//Ajout de nouvelles compétences
 		lcmpts.ajouter((new Competence(DomaineCompetences.A, 20, "Libellé en anglais...éàè", "Libellé en français...")));
+		
 		//Ecriture de la liste des compétences (Dans un fichier liste_competences_ecr.csv pour le moment)
 		System.out.println("-- Ecriture des compétences --");
 		EcriteurCompetences writer = EcriteurCompetences.Instance();
 		writer.ecrireCompetences(lcmpts);
-		
+		writer.ecrireCompetences(lcmpts);
 		// TODO corriger la recherche par libellé  
 		//lcmpts.get("Service Level Management").afficher(); // ne marche pas
 		

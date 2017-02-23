@@ -2,6 +2,9 @@ package vues;
 
 import java.awt.event.ActionEvent;
 
+import reader_writer.LecteurCompetences;
+import ressources.ListeCompetences;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,7 +28,7 @@ public class Principale extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-    	a = new Ajouter();
+    	a = new Ajouter2();
     	m = new Modifier();
     	s = new Supprimer();
     	l = new Listecpt2();
@@ -169,9 +172,10 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private Ajouter a;
+    private Ajouter2 a;
     private Modifier m;
     private Supprimer s;
     private Listecpt2 l;
+   
     // End of variables declaration                   
 }

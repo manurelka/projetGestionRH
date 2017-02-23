@@ -10,20 +10,5 @@ import java.io.UnsupportedEncodingException;
 import java.io.IOException;
 
 public interface ILecteur {
-	/**
-	 * Ouvrir un flux d'entrée.
-	 */
-	public abstract void openFlux() throws FileNotFoundException, UnsupportedEncodingException;
-	
-	/**
-	 * Fermer un flux d'entrée.
-	 */
-	public abstract void closeFlux() throws IOException;
-	
-	/**
-	 * Remplir un conteneur de données.
-	 * 
-	 * @param conteneur Le conteneur de données qui sera rempli
-	 */
-	public abstract void remplir(IConteneurStr conteneur) throws IOException;
+
 }
