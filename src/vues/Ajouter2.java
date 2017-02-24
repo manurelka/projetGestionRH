@@ -15,8 +15,9 @@ import reader_writer.IHMCompetencesAccessor;
 import ressources.Competence;
 import ressources.DomaineCompetences;
 import ressources.ListeCompetences;
+import ressources.ModifEvenement;
 
-public class Ajouter2 extends javax.swing.JPanel {
+public class Ajouter2 extends PanelCompetences {
 
     /**
      * Creates new form Modifier
@@ -122,9 +123,6 @@ public class Ajouter2 extends javax.swing.JPanel {
         
     }// </editor-fold>       
     
-    private void initCompetences(){
-    	competences = IHMCompetencesAccessor.competences_init.getTab();
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JLabel jlab_titre;
@@ -147,10 +145,6 @@ public class Ajouter2 extends javax.swing.JPanel {
     private final String libFR_TEXTE = "Libellé en français...";
     private final String btnValider_TEXTE = "Valider";
     
-   
-    private Competence[] competences;
-    
-    private final DomaineCompetences[] DOMAINES = DomaineCompetences.values();
     // End of variables declaration
     
     /**
@@ -166,7 +160,7 @@ public class Ajouter2 extends javax.swing.JPanel {
     		jlab_feedback.setText("Selectionnez un domaine pour votre compétence.");
     		
     	} else {
-    		IHMCompetencesAccessor.competences_init.ajouter(new Competence((DomaineCompetences) jcombo_domaines.getSelectedItem(), jtf_libelleGB.getText(), jtf_libelleFR.getText()));
+    		ajouter(new Competence((DomaineCompetences) jcombo_domaines.getSelectedItem(), jtf_libelleGB.getText(), jtf_libelleFR.getText()));
 	    	jtf_libelleGB.setText(libGB_TEXTE);
 	        jtf_libelleFR.setText(libFR_TEXTE);
 	        jcombo_domaines.setSelectedItem(DomaineCompetences.UNDEFINED);
@@ -175,4 +169,9 @@ public class Ajouter2 extends javax.swing.JPanel {
     	
     	this.repaint();
     }
+
+	@Override
+	public void reagir(ModifEvenement evt) {
+		this.repaint();
+	}
 }

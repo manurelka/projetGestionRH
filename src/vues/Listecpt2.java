@@ -25,7 +25,7 @@ import ressources.IModifEcouteur;
 import ressources.ListeCompetences;
 import ressources.ModifEvenement;
 
-public class Listecpt2 extends javax.swing.JPanel implements IModifEcouteur{
+public class Listecpt2 extends PanelCompetences implements IModifEcouteur{
 
     /**
      * Creates new form Listecpt
@@ -158,13 +158,9 @@ public class Listecpt2 extends javax.swing.JPanel implements IModifEcouteur{
         });
         
         //ajouter à la liste des ecouteurs de modification de la liste des compétences
-        IHMCompetencesAccessor.addModifEcouteur(this);
+        abonnerModif();
         
     }// </editor-fold>                        
-
-    private void initCompetences(){
-    	competences = IHMCompetencesAccessor.competences_init.getTab();
-    }
 
     // Variables declaration - do not modify
     private javax.swing.JLabel jlab_titre;
@@ -192,23 +188,25 @@ public class Listecpt2 extends javax.swing.JPanel implements IModifEcouteur{
     private final String btnToutes_TEXTE = "Toutes les compétences";
     private final String btnEnregistrer_TEXTE = "Enrégistrer la liste";
     private final String jpan_tri_NAME = "Trier la liste";
-    
-    private Competence[] competences;
-    
-    private final DomaineCompetences[] DOMAINES = DomaineCompetences.values();
+   
     private int codeCpt = 0;
     // End of variables declaration
     
     //Réacion à l'appuyi sur le bouton rechercher
     public void jbtn_rehcercherActPerf(ActionEvent evt){
     	jtf_code.setText("");
+    	
     	if (jtf_rechercheParLib.getText().trim().equals("")) {
+    		
     		jtf_rechercheParLib.setText(rechercheParLib_TEXTE);
     		initCompetences();
     		jlist_competences.setListData(competences);
+    		
     	} else {
-    		competences = IHMCompetencesAccessor.competences_init.get(jtf_rechercheParLib.getText()).getTab();
+    		
+    		setCompetences(jtf_rechercheParLib.getText());
     		jlist_competences.setListData(competences);
+    		
     	}
     	this.repaint();
     }
@@ -217,7 +215,7 @@ public class Listecpt2 extends javax.swing.JPanel implements IModifEcouteur{
     public void jcombo_selectedActPerf(ActionEvent evt){
     	jtf_rechercheParLib.setText(rechercheParLib_TEXTE);
     	jtf_code.setText("");
-    	competences = IHMCompetencesAccessor.competences_init.get((DomaineCompetences) jcombo_domaines.getSelectedItem()).getTab();
+    	setCompetences((DomaineCompetences) jcombo_domaines.getSelectedItem());
     	jlist_competences.setListData(competences);
     	this.repaint();
     }
@@ -240,7 +238,7 @@ public class Listecpt2 extends javax.swing.JPanel implements IModifEcouteur{
     	if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
     		//System.out.println(evt.getKeyChar()); //debug
     		codeCptMAJ(Character.getNumericValue(evt.getKeyChar()));
-    		competences = IHMCompetencesAccessor.competences_init.get(codeCpt).getTab();
+    		setCompetences(codeCpt);
     		jlist_competences.setListData(competences);
     		
     		if(jtf_code.getText().length() == 2){
@@ -269,7 +267,7 @@ public class Listecpt2 extends javax.swing.JPanel implements IModifEcouteur{
     
     //Enrégistrement de la liste
     public void jbtn_enregistrerActPerf(ActionEvent evt){
-    	IHMCompetencesAccessor.EC.ecrireCompetences(IHMCompetencesAccessor.competences_init);
+    	ecrireCompetences();
     	this.repaint();
     }
     

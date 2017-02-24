@@ -28,10 +28,10 @@ public class Principale extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-    	a = new Ajouter2();
-    	m = new Modifier();
-    	s = new Supprimer();
-    	l = new Listecpt2();
+    	jpan_ajouter_cpt = new Ajouter2();
+    	jpan_modifier_cpt = new Modifier2();
+    	jpan_supprimer_cpt = new Supprimer();
+    	jpan_liste_cpt = new Listecpt2();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -113,16 +113,16 @@ public class Principale extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         Object e = evt.getSource();
         if(e==jMenuItem1){
-        	this.setContentPane(l);
+        	this.setContentPane(jpan_liste_cpt);
         }
         if(e==jMenuItem2){
-        	this.setContentPane(a);
+        	this.setContentPane(jpan_ajouter_cpt);
         }
         if(e==jMenuItem3){
-        	this.setContentPane(m);
+        	this.setContentPane(jpan_modifier_cpt);
         }
         if(e==jMenuItem4){
-        	this.setContentPane(s);
+        	this.setContentPane(jpan_supprimer_cpt);
         }
         this.repaint();
         this.revalidate();
@@ -172,10 +172,10 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private Ajouter2 a;
-    private Modifier m;
-    private Supprimer s;
-    private Listecpt2 l;
+    private Ajouter2 jpan_ajouter_cpt;
+    private Modifier2 jpan_modifier_cpt;
+    private Supprimer jpan_supprimer_cpt;
+    private Listecpt2 jpan_liste_cpt;
    
     // End of variables declaration                   
 }
