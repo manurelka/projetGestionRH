@@ -141,4 +141,28 @@ public class Competence implements Comparable {
 		
 		return this.getDC().compareTo(cmp.getDC());
 	}
+	
+	public String getLibFR(){
+		return libelle.getLibFR();
+	}
+	
+	public String getLibGB(){
+		return libelle.getLibGB();
+	}
+	
+	public void setLibFR(String libFR){
+		libelle.setLibFR(libFR);
+	}
+	
+	public void setLibGB(String libGB){
+		libelle.setLibGB(libGB);
+	}
+	
+	public DomaineCompetences getDomaine(){
+		return DC.getPrem();
+	}
+	
+	public Integer getCode(){
+		return DC.getSec();
+	}
 }

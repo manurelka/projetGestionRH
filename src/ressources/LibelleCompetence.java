@@ -61,4 +61,12 @@ public class LibelleCompetence {
 		//System.out.println(concatener()); // debug
 		return concatener().split(" ");
 	}
+
+	public void setLibFR(String libFR) {
+		this.libFR = libFR;
+	}
+	
+	public void setLibGB(String libGB) {
+		this.libGB = libGB;
+	}
 }

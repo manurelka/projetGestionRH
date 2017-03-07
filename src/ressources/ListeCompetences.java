@@ -130,5 +130,11 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 	public void removeModifEcouteur(IModifEcouteur e){
 		this.ecouteurs.remove(e);
 	}
+
+	@Override
+	public void supprimer(Competence cpt) {
+		competences.remove(cpt.getDC());
+		modifContenu(ModifType.SUPPR);
+	}
 	
 }

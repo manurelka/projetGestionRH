@@ -17,6 +17,13 @@ public interface IListeRessources<T> {
 	 * @param objet L'objet à ajouter de type générique
 	 */
 	public abstract void ajouter(T objet);
+	
+	/**
+	 * Supprime une ressource dans la collection des ressources.
+	 * 
+	 * @param objet L'objet à supprimer de type générique
+	 */
+	public abstract void supprimer(T objet);
 
 	/**
 	 * Ajoute plusieurs ressources dans la collection.
