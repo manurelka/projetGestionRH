@@ -9,6 +9,7 @@ import ressources.IModifEcouteur;
 
 public abstract class PanelCompetences extends JPanel implements IModifEcouteur{
 	protected Competence[] competences;
+    protected Competence cptCourante;
     
     protected final DomaineCompetences[] DOMAINES = DomaineCompetences.values();
     
@@ -39,5 +40,9 @@ public abstract class PanelCompetences extends JPanel implements IModifEcouteur{
     
     protected void ajouter(Competence cmpt) {
     	IHMCompetencesAccessor.competences_init.ajouter(cmpt);
+    }
+    
+    protected void supprimer(Competence cmpt){
+    	IHMCompetencesAccessor.competences_init.supprimer(cmpt);
     }
 }

@@ -33,6 +33,8 @@ public class Listecpt2 extends PanelCompetences implements IModifEcouteur{
     public Listecpt2() {
     	initCompetences();
         initComponents();
+      //ajouter à la liste des ecouteurs de modification de la liste des compétences
+        abonnerModif();
     }
 
     /**
@@ -156,10 +158,7 @@ public class Listecpt2 extends PanelCompetences implements IModifEcouteur{
 				jbtn_enregistrerActPerf(evt);
 			}
         });
-        
-        //ajouter à la liste des ecouteurs de modification de la liste des compétences
-        abonnerModif();
-        
+               
     }// </editor-fold>                        
 
     // Variables declaration - do not modify
@@ -186,7 +185,7 @@ public class Listecpt2 extends PanelCompetences implements IModifEcouteur{
     private final String trieParCode_TEXTE = "Trier par code :";
     private final String btnRechercher_TEXTE = "Rechercher";
     private final String btnToutes_TEXTE = "Toutes les compétences";
-    private final String btnEnregistrer_TEXTE = "Enrégistrer la liste";
+    private final String btnEnregistrer_TEXTE = "Enregistrer la liste";
     private final String jpan_tri_NAME = "Trier la liste";
    
     private int codeCpt = 0;
