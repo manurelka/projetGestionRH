@@ -10,13 +10,13 @@ package ressources;
  */
 public class Personne {
 	//TODO créer une date par défaut
-	private final int ID;
+	private final Integer ID;
 	private String nom;
 	private String prenom;
 	private Date dateEntree;
 	private ListeCompetences competences = new ListeCompetences();
 	
-	public Personne(String prenom, String nom, int id, Date dateEntree) {
+	public Personne(String prenom, String nom, Integer id, Date dateEntree) {
 		this.prenom = prenom;
 		this.nom = nom; 
 		this.ID = id;
@@ -38,5 +38,9 @@ public class Personne {
 	 */
 	public void afficher(){
 		System.out.println(getClass().getSimpleName() + " : " + toString());
+	}
+	
+	public Integer getID(){
+		return ID;
 	}
 }

@@ -1,11 +1,11 @@
 package ressources;
 
-public class ListePersonnes extends ListeRessources<Integer, Personne> implements IListeRessources, IListeModifiable{
+public class ListePersonnes extends ListeRessources<Integer, Personne> implements IListePersonnels, IListeModifiable{
 	
 	@Override
 	public void ajouter(Personne pers){
 		if(! estAjoute(pers)){
-			ressources.put(pers.getID(), pers);
+			//ressources.put(pers.getID(), pers);
 		}
 		
 		modifContenu(ModifType.AJOUT);
@@ -14,10 +14,11 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 	@Override
 	public void ajouter(IListeRessources<Personne> pers){
 		try {
-			for(DCCompetence key : ((ListePersonnes) pers).ressources.keySet()){
+			for(Integer key : ((ListePersonnes) pers).ressources.keySet()){
 				ajouter(((ListePersonnes) pers).ressources.get(key));
 			}
 		} catch (ClassCastException e){
+			//TODO
 			System.out.println(TypeDifferentExceptionMSG.LISTE_COMP);
 			e.printStackTrace();
 		}
@@ -27,7 +28,7 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 	
 	@Override
 	public void afficher(){
-		System.out.println("-- Liste de compétences --");
+		System.out.println("-- Liste de personnes --");
 		
 		for (Integer key : ressources.keySet()) {
 			ressources.get(key).afficher();
@@ -35,63 +36,14 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 	}
 	
 	@Override
-	public boolean estAjoute(Competence comp){
-		return ressources.containsKey(comp.getDC());
+	public boolean estAjoute(Personne pers){
+		//TODO
+		return false;
 	}
 	
 	@Override
-	public ListeCompetences get(String motCle){
-		ListeCompetences rep = new ListeCompetences();
-		Competence comp;
-		
-		for(DCCompetence key : ressources.keySet()) {
-			comp = ressources.get(key);
-			if (comp.aMotCle(motCle)){
-				rep.ajouter(comp);
-			}
-		}
-		
-		return rep;
-	}
-	
-	@Override
-	public ListeCompetences get(int code){
-		ListeCompetences rep = new ListeCompetences();
-		Competence comp;
-		
-		for(DCCompetence key : ressources.keySet()) {
-			comp = ressources.get(key);
-			if (comp.aCode(code)){
-				rep.ajouter(comp);
-			}
-		}
-		
-		return rep;		
-	}
-	
-	@Override
-	public ListeCompetences get(DomaineCompetences domaine){
-		ListeCompetences rep = new ListeCompetences();
-		Competence comp;
-		
-		for(DCCompetence key : ressources.keySet()) {
-			comp = ressources.get(key);
-			if (comp.aDomaine(domaine)){
-				rep.ajouter(comp);
-			}
-		}
-		
-		return rep;
-	}
-	
-	@Override
-	public Competence get(DCCompetence dc){
-		return this.ressources.get(dc);
-	}
-	
-	@Override
-	public Competence[] getTab(){
-		return ressources.values().toArray(new Competence[ressources.size()]);
+	public Personne[] getTab(){
+		return ressources.values().toArray(new Personne[ressources.size()]);
 	}
 	
 	@Override
@@ -101,6 +53,31 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 		for (IModifEcouteur e : ecouteurs){
 			e.reagir(evt);
 		}
-	
+	}
+
+	@Override
+	public void supprimer(Personne objet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ListePersonnes get(String nom, String prenom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ListePersonnes get(int code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ListePersonnes get(String motCle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
+
