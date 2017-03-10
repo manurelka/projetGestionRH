@@ -1,5 +1,5 @@
 package missions;
 
-public class EtatMission {
+public abstract class EtatMission {
 	
 }

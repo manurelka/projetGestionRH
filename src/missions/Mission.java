@@ -11,4 +11,5 @@ public abstract class Mission {
 	private int duree;
 	private EtatMission etat;
 	private ListePersonnes personnel;
+	
 }
