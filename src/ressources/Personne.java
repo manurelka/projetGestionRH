@@ -88,7 +88,12 @@ public class Personne {
 	
 	public double compatible(ListeCompetences liste){
 		int nb = 0, total = liste.taille();
-		//return nb / taille;
-		return 0.;
+		for (Competence cmpt : liste.getTab()) {
+			if (this.aCompetence(cmpt)) {
+				nb ++;
+			} 
+		}
+		
+		return (double) nb / total;
 	}
 }

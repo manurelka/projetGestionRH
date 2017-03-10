@@ -152,6 +152,26 @@ public class TestRessources {
 		manu.getCompetence(cmpt6.getDC()).afficher();
 		System.out.println(manu.aCompetence(cmpt4)); // true
 		System.out.println(manu.aCompetence(cmpt2)); // false
+		
+		System.out.println("--- Niveau de compatibilité ---");
+		lcmpts = new ListeCompetences();
+		lcmpts.ajouter(cmpt4);
+		lcmpts.ajouter(cmpt5);
+		lcmpts.ajouter(cmpt6);
+		System.out.println(manu.compatible(lcmpts));
+		lcmpts = new ListeCompetences();
+		lcmpts.ajouter(cmpt2);
+		lcmpts.ajouter(cmpt5);
+		lcmpts.ajouter(cmpt6);
+		System.out.println(manu.compatible(lcmpts));
+		lcmpts = new ListeCompetences();
+		lcmpts.ajouter(cmpt2);
+		lcmpts.ajouter(cmpt5);
+		System.out.println(manu.compatible(lcmpts));
+		lcmpts = new ListeCompetences();
+		lcmpts.ajouter(cmpt2);
+		System.out.println(manu.compatible(lcmpts));
+		
 		// TODO Personnel
 		
 		// TODO Gestion de la liste du personnel
