@@ -27,17 +27,6 @@ public class TestRessources {
 		
 		// TODO ---- Représentation des données dans l'application ----
 		
-		// Personne (collaborateur)
-		Date date;
-		try {
-			date = new Date(30, 9, 2016);
-			Personne manu = new Personne("Manuela", "Ivanova", 1, date);
-			manu.afficher();
-		} catch (DateErronneeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		// Compétence (classe)
 		Competence cmpt = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...", "Libellé en français...");
 		Competence cmpt1 = new Competence(DomaineCompetences.A, 1, "Libellé en anglais...", "Libellé en français...");
@@ -145,9 +134,14 @@ public class TestRessources {
 		//Par code inexistant
 		lcmpts.get(3).afficher(); // Liste vide
 		
+
+		// Personne (collaborateur)
 		
+		Personne manu = new Personne("Manuela", "Ivanova", 1, 30, 9, 2016);
+		manu.afficher();
 		
 		// TODO Gestion des compétences d'une personne
+		
 		
 		// TODO Personnel
 		

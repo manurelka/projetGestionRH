@@ -16,11 +16,15 @@ public class Personne {
 	private Date dateEntree;
 	private ListeCompetences competences = new ListeCompetences();
 	
-	public Personne(String prenom, String nom, Integer id, Date dateEntree) {
+	public Personne(String prenom, String nom, Integer id, int jour, int mois, int annee) {
 		this.prenom = prenom;
 		this.nom = nom; 
 		this.ID = id;
-		this.dateEntree = dateEntree;
+		try {
+			this.dateEntree = new Date(jour, mois, annee);
+		} catch (DateErronneeException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	/**
@@ -43,4 +47,5 @@ public class Personne {
 	public Integer getID(){
 		return ID;
 	}
+	
 }
