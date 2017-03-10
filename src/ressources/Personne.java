@@ -86,8 +86,14 @@ public class Personne {
 		return competences.estAjoute(cmpt);
 	}
 	
+	/**
+	 * Définit le niveau de compatibilité du profil d'une personne avec une liste de compétences
+	 * @param liste la liste de compétences de référence
+	 * @return le rapport entre le nombre de compétences possédées par la personne et la taille de la liste
+	 */
 	public double compatible(ListeCompetences liste){
 		int nb = 0, total = liste.taille();
+		
 		for (Competence cmpt : liste.getTab()) {
 			if (this.aCompetence(cmpt)) {
 				nb ++;
