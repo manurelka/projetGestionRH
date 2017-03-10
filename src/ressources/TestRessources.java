@@ -136,13 +136,22 @@ public class TestRessources {
 		
 
 		// Personne (collaborateur)
-		
+		System.out.println("--- Test class Personne ---");
 		Personne manu = new Personne("Manuela", "Ivanova", 1, 30, 9, 2016);
 		manu.afficher();
 		
 		// TODO Gestion des compétences d'une personne
+		System.out.println("--- Test compétences d'une personne ---");
+		manu.ajouterCompetence(cmpt6).ajouterCompetence(cmpt5).ajouterCompetence(cmpt4);
+		manu.afficherCompetences();
 		
-		
+		System.out.println("------");
+		Competence[] competencesManu = manu.getTabCompetences(); 
+		System.out.println(competencesManu[1].toString());
+		System.out.println("------");
+		manu.getCompetence(cmpt6.getDC()).afficher();
+		System.out.println(manu.aCompetence(cmpt4)); // true
+		System.out.println(manu.aCompetence(cmpt2)); // false
 		// TODO Personnel
 		
 		// TODO Gestion de la liste du personnel
@@ -153,7 +162,7 @@ public class TestRessources {
 		// TODO Lecture de la liste du personnel (fichier csv)
 		
 		// Lecture de la liste des compétences (fichier csv)
-		lcmpts = null;
+		/*lcmpts = null;
 		
 		System.out.println("-- Lecture des compétences --");
 		LecteurCompetences reader = LecteurCompetences.Instance();
@@ -184,7 +193,7 @@ public class TestRessources {
 		System.out.println("-- Ecriture des compétences --");
 		EcriteurCompetences writer = EcriteurCompetences.Instance();
 		writer.ecrireCompetences(lcmpts);
-		writer.ecrireCompetences(lcmpts);
+		writer.ecrireCompetences(lcmpts);*/
 		// TODO corriger la recherche par libellé  
 		//lcmpts.get("Service Level Management").afficher(); // ne marche pas
 		

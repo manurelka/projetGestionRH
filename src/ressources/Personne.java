@@ -48,4 +48,41 @@ public class Personne {
 		return ID;
 	}
 	
+	/**
+	 * ajouter une compétence à la liste des compétences d'une personne
+	 * @param cmpt La compétence
+	 * @return la personne elle même
+	 */
+	public Personne ajouterCompetence(Competence cmpt){
+		competences.ajouter(cmpt);
+		return this;
+	}
+	
+	/**
+	 * renvoyer le liste des compétences d'une personne dous forme de tableau
+	 * @return Un tableau de compétences
+	 */
+	public Competence[] getTabCompetences(){
+		return competences.getTab();
+	}
+	
+	/**
+	 * afficher la liste des compétences d'un personne
+	 */
+	public void afficherCompetences(){
+		competences.afficher();
+	}
+	
+	/**
+	 * 
+	 * @param dc le domaine et le code d'une compétence
+	 * @return la compétence recherché si elle est dans la liste, null sinon
+	 */
+	public Competence getCompetence(DCCompetence dc){
+		return competences.get(dc);
+	}
+	
+	public boolean aCompetence(Competence cmpt){
+		return competences.estAjoute(cmpt);
+	}
 }
