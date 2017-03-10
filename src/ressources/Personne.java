@@ -85,4 +85,10 @@ public class Personne {
 	public boolean aCompetence(Competence cmpt){
 		return competences.estAjoute(cmpt);
 	}
+	
+	public double compatible(ListeCompetences liste){
+		int nb = 0, total = liste.taille();
+		//return nb / taille;
+		return 0.;
+	}
 }

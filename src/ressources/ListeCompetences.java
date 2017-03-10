@@ -137,4 +137,7 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 		modifContenu(ModifType.SUPPR);
 	}
 	
+	public int taille(){
+		return competences.size();
+	}
 }
