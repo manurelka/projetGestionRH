@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * @author Emma, Manuela
  * @version 0.1
  */
-public class DCCompetence extends Couple<DomaineCompetences, Integer> {
+public class DCCompetence extends Couple<DomaineCompetences, Integer> implements Cloneable {
 	private static Map<DomaineCompetences, Integer> derniersCodes = new TreeMap<DomaineCompetences, Integer>();
 	
 	public DCCompetence(DomaineCompetences domaine, Integer code){
@@ -30,6 +30,18 @@ public class DCCompetence extends Couple<DomaineCompetences, Integer> {
 	
 	public boolean aCode(Object code){
 		return this.getSec().equals(code);
+	}
+	
+	public Object clone(){
+		DCCompetence dc = null;
+		
+		try {
+			dc = (DCCompetence) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		
+		return dc;
 	}
 	
 	public static int nextCode(DomaineCompetences domaine){

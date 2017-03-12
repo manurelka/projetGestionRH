@@ -4,15 +4,17 @@ import ressources.ListePersonnes;
 import ressources.Personne;
 
 public class MissionEnPreparation extends EtatMission implements IMissionAffectable{
-
+	public MissionEnPreparation(){
+		super(EtatMissionType.EnPreparation);
+	}
+	
 	@Override
-	public ListePersonnes recommander(Mission mission, ListePersonnes liste){
-		// TODO Auto-generated method stub
-		return new ListePersonnes();
+	public ListePersonnes[] recommander(Mission mission, ListePersonnes liste){
+		return new ListePersonnes[4];
 	}
 
 	@Override
-	public void affacter(Mission mission, Personne personne) {
+	public void affecter(Mission mission, Personne personne) {
 		// TODO Auto-generated method stub
 		
 	}

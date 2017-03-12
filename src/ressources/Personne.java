@@ -1,4 +1,7 @@
 package ressources;
+
+import java.util.ArrayList;
+
 /**
  * La classe Personne représente un collaborateur de la liste du personnel.
  * Elle permet de réaliser les fonctionnalités suivantes :
@@ -91,15 +94,17 @@ public class Personne {
 	 * @param liste la liste de compétences de référence
 	 * @return le rapport entre le nombre de compétences possédées par la personne et la taille de la liste
 	 */
-	public double compatible(ListeCompetences liste){
+	public Compatibilite compatible(ListeCompetences liste){
 		int nb = 0, total = liste.taille();
-		
+		Compatibilite compat;
+		ArrayList<Competence> listeCompat = new ArrayList<Competence>();
 		for (Competence cmpt : liste.getTab()) {
 			if (this.aCompetence(cmpt)) {
 				nb ++;
+				listeCompat.add((Competence) cmpt.clone());
 			} 
 		}
-		
-		return (double) nb / total;
+		compat = new Compatibilite((double) nb/total, listeCompat);
+		return compat;
 	}
 }

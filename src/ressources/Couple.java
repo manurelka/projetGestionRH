@@ -40,6 +40,7 @@ public abstract class Couple<T, S> implements Comparable{
 		System.out.println(prem.toString() + " " + sec.toString());
 	}
 	
+	
 	@Override
 	public int compareTo(Object o){
 		int ret = 0;

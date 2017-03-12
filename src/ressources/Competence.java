@@ -8,7 +8,7 @@ package ressources;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class Competence implements Comparable {
+public class Competence implements Comparable, Cloneable {
 	private final DCCompetence DC;
 	//private final DomaineCompetences DOMAINE;
 	//private final Integer CODE;
@@ -31,6 +31,11 @@ public class Competence implements Comparable {
 	public Competence(DomaineCompetences domaine, String libGB, String libFR){
 		this.DC = new DCCompetence(domaine, DCCompetence.nextCode(domaine));
 		this.libelle = new LibelleCompetence(libGB, libFR);
+	}
+	
+	private Competence(DCCompetence dc, LibelleCompetence libelle){
+		this.DC = dc;
+		this.libelle = libelle;
 	}
 	
 	/**
@@ -164,5 +169,15 @@ public class Competence implements Comparable {
 	
 	public Integer getCode(){
 		return DC.getSec();
+	}
+	
+	public Object clone(){
+		Competence clone = null;
+		
+		DCCompetence dc = (DCCompetence) DC.clone();
+		LibelleCompetence libelle = (LibelleCompetence) this.libelle.clone();
+		clone = new Competence(dc, libelle);
+		
+		return clone;
 	}
 }

@@ -5,7 +5,7 @@ package ressources;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class LibelleCompetence {
+public class LibelleCompetence implements Cloneable{
 	private String libFR;
 	private String libGB;
 	
@@ -68,5 +68,16 @@ public class LibelleCompetence {
 	
 	public void setLibGB(String libGB) {
 		this.libGB = libGB;
+	}
+	
+	public Object clone(){
+		LibelleCompetence clone = null;
+		try {
+			clone = (LibelleCompetence) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		
+		return clone;
 	}
 }

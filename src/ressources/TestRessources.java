@@ -41,6 +41,7 @@ public class TestRessources {
 		cmpt6.afficher();
 		
 		//Comparation de deux compétences identiques
+		System.out.println();
 		System.out.println("-- Egalité des compétences --");
 		System.out.println(cmpt.equals(cmpt1)); // Résultat attendu : true
 		
@@ -60,12 +61,14 @@ public class TestRessources {
 		System.out.println(cmpt.equals("Quelque chose d'autre")); // gère une exception ClassCastException, résultat : false
 		
 		//SRegarder si une compétence a le libellé donnée
+		System.out.println();
 		System.out.println("-- Recherche libellé --");
 		System.out.println(cmpt.aLibelle("Libellé en anglais...")); // Résultat attandu : true
 		System.out.println(cmpt.aLibelle("Libellé en français...")); // Résultat attandu : true
 		System.out.println(cmpt.aLibelle("Autre chose...")); // Résultat attandu : false
 		
 		//SRegarder si une compétence a le domaine / code donnée
+		System.out.println();
 		System.out.println("-- Recherche domaine et code --");
 		System.out.println(cmpt.aDomaine(DomaineCompetences.A)); // Résultat attandu : true
 		System.out.println(cmpt.aDomaine(DomaineCompetences.B)); // Résultat attandu : false
@@ -87,7 +90,16 @@ public class TestRessources {
 		// Affichage de la liste
 		lcmpts.afficher();
 		
+		//Clonage d'une compétence
+		System.out.println();
+		System.out.println("-- Clonage de compétence --");
+		Competence cmpt7 = (Competence) cmpt1.clone();
+		cmpt7.setLibFR("autre chose");
+		cmpt7.afficher();
+		cmpt1.afficher();
+		
 		//Comparaison de compétences (plus petite / plus grande)
+		System.out.println();
 		System.out.println("-- Comparaison compétence --");
 		System.out.println(cmpt.compareTo(cmpt1)); // Doivent être égales don 0
 		System.out.println(cmpt.compareTo(cmpt2)); // cmpt2 doit être plus grande, donc -1;
@@ -97,6 +109,7 @@ public class TestRessources {
 		System.out.println(cmpt5.compareTo(cmpt)); // ici 1
 		
 		// Recherche de compétences
+		System.out.println();
 		System.out.println("-- Recherche compétence --");
 		
 		// Par mot clé
@@ -136,11 +149,13 @@ public class TestRessources {
 		
 
 		// Personne (collaborateur)
+		System.out.println();
 		System.out.println("--- Test class Personne ---");
 		Personne manu = new Personne("Manuela", "Ivanova", 1, 30, 9, 2016);
 		manu.afficher();
 		
 		// TODO Gestion des compétences d'une personne
+		System.out.println();
 		System.out.println("--- Test compétences d'une personne ---");
 		manu.ajouterCompetence(cmpt6).ajouterCompetence(cmpt5).ajouterCompetence(cmpt4);
 		manu.afficherCompetences();
@@ -153,24 +168,25 @@ public class TestRessources {
 		System.out.println(manu.aCompetence(cmpt4)); // true
 		System.out.println(manu.aCompetence(cmpt2)); // false
 		
+		System.out.println();
 		System.out.println("--- Niveau de compatibilité ---");
 		lcmpts = new ListeCompetences();
 		lcmpts.ajouter(cmpt4);
 		lcmpts.ajouter(cmpt5);
 		lcmpts.ajouter(cmpt6);
-		System.out.println(manu.compatible(lcmpts));
+		manu.compatible(lcmpts).afficher();
 		lcmpts = new ListeCompetences();
 		lcmpts.ajouter(cmpt2);
 		lcmpts.ajouter(cmpt5);
 		lcmpts.ajouter(cmpt6);
-		System.out.println(manu.compatible(lcmpts));
+		manu.compatible(lcmpts).afficher();
 		lcmpts = new ListeCompetences();
 		lcmpts.ajouter(cmpt2);
 		lcmpts.ajouter(cmpt5);
-		System.out.println(manu.compatible(lcmpts));
+		manu.compatible(lcmpts).afficher();
 		lcmpts = new ListeCompetences();
 		lcmpts.ajouter(cmpt2);
-		System.out.println(manu.compatible(lcmpts));
+		manu.compatible(lcmpts).afficher();
 		
 		// TODO Personnel
 		
