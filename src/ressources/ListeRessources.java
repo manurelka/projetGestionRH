@@ -8,5 +8,9 @@ public class ListeRessources<T, E> {
 	
 	protected Map<T, E> ressources = new TreeMap<T, E>();
 	protected ArrayList<IModifEcouteur> ecouteurs = new ArrayList<IModifEcouteur>();
+	
+	public int taille(){
+		return ressources.size();
+	}
 
 }

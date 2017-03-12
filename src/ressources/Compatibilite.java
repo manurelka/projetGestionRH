@@ -7,6 +7,10 @@ public class Compatibilite extends Couple<Double, ArrayList<Competence>>{
 		super(prem, sec);
 	}
 	
+	public Compatibilite() {
+		super(0., new ArrayList<Competence>());
+	}
+	
 	public Double getTaux(){
 		return getPrem();
 	}

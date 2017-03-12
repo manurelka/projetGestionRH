@@ -16,7 +16,7 @@ public interface IListePersonnels extends IListeRessources<Personne> {
 	 * @param code Le code recherché de type int
 	 * @return Une collection de personnes
 	 */
-	public abstract ListePersonnes get(int code);
+	public abstract Personne get(int code);
 	
 	/**
 	 * Recherche des personnes par mot clé.

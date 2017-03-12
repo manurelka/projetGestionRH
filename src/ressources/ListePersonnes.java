@@ -1,11 +1,13 @@
 package ressources;
 
+import java.util.Collection;
+
 public class ListePersonnes extends ListeRessources<Integer, Personne> implements IListePersonnels, IListeModifiable{
 	
 	@Override
 	public void ajouter(Personne pers){
 		if(! estAjoute(pers)){
-			//ressources.put(pers.getID(), pers);
+			ressources.put(pers.getID(), pers);
 		}
 		
 		modifContenu(ModifType.AJOUT);
@@ -57,8 +59,7 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 
 	@Override
 	public void supprimer(Personne objet) {
-		// TODO Auto-generated method stub
-		
+		ressources.remove(objet.getID());
 	}
 
 	@Override
@@ -68,15 +69,25 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 	}
 
 	@Override
-	public ListePersonnes get(int code) {
-		// TODO Auto-generated method stub
-		return null;
+	public Personne get(int code) {
+		return ressources.get(code);
 	}
 
 	@Override
 	public ListePersonnes get(String motCle) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void ajouter(Collection<Personne> objets) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public boolean isEmpty(){
+		return ressources.isEmpty();
 	}
 
 }

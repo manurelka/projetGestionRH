@@ -32,6 +32,7 @@ public interface IListeRessources<T> {
 	 */
 	public abstract void ajouter(IListeRessources<T> objets);
 	
+	public abstract void ajouter(Collection<T> objets);
 	/**
 	 * Vérifie si une ressource est ajoutée dans la collection.
 	 * 
@@ -49,4 +50,9 @@ public interface IListeRessources<T> {
 	 * Renvoit la liste des ressources sous forme d'un tableau.
 	 */
 	public abstract T[] getTab();
+	
+	/**
+	 * Renvoit vrai s'il n'y a pas de ressources dans la liste
+	 */
+	public boolean isEmpty();
 }

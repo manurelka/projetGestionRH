@@ -1,6 +1,6 @@
 package missions;
 
-public abstract class EtatMission {
+public abstract class EtatMission implements IMission {
 	private EtatMissionType ETAT;
 	
 	protected EtatMission(EtatMissionType etat){

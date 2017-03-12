@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class Personne {
+public class Personne implements Comparable {
 	//TODO créer une date par défaut
 	private final Integer ID;
 	private String nom;
@@ -97,6 +97,7 @@ public class Personne {
 	public Compatibilite compatible(ListeCompetences liste){
 		int nb = 0, total = liste.taille();
 		Compatibilite compat;
+		
 		ArrayList<Competence> listeCompat = new ArrayList<Competence>();
 		for (Competence cmpt : liste.getTab()) {
 			if (this.aCompetence(cmpt)) {
@@ -106,5 +107,17 @@ public class Personne {
 		}
 		compat = new Compatibilite((double) nb/total, listeCompat);
 		return compat;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Personne personne = (Personne) o;
+		int rep = 0;
+		if (personne.ID > this.ID) {
+			rep = -1;
+		} else if (personne.ID < this.ID) {
+			rep = 1;
+		}
+		return rep;
 	}
 }

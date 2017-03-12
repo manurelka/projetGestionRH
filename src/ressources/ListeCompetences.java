@@ -17,15 +17,15 @@ import java.util.ArrayList;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class ListeCompetences implements IListeCompetences, IListeModifiable {
+public class ListeCompetences extends ListeRessources<DCCompetence, Competence> implements IListeCompetences, IListeModifiable {
 	
-	private Map<DCCompetence, Competence> competences = new TreeMap<DCCompetence, Competence>();
+	//private Map<DCCompetence, Competence> competences = new TreeMap<DCCompetence, Competence>();
 	private ArrayList<IModifEcouteur> ecouteurs = new ArrayList<IModifEcouteur>();
 	
 	@Override
 	public void ajouter(Competence comp){
 		if(! estAjoute(comp)){
-			competences.put(comp.getDC(), comp);
+			ressources.put(comp.getDC(), comp);
 		}
 		
 		modifContenu(ModifType.AJOUT);
@@ -34,8 +34,8 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 	@Override
 	public void ajouter(IListeRessources<Competence> comps){
 		try {
-			for(DCCompetence key : ((ListeCompetences) comps).competences.keySet()){
-				ajouter(((ListeCompetences) comps).competences.get(key));
+			for(DCCompetence key : ((ListeCompetences) comps).ressources.keySet()){
+				ajouter(((ListeCompetences) comps).ressources.get(key));
 			}
 		} catch (ClassCastException e){
 			System.out.println(TypeDifferentExceptionMSG.LISTE_COMP);
@@ -49,14 +49,14 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 	public void afficher(){
 		System.out.println("-- Liste de compétences --");
 		
-		for (DCCompetence key : competences.keySet()) {
-			competences.get(key).afficher();
+		for (DCCompetence key : ressources.keySet()) {
+			ressources.get(key).afficher();
 		}
 	}
 	
 	@Override
 	public boolean estAjoute(Competence comp){
-		return competences.containsKey(comp.getDC());
+		return ressources.containsKey(comp.getDC());
 	}
 	
 	@Override
@@ -64,8 +64,8 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 		ListeCompetences rep = new ListeCompetences();
 		Competence comp;
 		
-		for(DCCompetence key : competences.keySet()) {
-			comp = competences.get(key);
+		for(DCCompetence key : ressources.keySet()) {
+			comp = ressources.get(key);
 			if (comp.aMotCle(motCle)){
 				rep.ajouter(comp);
 			}
@@ -79,8 +79,8 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 		ListeCompetences rep = new ListeCompetences();
 		Competence comp;
 		
-		for(DCCompetence key : competences.keySet()) {
-			comp = competences.get(key);
+		for(DCCompetence key : ressources.keySet()) {
+			comp = ressources.get(key);
 			if (comp.aCode(code)){
 				rep.ajouter(comp);
 			}
@@ -94,8 +94,8 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 		ListeCompetences rep = new ListeCompetences();
 		Competence comp;
 		
-		for(DCCompetence key : competences.keySet()) {
-			comp = competences.get(key);
+		for(DCCompetence key : ressources.keySet()) {
+			comp = ressources.get(key);
 			if (comp.aDomaine(domaine)){
 				rep.ajouter(comp);
 			}
@@ -106,12 +106,12 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 	
 	@Override
 	public Competence get(DCCompetence dc){
-		return this.competences.get(dc);
+		return this.ressources.get(dc);
 	}
 	
 	@Override
 	public Competence[] getTab(){
-		return competences.values().toArray(new Competence[competences.size()]);
+		return ressources.values().toArray(new Competence[ressources.size()]);
 	}
 	
 	@Override
@@ -133,11 +133,19 @@ public class ListeCompetences implements IListeCompetences, IListeModifiable {
 
 	@Override
 	public void supprimer(Competence cpt) {
-		competences.remove(cpt.getDC());
+		ressources.remove(cpt.getDC());
 		modifContenu(ModifType.SUPPR);
 	}
+
+	@Override
+	public void ajouter(Collection<Competence> competences) {
+		for(Competence cmpt : competences){
+			this.ressources.put(cmpt.getDC(), cmpt);
+		}
+	}
 	
-	public int taille(){
-		return competences.size();
+	@Override
+	public boolean isEmpty(){
+		return ressources.isEmpty();
 	}
 }
