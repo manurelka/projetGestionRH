@@ -85,7 +85,7 @@ public class Supprimer_pers extends javax.swing.JPanel {
             }
         });
 
-        jLabelDate.setText("<html> Date <br />d'entrée </html>  ");
+        jLabelDate.setText("Date d'entrée");
 
         jTextFieldDate.setPreferredSize(new java.awt.Dimension(60, 20));
 

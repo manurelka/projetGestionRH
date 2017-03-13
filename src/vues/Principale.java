@@ -249,6 +249,8 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    //private javax.swing.JMenu jMenu5;
+    
     
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -260,6 +262,9 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    //private javax.swing.JMenuItem jMenuItemComp1;
+    //private javax.swing.JMenuItem jMenuItemComp2;
+    
     private Ajouter2 jpan_ajouter_cpt;
     private Modifier2 jpan_modifier_cpt;
     private Supprimer2 jpan_supprimer_cpt;

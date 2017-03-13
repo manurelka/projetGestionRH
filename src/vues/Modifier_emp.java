@@ -84,7 +84,8 @@ public class Modifier_emp extends javax.swing.JPanel {
            }
        });
 
-       jLabelDate.setText("<html> Date <br />d'entrée </html>  ");
+       jLabelDate.setText("Date d'entrée");
+       
 
        jTextFieldDate.setPreferredSize(new java.awt.Dimension(60, 20));
 
@@ -147,6 +148,7 @@ public class Modifier_emp extends javax.swing.JPanel {
                .addComponent(jPanelBas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
        );
+       
    }// </editor-fold>                        
 
    private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {                                              

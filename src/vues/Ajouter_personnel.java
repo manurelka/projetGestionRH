@@ -85,15 +85,15 @@ public class Ajouter_personnel extends javax.swing.JPanel {
         });
 
         jLabel_nom.setText("Nom*");
-        jLabel_nom.setPreferredSize(new java.awt.Dimension(60, 20));
+        jLabel_nom.setPreferredSize(new java.awt.Dimension(100, 20));
 
         jLabel_prenom.setText("Prénom*");
         jLabel_prenom.setPreferredSize(new java.awt.Dimension(60, 20));
 
         JLabel_date.setText("Date d'entrée");
-        JLabel_date.setMaximumSize(new java.awt.Dimension(60, 20));
-        JLabel_date.setMinimumSize(new java.awt.Dimension(60, 20));
-        JLabel_date.setPreferredSize(new java.awt.Dimension(60, 20));
+        JLabel_date.setMaximumSize(new java.awt.Dimension(80, 30));
+        JLabel_date.setMinimumSize(new java.awt.Dimension(80, 30));
+        JLabel_date.setPreferredSize(new java.awt.Dimension(80, 30));
 
         javax.swing.GroupLayout jPanel_NPDLayout = new javax.swing.GroupLayout(jPanel_NPD);
         jPanel_NPD.setLayout(jPanel_NPDLayout);
