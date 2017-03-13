@@ -32,6 +32,7 @@ public class LecteurPersonel extends Lecteur implements ILecteurPersonnel {
 			// Remplir le conteneur des données
 			ConteneurStr conteneur = new ConteneurStr();
 			remplir(conteneur);
+			
 
 			// Utiliser un splitter pour extraire la liste des personnes du
 			// conteneur

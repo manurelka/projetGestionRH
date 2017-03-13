@@ -8,15 +8,17 @@ import ressources.Personne;
 
 public class SplitterPersonnel extends ObjectSplitter implements ISplitterPersonnel {
 	private static final int NB_CASES = 6;
-	private static final int NB_ID = 5;
+	
 	private static final int NB_NOM = 0;
 	private static final int NB_PRENOM = 1;
-	private static final int NB_DATEJ = 2;
-	private static final int NB_DATEM = 3;
-	private static final int NB_DATEA = 4;
-	private static final int NB_ID_INT = 0;
+	private static final int NB_ID = 2;
+	private static final int NB_DATEJ = 3;
+	private static final int NB_DATEM = 4;
+	private static final int NB_DATEA = 5;
+	
+	private static final int NB_PRENOM_INT = 0;
 	private static final int NB_NOM_INT = 1;
-	private static final int NB_PRENOM_INT = 2;
+	private static final int NB_ID_INT = 3;
 	
 	private SplitterDateEntree slashSplitter;
 	private String[] interm;
@@ -30,17 +32,19 @@ public class SplitterPersonnel extends ObjectSplitter implements ISplitterPerson
 	@Override
 	public void splitLine(String line) {
 		interm = line.split(getRegex());
-		slashSplitter.splitLine(interm[0]);
+		slashSplitter.splitLine(interm[2]);
 		
 		
 		// Remplir les valeurs
-		setID(getMot(NB_ID));
-		setNom(getNom ());
-		setPrenom(getPrenom());
+		setID(getIDInterm());
+		setNom(getNomInterm ());
+		setPrenom(getPrenomInterm());
 		setDateJour(slashSplitter.getDateJour());
 		setDateMois(slashSplitter.getDateMois());
 		setDateAnnee(slashSplitter.getDateAnnee());
 	}
+	
+	
 
 
 	@Override
@@ -81,22 +85,31 @@ public class SplitterPersonnel extends ObjectSplitter implements ISplitterPerson
 		
 	}
 
-
+	public String getIDInterm() {
+		return interm[NB_ID_INT];
+	}
+	
 	@Override
 	public Integer getID() {
 		return Integer.parseInt(getMot(NB_ID));
 	}
-
-
-	@Override
-	public String getNom() {
+	
+	public String getNomInterm() {
 		return interm[NB_NOM_INT];
 	}
 
+	@Override
+	public String getNom() {
+		return getMot(NB_NOM);
+	}
+
+	public String getPrenomInterm() {
+		return interm[NB_PRENOM_INT];
+	}
 
 	@Override
 	public String getPrenom() {
-		return interm[NB_PRENOM_INT];
+		return getMot(NB_PRENOM);
 	}
 
 

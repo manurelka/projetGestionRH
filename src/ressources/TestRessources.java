@@ -2,6 +2,7 @@ package ressources;
 
 import reader_writer.EcriteurCompetences;
 import reader_writer.LecteurCompetences;
+import reader_writer.LecteurPersonel;
 
 /**
  * C'est une classe de test des fonctionnalités liées à la gestion des ressources.
@@ -189,6 +190,12 @@ public class TestRessources {
 		manu.compatible(lcmpts).afficher();
 		
 		// TODO Personnel
+		ListePersonnes lpers = new ListePersonnes();
+		
+		System.out.println("-- Lecture des personnes --");
+		LecteurPersonel reader = LecteurPersonel.Instance();
+		lpers = reader.lirePersonnel();
+		lpers.afficher();
 		
 		// TODO Gestion de la liste du personnel
 		

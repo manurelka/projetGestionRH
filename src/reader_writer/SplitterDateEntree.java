@@ -3,8 +3,8 @@ package reader_writer;
 public class SplitterDateEntree extends SlashSplitter implements ISplitterDateEntree{
 	private static final int NB_CASES = 3;
 	private static final int NB_DATEJ = 0;
-	private static final int NB_DATEM = 2;
-	private static final int NB_DATEA = 4;
+	private static final int NB_DATEM = 1;
+	private static final int NB_DATEA = 2;
 	
 	public SplitterDateEntree(){
 		super(NB_CASES);
