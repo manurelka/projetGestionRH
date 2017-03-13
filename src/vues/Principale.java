@@ -30,7 +30,7 @@ public class Principale extends javax.swing.JFrame {
     private void initComponents() {
     	jpan_ajouter_cpt = new Ajouter2();
     	jpan_modifier_cpt = new Modifier2();
-    	jpan_supprimer_cpt = new Supprimer();
+    	jpan_supprimer_cpt = new Supprimer2();
     	jpan_liste_cpt = new Listecpt2();
     	jpan_lis_perComp = new ListePers();
     	jpan_ajouter_pers = new Ajouter_personnel();
@@ -262,7 +262,7 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private Ajouter2 jpan_ajouter_cpt;
     private Modifier2 jpan_modifier_cpt;
-    private Supprimer jpan_supprimer_cpt;
+    private Supprimer2 jpan_supprimer_cpt;
     private Listecpt2 jpan_liste_cpt;
     private ListePers jpan_lis_perComp;
     private Ajouter_personnel jpan_ajouter_pers;
