@@ -30,9 +30,13 @@ public class Principale extends javax.swing.JFrame {
     private void initComponents() {
     	jpan_ajouter_cpt = new Ajouter2();
     	jpan_modifier_cpt = new Modifier2();
-    	jpan_supprimer_cpt = new Supprimer2();
+    	jpan_supprimer_cpt = new Supprimer();
     	jpan_liste_cpt = new Listecpt2();
     	jpan_lis_perComp = new ListePers();
+    	jpan_ajouter_pers = new Ajouter_personnel();
+    	jpan_affecter_comp = new Affecter_comp();
+    	jpan_supprimer_pers = new Supprimer_pers();
+    	jpan_modifier_emp = new Modifier_emp();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -188,10 +192,16 @@ public class Principale extends javax.swing.JFrame {
         	this.setContentPane(jpan_lis_perComp);
         }
         if(e==jMenuItem6){
-        	//this.setContentPane();
+        	this.setContentPane(jpan_ajouter_pers);
         }
         if(e==jMenuItem7){
-        	//this.setContentPane();
+        	this.setContentPane(jpan_modifier_emp);
+        }
+        if(e==jMenuItem8){
+        	this.setContentPane(jpan_supprimer_pers);
+        }
+        if(e==jMenuItem9){
+        	this.setContentPane(jpan_affecter_comp);
         }
         
         
@@ -252,9 +262,13 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private Ajouter2 jpan_ajouter_cpt;
     private Modifier2 jpan_modifier_cpt;
-    private Supprimer2 jpan_supprimer_cpt;
+    private Supprimer jpan_supprimer_cpt;
     private Listecpt2 jpan_liste_cpt;
     private ListePers jpan_lis_perComp;
+    private Ajouter_personnel jpan_ajouter_pers;
+    private Affecter_comp jpan_affecter_comp;
+    private Supprimer_pers jpan_supprimer_pers;
+    private Modifier_emp jpan_modifier_emp;
    
     // End of variables declaration                   
 }
