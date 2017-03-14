@@ -2,9 +2,12 @@ package missions;
 
 import ressources.Compatibilite;
 import ressources.Competence;
+import ressources.DCCompetence;
+import ressources.IListeRessources;
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
+import ressources.Ressource;
 
 public class EtatMissionEnPrepa extends EtatMission implements IMission {
 
@@ -14,15 +17,17 @@ public class EtatMissionEnPrepa extends EtatMission implements IMission {
 
 	@Override
 	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes liste) {
+		System.out.println("Entrée état en préparation");
+		//liste.afficher();
 		ListePersonnes listeRep = new ListePersonnes();
 		//Liste temporaire des competences
 		ListeCompetences listeCompetences = new ListeCompetences();
-		listeCompetences.ajouter(plan.keySet());
-		
+		listeCompetences.ajouter((IListeRessources<DCCompetence, Ressource<DCCompetence>>) plan.keySet());
+		//listeCompetences.afficher();
 		//Tableau temporaire des personnes
 		ListePersonnes personnes = new ListePersonnes();
 		personnes.ajouter(liste);
-		
+		//personnes.afficher();
 		Personne candidat = null;
 		Compatibilite compa, compaMax;
 		
@@ -31,7 +36,7 @@ public class EtatMissionEnPrepa extends EtatMission implements IMission {
 			compaMax = new Compatibilite();
 			candidat = null;
 			
-			for (Personne personne : personnes.getTab()) {
+			for (Personne personne : (Personne[]) personnes.getTab()) {
 				compa = personne.compatible(listeCompetences);
 				if (compa.getTaux() > compaMax.getTaux()) {
 					candidat = personne;
@@ -51,7 +56,8 @@ public class EtatMissionEnPrepa extends EtatMission implements IMission {
 				}
 			}
 		}
-		
+		System.out.println("avant sortie d'état en préparation");
+		listeRep.afficher();
 		return listeRep;
 	}
 
@@ -67,7 +73,7 @@ public class EtatMissionEnPrepa extends EtatMission implements IMission {
 	@Override
 	public void affecter(ContexteMission contexte, Mission mission, ListePersonnes liste) {
 		System.out.println("etat : liste");
-		for (Personne personne : liste.getTab()) {
+		for (Personne personne : (Personne[]) liste.getTab()) {
 			affecter(contexte, mission, personne);
 		}
 	}

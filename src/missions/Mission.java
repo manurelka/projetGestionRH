@@ -57,6 +57,7 @@ public abstract class Mission {
 	}
 	
 	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel){
+		System.out.println("Entrée mission");
 		return contexte.recommander(plan, personnel);
 	}
 	

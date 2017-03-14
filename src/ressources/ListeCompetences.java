@@ -28,7 +28,7 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 		Competence comp;
 		
 		for(DCCompetence key : ressources.keySet()) {
-			comp = ressources.get(key);
+			comp = (Competence) ressources.get(key);
 			if (comp.aMotCle(motCle)){
 				rep.ajouter(comp);
 			}
@@ -43,7 +43,7 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 		Competence comp;
 		
 		for(DCCompetence key : ressources.keySet()) {
-			comp = ressources.get(key);
+			comp = (Competence) ressources.get(key);
 			if (comp.aCode(code)){
 				rep.ajouter(comp);
 			}
@@ -58,7 +58,7 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 		Competence comp;
 		
 		for(DCCompetence key : ressources.keySet()) {
-			comp = ressources.get(key);
+			comp = (Competence) ressources.get(key);
 			if (comp.aDomaine(domaine)){
 				rep.ajouter(comp);
 			}
@@ -69,7 +69,7 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 	
 	@Override
 	public Competence get(DCCompetence dc){
-		return this.ressources.get(dc);
+		return (Competence) this.ressources.get(dc);
 	}
 	
 	

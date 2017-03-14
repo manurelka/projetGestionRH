@@ -12,6 +12,7 @@ public class MissionRealisation extends Mission {
 	}
 
 	public ListePersonnes recommander(ListePersonnes personnel){
+		System.out.println("Entrée mission réalisation");
 		return super.recommander(plan, personnel);
 	}
 	

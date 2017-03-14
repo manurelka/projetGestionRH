@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class ListeRessources<T, E> implements IListeRessources<T, E>, IListeModifiable{
+public abstract class ListeRessources<T, E extends Ressource<T>> implements IListeRessources<T, Ressource<T>>, IListeModifiable{
 	
-	protected Map<T, E> ressources = new TreeMap<T, E>();
+	protected Map<T, Ressource<T>> ressources = new TreeMap<T, Ressource<T>>();
 	protected ArrayList<IModifEcouteur> ecouteurs = new ArrayList<IModifEcouteur>();
 	
 	public int taille(){
@@ -24,10 +24,10 @@ public class ListeRessources<T, E> implements IListeRessources<T, E>, IListeModi
 	}
 	
 	@Override
-	public void ajouter(IListeRessources<T, E> res){
+	public void ajouter(IListeRessources<T, Ressource<T>> res){
 		try {
-			for(T key : ((ListeRessources<T, E>) res).ressources.keySet()){
-				ajouter(((ListeRessources<T, E>) res).ressources.get(key));
+			for(T key : ((ListeRessources<T, Ressource<T>>) res).ressources.keySet()){
+				ajouter(((ListeRessources<T, Ressource<T>>) res).ressources.get(key));
 			}
 		} catch (ClassCastException e){
 			//TODO
@@ -39,43 +39,48 @@ public class ListeRessources<T, E> implements IListeRessources<T, E>, IListeModi
 	}
 	
 	@Override
-	public boolean estAjoute(IRessource<T> ressource){
+	public boolean estAjoute(Ressource<T> ressource){
 		return ressources.containsKey(ressource.getIdent());
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public void ajouter(E objet){
-		if(! estAjoute((IRessource<T>) objet)){
-			ressources.put(((IRessource<T>) objet).getIdent(), (E) objet);
+	public void ajouter(Ressource<T> objet){
+		if(! estAjoute((Ressource<T>) objet)){
+			ressources.put(((Ressource<T>) objet).getIdent(), (Ressource<T>) objet);
 		}
 		
 		modifContenu(ModifType.AJOUT);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void afficher(){
 		System.out.println("-- Liste de personnes --");
 		
 		for (T key : ressources.keySet()) {
-			((IListeRessources<T, E>) ressources.get(key)).afficher();
+			((Ressource<T>) ressources.get(key)).afficher();
 		}
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void supprimer(E objet) {
-		ressources.remove(((IRessource <T>) objet).getIdent());
+	public void supprimer(Ressource<T> objet) {
+		ressources.remove(((Ressource <T>) objet).getIdent());
 	}
 
 	@Override
-	public void ajouter(Collection<E> objets) {
-		// TODO Auto-generated method stub
-		
+	public void ajouter(Collection<Ressource<T>> objets) {
+		for(Ressource objet : objets){
+			ajouter(objet);
+		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public E[] getTab() {
-		return (E[]) ressources.values().toArray(new IRessource[ressources.size()]);
+	public Ressource[] getTab() {
+		return (Ressource[]) ressources.values().toArray(new Ressource[ressources.size()]);
 	}
 
 	@Override

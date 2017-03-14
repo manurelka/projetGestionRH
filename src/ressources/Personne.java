@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class Personne implements Comparable, IRessource<Integer> {
+public class Personne extends Ressource<Integer> implements Comparable {
 	//TODO créer une date par défaut
 	private final Integer ID;
 	private String nom;
@@ -66,7 +66,7 @@ public class Personne implements Comparable, IRessource<Integer> {
 	 * @return Un tableau de compétences
 	 */
 	public Competence[] getTabCompetences(){
-		return competences.getTab();
+		return (Competence[]) competences.getTab();
 	}
 	
 	/**
@@ -99,7 +99,7 @@ public class Personne implements Comparable, IRessource<Integer> {
 		Compatibilite compat;
 		
 		ArrayList<Competence> listeCompat = new ArrayList<Competence>();
-		for (Competence cmpt : liste.getTab()) {
+		for (Competence cmpt : (Competence[]) liste.getTab()) {
 			if (this.aCompetence(cmpt)) {
 				nb ++;
 				listeCompat.add((Competence) cmpt.clone());

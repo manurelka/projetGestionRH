@@ -58,7 +58,7 @@ public class TestMissions {
 		
 		mission.recommander(personnes).afficher();
 		System.out.println("after list");
-		personnes.afficher();
+		//personnes.afficher();
 		mission.recommander(personnes).afficher();
 		
 	}

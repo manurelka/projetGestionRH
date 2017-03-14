@@ -8,7 +8,7 @@ package ressources;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class Competence implements Comparable, Cloneable, IRessource<DCCompetence> {
+public class Competence extends Ressource<DCCompetence> implements Comparable, Cloneable {
 	private final DCCompetence DC;
 	//private final DomaineCompetences DOMAINE;
 	//private final Integer CODE;

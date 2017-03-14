@@ -5,7 +5,7 @@ package ressources;
  * @author Emma, Manuela
  * @version 0.1
  */
-public interface IListeCompetences extends IListeRessources<DCCompetence, Competence>{
+public interface IListeCompetences extends IListeRessources<DCCompetence, Ressource<DCCompetence>>{
 
 	/**
 	 * Recherche des compétences par domaine.

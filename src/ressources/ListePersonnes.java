@@ -12,7 +12,7 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 
 	@Override
 	public Personne get(int code) {
-		return ressources.get(code);
+		return (Personne) ressources.get(code);
 	}
 
 	@Override

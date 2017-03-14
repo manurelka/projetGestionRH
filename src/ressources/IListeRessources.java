@@ -10,36 +10,36 @@ import java.util.Collection;
  * 
  * @param <T>
  */
-public interface IListeRessources<T, E> {
+public interface IListeRessources<T, E extends Ressource<T>> {
 	/**
 	 * Ajoute une ressource dans la collection des ressources.
 	 * 
 	 * @param objet L'objet à ajouter de type générique
 	 */
-	public abstract void ajouter(E objet);
+	public abstract void ajouter(Ressource<T> objet);
 	
 	/**
 	 * Supprime une ressource dans la collection des ressources.
 	 * 
 	 * @param objet L'objet à supprimer de type générique
 	 */
-	public abstract void supprimer(E objet);
+	public abstract void supprimer(Ressource<T> objet);
 
 	/**
 	 * Ajoute plusieurs ressources dans la collection.
 	 * 
 	 * @param objets La collection de compétences à ajouter
 	 */
-	public abstract void ajouter(IListeRessources<T, E> objets);
+	public abstract void ajouter(IListeRessources<T, Ressource<T>> objets);
 	
-	public abstract void ajouter(Collection<E> objets);
+	public abstract void ajouter(Collection<Ressource<T>> objets);
 	/**
 	 * Vérifie si une ressource est ajoutée dans la collection.
 	 * 
 	 * @param objet L'objet à rechercher
 	 * @return bollean
 	 */
-	public abstract boolean estAjoute(IRessource<T> objet);
+	public abstract boolean estAjoute(Ressource<T> objet);
 	
 	/**
 	 * Affiche la collection de ressources.
@@ -49,7 +49,7 @@ public interface IListeRessources<T, E> {
 	/**
 	 * Renvoit la liste des ressources sous forme d'un tableau.
 	 */
-	public abstract E[] getTab();
+	public abstract Ressource<T>[] getTab();
 	
 	/**
 	 * Renvoit vrai s'il n'y a pas de ressources dans la liste

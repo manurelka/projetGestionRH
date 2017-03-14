@@ -25,7 +25,7 @@ public class EcriteurCompetences extends Ecriteur implements IEcriteurCompetence
 		try {
 			openWriter();
 			ecrire(EN_TETE);
-			for (Competence competence : competences.getTab()) {
+			for (Competence competence : (Competence[]) competences.getTab()) {
 				ecrire(competence.toString());
 			}
 		} catch (FileNotFoundException e) {

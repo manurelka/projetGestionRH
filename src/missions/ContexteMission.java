@@ -28,6 +28,7 @@ public class ContexteMission {
 	}
 	
 	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel){
+		System.out.println("Entrée contexte");
 		return etat.recommander(plan, personnel);
 	}
 	

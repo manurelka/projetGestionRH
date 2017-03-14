@@ -1,6 +1,6 @@
 package ressources;
 
-public interface IListePersonnels extends IListeRessources<Integer, Personne> {
+public interface IListePersonnels extends IListeRessources<Integer, Ressource<Integer>> {
 	
 	/**
 	 * Recherche des personnes par nom et prénom.

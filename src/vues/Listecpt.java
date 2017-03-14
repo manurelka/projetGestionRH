@@ -35,7 +35,7 @@ public class Listecpt extends javax.swing.JPanel {
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
         	LecteurCompetences lc = LecteurCompetences.Instance();
-            Competence[] competences = lc.lireCompetences().getTab();
+            Competence[] competences = (Competence[]) lc.lireCompetences().getTab();
             public int getSize() { return competences.length; }
             public String getElementAt(int i) { return competences[i].toString(); }
         });
