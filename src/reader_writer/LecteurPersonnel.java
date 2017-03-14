@@ -6,17 +6,17 @@ import java.io.IOException;
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 
-public class LecteurPersonel extends Lecteur implements ILecteurPersonnel {
+public class LecteurPersonnel extends Lecteur implements ILecteurPersonnel {
 	private static final String CHEMIN = "fichConfig/liste_personnel.csv";
-	private static LecteurPersonel instance = null;
+	private static LecteurPersonnel instance = null;
 
-	private LecteurPersonel() {
+	private LecteurPersonnel() {
 		super(CHEMIN);
 	}
 
-	public static LecteurPersonel Instance() {
+	public static LecteurPersonnel Instance() {
 		if (instance == null) {
-			instance = new LecteurPersonel();
+			instance = new LecteurPersonnel();
 		}
 		return instance;
 	}

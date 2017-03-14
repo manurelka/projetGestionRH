@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class Personne implements Comparable {
+public class Personne implements Comparable, IRessource<Integer> {
 	//TODO créer une date par défaut
 	private final Integer ID;
 	private String nom;
@@ -120,4 +120,11 @@ public class Personne implements Comparable {
 		}
 		return rep;
 	}
+
+	@Override
+	public Integer getIdent() {
+		return ID;
+	}
+
+
 }

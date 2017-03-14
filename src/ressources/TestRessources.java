@@ -2,7 +2,7 @@ package ressources;
 
 import reader_writer.EcriteurCompetences;
 import reader_writer.LecteurCompetences;
-import reader_writer.LecteurPersonel;
+import reader_writer.LecteurPersonnel;
 
 /**
  * C'est une classe de test des fonctionnalités liées à la gestion des ressources.
@@ -193,7 +193,7 @@ public class TestRessources {
 		ListePersonnes lpers = new ListePersonnes();
 		
 		System.out.println("-- Lecture des personnes --");
-		LecteurPersonel reader = LecteurPersonel.Instance();
+		LecteurPersonnel reader = LecteurPersonnel.Instance();
 		lpers = reader.lirePersonnel();
 		lpers.afficher();
 		

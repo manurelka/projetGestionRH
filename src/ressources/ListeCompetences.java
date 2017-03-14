@@ -20,44 +20,7 @@ import java.util.ArrayList;
 public class ListeCompetences extends ListeRessources<DCCompetence, Competence> implements IListeCompetences, IListeModifiable {
 	
 	//private Map<DCCompetence, Competence> competences = new TreeMap<DCCompetence, Competence>();
-	private ArrayList<IModifEcouteur> ecouteurs = new ArrayList<IModifEcouteur>();
-	
-	@Override
-	public void ajouter(Competence comp){
-		if(! estAjoute(comp)){
-			ressources.put(comp.getDC(), comp);
-		}
-		
-		modifContenu(ModifType.AJOUT);
-	}
-	
-	@Override
-	public void ajouter(IListeRessources<Competence> comps){
-		try {
-			for(DCCompetence key : ((ListeCompetences) comps).ressources.keySet()){
-				ajouter(((ListeCompetences) comps).ressources.get(key));
-			}
-		} catch (ClassCastException e){
-			System.out.println(TypeDifferentExceptionMSG.LISTE_COMP);
-			e.printStackTrace();
-		}
-		
-		modifContenu(ModifType.AJOUT);
-	}
-	
-	@Override
-	public void afficher(){
-		System.out.println("-- Liste de compétences --");
-		
-		for (DCCompetence key : ressources.keySet()) {
-			ressources.get(key).afficher();
-		}
-	}
-	
-	@Override
-	public boolean estAjoute(Competence comp){
-		return ressources.containsKey(comp.getDC());
-	}
+	//private ArrayList<IModifEcouteur> ecouteurs = new ArrayList<IModifEcouteur>();
 	
 	@Override
 	public ListeCompetences get(String motCle){
@@ -109,43 +72,5 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 		return this.ressources.get(dc);
 	}
 	
-	@Override
-	public Competence[] getTab(){
-		return ressources.values().toArray(new Competence[ressources.size()]);
-	}
 	
-	@Override
-	public void modifContenu(ModifType type){
-		ModifEvenement evt = new ModifEvenement(type);
-		
-		for (IModifEcouteur e : ecouteurs){
-			e.reagir(evt);
-		}
-	}
-	
-	public void addModifEcouteur(IModifEcouteur e){
-		this.ecouteurs.add(e);
-	}
-	
-	public void removeModifEcouteur(IModifEcouteur e){
-		this.ecouteurs.remove(e);
-	}
-
-	@Override
-	public void supprimer(Competence cpt) {
-		ressources.remove(cpt.getDC());
-		modifContenu(ModifType.SUPPR);
-	}
-
-	@Override
-	public void ajouter(Collection<Competence> competences) {
-		for(Competence cmpt : competences){
-			this.ressources.put(cmpt.getDC(), cmpt);
-		}
-	}
-	
-	@Override
-	public boolean isEmpty(){
-		return ressources.isEmpty();
-	}
 }

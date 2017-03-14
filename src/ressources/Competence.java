@@ -8,7 +8,7 @@ package ressources;
  * @author Emma, Manuela
  * @version 0.0
  */
-public class Competence implements Comparable, Cloneable {
+public class Competence implements Comparable, Cloneable, IRessource<DCCompetence> {
 	private final DCCompetence DC;
 	//private final DomaineCompetences DOMAINE;
 	//private final Integer CODE;
@@ -179,5 +179,10 @@ public class Competence implements Comparable, Cloneable {
 		clone = new Competence(dc, libelle);
 		
 		return clone;
+	}
+
+	@Override
+	public DCCompetence getIdent() {
+		return getDC();
 	}
 }
