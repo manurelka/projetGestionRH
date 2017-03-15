@@ -60,6 +60,7 @@ public class Ajouter2 extends PanelCompetences {
         
         //Libellés
         jlab_titre.setText(TITRE);
+        jlab_titre.setFont(new java.awt.Font("Tahoma", 1, 14));
         jlab_feedback.setText(FEEDBACK);
         jlab_domaine.setText(jlab_domaine_TEXTE);
 

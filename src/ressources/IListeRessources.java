@@ -31,8 +31,6 @@ public interface IListeRessources<T, E extends Ressource<T>> {
 	 * @param objets La collection de compétences à ajouter
 	 */
 	public abstract void ajouter(IListeRessources<T, Ressource<T>> objets);
-	
-	public abstract void ajouter(Collection<Ressource<T>> objets);
 	/**
 	 * Vérifie si une ressource est ajoutée dans la collection.
 	 * 

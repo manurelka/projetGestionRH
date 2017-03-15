@@ -38,6 +38,7 @@ public abstract class ListeRessources<T, E extends Ressource<T>> implements ILis
 		modifContenu(ModifType.AJOUT);
 	}
 	
+	
 	@Override
 	public boolean estAjoute(Ressource<T> ressource){
 		return ressources.containsKey(ressource.getIdent());
@@ -71,14 +72,6 @@ public abstract class ListeRessources<T, E extends Ressource<T>> implements ILis
 		modifContenu(ModifType.SUPPR);
 	}
 
-	@Override
-	public void ajouter(Collection<Ressource<T>> objets) {
-		for(Ressource objet : objets){
-			ajouter(objet);
-		}
-	}
-
-	
 
 	@Override
 	public boolean isEmpty() {

@@ -66,6 +66,15 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 		
 		return rep;
 	}
+
+	public void ajouter(ListeCompetences res){
+		for(DCCompetence key : res.ressources.keySet()){
+			ajouter( res.ressources.get(key));
+		}
+		
+		modifContenu(ModifType.AJOUT);
+	}
+	
 	
 	@Override
 	public Competence get(DCCompetence dc){
@@ -75,5 +84,12 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 	@Override
 	public Competence[] getTab() {
 		return ressources.values().toArray(new Competence[ressources.size()]);
+	}
+
+	@Override
+	public void ajouter(Collection<Competence> objets) {
+		for(Competence objet : objets) {
+			ajouter(objet);
+		}
 	}
 }

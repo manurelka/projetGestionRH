@@ -55,6 +55,8 @@ public class Supprimer2 extends PanelCompetences {
         
         //
         jlab_titre.setText(TITRE);
+        
+        jlab_titre.setFont(new java.awt.Font("Tahoma", 1, 14));
 
         jlist_competences.setModel(new javax.swing.AbstractListModel<Competence>() {
            public int getSize() { return competences.length; }

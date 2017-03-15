@@ -75,6 +75,7 @@ public class Listecpt2 extends PanelCompetences implements IModifEcouteur{
         jlist_competences = new javax.swing.JList<Competence>();
         
         jlab_titre.setText(TITRE);
+        jlab_titre.setFont(new java.awt.Font("Tahoma", 1, 14));
         
         //Libellés
         jtf_rechercheParLib.setText(rechercheParLib_TEXTE);

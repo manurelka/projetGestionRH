@@ -1,5 +1,7 @@
 package ressources;
 
+import java.util.Collection;
+
 public interface IListePersonnels extends IListeRessources<Integer, Ressource<Integer>> {
 	
 	/**
@@ -25,5 +27,6 @@ public interface IListePersonnels extends IListeRessources<Integer, Ressource<In
 	 * @return Une collection de personnes
 	 */
 	public abstract ListePersonnes get(String motCle);
-
+	
+	public abstract void ajouter(Collection<Personne> objets);
 }

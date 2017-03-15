@@ -1,4 +1,7 @@
 package ressources;
+
+import java.util.Collection;
+
 /**
  * Assure la communication avec une collection de compétences
  * 
@@ -38,4 +41,8 @@ public interface IListeCompetences extends IListeRessources<DCCompetence, Ressou
 	 * @return La référence vers une compétence
 	 */
 	public abstract Competence get(DCCompetence dc);
+	
+
+	
+	public abstract void ajouter(Collection<Competence> objets);
 }

@@ -22,7 +22,7 @@ public class EtatMissionEnPrepa extends EtatMission implements IMission {
 		ListePersonnes listeRep = new ListePersonnes();
 		//Liste temporaire des competences
 		ListeCompetences listeCompetences = new ListeCompetences();
-		listeCompetences.ajouter((IListeRessources<DCCompetence, Ressource<DCCompetence>>) plan.keySet());
+		listeCompetences.ajouter(plan.keySet());
 		//listeCompetences.afficher();
 		//Tableau temporaire des personnes
 		ListePersonnes personnes = new ListePersonnes();

@@ -25,5 +25,20 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 	public Personne[] getTab() {
 		return ressources.values().toArray(new Personne[ressources.size()]);
 	}
+	
+	public void ajouter(ListePersonnes res){
+		for(Integer key : ressources.keySet()){
+			ajouter( res.ressources.get(key));
+		}
+		
+		modifContenu(ModifType.AJOUT);
+	}
+
+	@Override
+	public void ajouter(Collection<Personne> objets) {
+		for(Personne personne : objets){
+			this.ajouter(personne);
+		}
+	}
 }
 

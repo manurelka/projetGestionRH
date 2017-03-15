@@ -15,7 +15,7 @@ public abstract class PanelCompetences extends JPanel implements IModifEcouteur{
     
 
     protected void initCompetences(){
-    	competences = (Competence[]) IHMCompetencesAccessor.competences_init.getTab();
+    	competences = IHMCompetencesAccessor.competences_init.getTab();
     }
     
     protected void ecrireCompetences(){
