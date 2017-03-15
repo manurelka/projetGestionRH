@@ -23,15 +23,15 @@ public abstract class PanelCompetences extends JPanel implements IModifEcouteur{
     }
     
     protected void setCompetences(int code){
-    	competences = (Competence[]) IHMCompetencesAccessor.competences_init.get(code).getTab();
+    	competences = IHMCompetencesAccessor.competences_init.get(code).getTab();
     }
     
     protected void setCompetences(DomaineCompetences domaine){
-        competences = (Competence[]) IHMCompetencesAccessor.competences_init.get(domaine).getTab();
+        competences = IHMCompetencesAccessor.competences_init.get(domaine).getTab();
     }
     
     protected void setCompetences(String motCle){
-    	competences = (Competence[]) IHMCompetencesAccessor.competences_init.get(motCle).getTab();
+    	competences = IHMCompetencesAccessor.competences_init.get(motCle).getTab();
     }
     
     protected void abonnerModif(){

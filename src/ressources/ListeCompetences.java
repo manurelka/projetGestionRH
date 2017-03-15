@@ -72,5 +72,8 @@ public class ListeCompetences extends ListeRessources<DCCompetence, Competence> 
 		return (Competence) this.ressources.get(dc);
 	}
 	
-	
+	@Override
+	public Competence[] getTab() {
+		return ressources.values().toArray(new Competence[ressources.size()]);
+	}
 }

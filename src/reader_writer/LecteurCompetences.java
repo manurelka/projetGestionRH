@@ -42,7 +42,6 @@ public class LecteurCompetences extends Lecteur implements ILecteurCompetences {
 			//Utiliser un splitter pour extraire la liste des compétences du conteneur
 			SplitterCompetences splitter = new SplitterCompetences();
 			liste = splitter.getCompetences(conteneur);
-			
 		} catch(FileNotFoundException e){
 			// TODO une meilleure gestion des messsages d'erreur
 			System.out.println("Le fichier est introuvable.");

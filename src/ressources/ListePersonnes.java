@@ -20,5 +20,10 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Personne[] getTab() {
+		return ressources.values().toArray(new Personne[ressources.size()]);
+	}
 }
 

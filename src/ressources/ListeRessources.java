@@ -68,6 +68,7 @@ public abstract class ListeRessources<T, E extends Ressource<T>> implements ILis
 	@Override
 	public void supprimer(Ressource<T> objet) {
 		ressources.remove(((Ressource <T>) objet).getIdent());
+		modifContenu(ModifType.SUPPR);
 	}
 
 	@Override
@@ -77,11 +78,7 @@ public abstract class ListeRessources<T, E extends Ressource<T>> implements ILis
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Ressource[] getTab() {
-		return (Ressource[]) ressources.values().toArray(new Ressource[ressources.size()]);
-	}
+	
 
 	@Override
 	public boolean isEmpty() {
