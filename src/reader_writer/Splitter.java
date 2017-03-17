@@ -12,6 +12,10 @@ public abstract class Splitter implements ISplitter{
 		this.mots = new String[nbCases];
 	}
 	
+	protected Splitter(){
+		this.mots = null;
+	}
+	
 	protected String getMot(int index){
 		// TODO throw une exception IOB
 		return mots[index];
@@ -19,6 +23,10 @@ public abstract class Splitter implements ISplitter{
 	
 	protected void setMot(String mot, int nbCase){
 		mots[nbCase] = mot;
+	}
+	
+	protected void setMot(String tab[]){
+		mots = tab;		
 	}
 	
 	protected void setMots(String[] mots){

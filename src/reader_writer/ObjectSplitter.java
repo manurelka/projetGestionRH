@@ -12,6 +12,10 @@ public abstract class ObjectSplitter extends Splitter {
 		super(nbCases);
 	}
 	
+	protected ObjectSplitter(){
+		super();
+	}
+	
 	@Override
 	public String getRegex() {
 		return REGEX;
