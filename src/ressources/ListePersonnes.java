@@ -27,7 +27,7 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 	}
 	
 	public void ajouter(ListePersonnes res){
-		for(Integer key : ressources.keySet()){
+		for(Integer key : res.ressources.keySet()){
 			ajouter( res.ressources.get(key));
 		}
 		
