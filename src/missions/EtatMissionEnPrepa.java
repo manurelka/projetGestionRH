@@ -9,7 +9,7 @@ import ressources.ListePersonnes;
 import ressources.Personne;
 import ressources.Ressource;
 
-public class EtatMissionEnPrepa extends EtatMission implements IEtatMission {
+public class EtatMissionEnPrepa extends EtatMission {
 
 	protected EtatMissionEnPrepa() {
 		super(EtatMissionType.EnPreparation);
@@ -52,7 +52,7 @@ public class EtatMissionEnPrepa extends EtatMission implements IEtatMission {
 				compatMax.afficher(); // debug
 */				
 				//Si elle est plus grande que le compatibilité maximale
-				if (compatCour.getTaux() > compatMax.getTaux()){
+				if ((compatCour.getTaux() > compatMax.getTaux()) && (!Mission.estOccupe(personne))){
 					//System.out.println("if"); // debug
 					
 					//Mettre à jour la valeur de la compatibilité maximale
@@ -116,13 +116,81 @@ public class EtatMissionEnPrepa extends EtatMission implements IEtatMission {
 		//Retourner la liste des propositions
 		return propo;
 	}
+	
+	@Override
+	public ListePersonnes recommander(int nbPersonnes, ListeCompetences prerequis, ListePersonnes liste) {
+		int ctr = 0;
+		
+		//Liste temporaire de personnes
+		ListePersonnes candidats = new ListePersonnes();
+		candidats.ajouter(liste);
+		
+		//La liste des personnes compatibles
+		ListePersonnes propo = new ListePersonnes();
+				
+		//Compatibilités
+		Compatibilite compatMax = new Compatibilite();
+		Compatibilite compatCour = new Compatibilite();
+		
+		//Candidat courant
+		Personne candidatMax = null;
+		
+		//Tant qu'il y a encore des compétences à satifaire et la liste des candidats n'est pas vide 
+		while((ctr != nbPersonnes) && (!candidats.isEmpty())) {
+			
+			//Rechercher parmi les candidats la personne la plus compatible
+			for (Personne personne : candidats.getTab()) {
+				//Calculer la compatibilité courante
+				compatCour = personne.compatible(prerequis);
+				
+				//Si elle est plus grande que le compatibilité maximale
+				if ((compatCour.getTaux() > compatMax.getTaux()) && (!Mission.estOccupe(personne))){
+					
+					//Mettre à jour la valeur de la compatibilité maximale
+					compatMax = (Compatibilite) compatCour.clone();
+					//Enrégistrer le candidat compatible
+					candidatMax = personne;
+				}
+			}
+			
+			//Si un candidat a été choisi
+			if (candidatMax != null) {
+				//Aouter le candidat compatible à la liste des propositions	
+				propo.ajouter(candidatMax);
+				
+				//propo.afficher(); // debug
+				
+				//Supprimer le candidat compatible de la liste des candidats
+				candidats.supprimer(candidatMax);
+				
+				//candidats.afficher(); // debug
+				ctr ++;
+				//Réinitialiser le candidat choisi pour une nouvelle recherche
+				candidatMax = null;
+				
+				//Réinitialiser la compatibilité maximale pour une nouvelle recherche
+				compatMax = new Compatibilite();
+				
+				/*compatCour.afficher(); //debug
+				compatMax.afficher(); //debug
+*/			}	
+			
+		}
+		
+		//Retourner la liste des propositions
+		return propo;
+	}
 
 	@Override
 	public void affecter(ContexteMission contexte, Mission mission, Personne personne) {
-		mission.getPersonnel().ajouter(personne);
-		
-		if ( mission.getNbPersonnes() == mission.getNbPersonnesEffectif()) {
-			contexte.setEtat(new EtatMissionPlanifiee());
+		if (!Mission.estOccupe(personne)) {
+
+			mission.getPersonnel().ajouter(personne);
+			Mission.occuper(personne);
+			
+			if ( mission.getNbPersonnes() == mission.getNbPersonnesEffectif()) {
+				contexte.setEtat(new EtatMissionPlanifiee());
+			}
 		}
 	}
 	

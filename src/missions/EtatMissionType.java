@@ -3,7 +3,8 @@ package missions;
 public enum EtatMissionType {
 	EnPreparation("En préparation"),
 	Planifiee("Planifiée"),
-	EnCours("En cours");
+	EnCours("En cours"),
+	Terminee("Terminée");
 	
 	private String str;
 	

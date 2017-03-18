@@ -3,7 +3,7 @@ package missions;
 import ressources.ListePersonnes;
 import ressources.Personne;
 
-public class EtatMissionEnCours extends EtatMission implements IEtatMission{
+public class EtatMissionEnCours extends EtatMission {
 
 	protected EtatMissionEnCours() {
 		super(EtatMissionType.EnCours);
@@ -11,8 +11,7 @@ public class EtatMissionEnCours extends EtatMission implements IEtatMission{
 
 	@Override
 	public void etatSuivant(ContexteMission contexte) {
-		// TODO Auto-generated method stub
-		
+		contexte.setEtat(new EtatMissionTerminee());
 	}
 
 }

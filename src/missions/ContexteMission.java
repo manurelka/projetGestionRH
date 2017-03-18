@@ -1,5 +1,6 @@
 package missions;
 
+import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
 
@@ -11,7 +12,12 @@ public class ContexteMission {
 	}
 	
 	public void etatSuivant(){
-		etat.etatSuivant(this);
+		try {
+			etat.etatSuivant(this);
+		} catch (EtatMissionIncompatibleException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	public void setEtat(EtatMission etat){
@@ -24,7 +30,7 @@ public class ContexteMission {
 		return this.etat.toString();
 	}
 	
-	public void affecter(Mission mission, Personne personne){
+	public void affecter(Mission mission, Personne personne) throws EtatMissionIncompatibleException {
 		System.out.println("contexte");
 		etat.affecter(this, mission, personne);
 	}
@@ -34,8 +40,17 @@ public class ContexteMission {
 		return etat.recommander(plan, personnel);
 	}
 	
+	public ListePersonnes recommander(int nbPersonnes, ListeCompetences prerequis, ListePersonnes personnel) throws EtatMissionIncompatibleException{
+		//System.out.println("Entrée contexte");//debug
+		return etat.recommander(nbPersonnes, prerequis, personnel);
+	}
+	
 	public void affecter(Mission mission, ListePersonnes personnel) throws EtatMissionIncompatibleException{
 		//System.out.println("contexte");
 		etat.affecter(this, mission, personnel);
+	}
+	
+	public void enlever(Mission mission, Personne personne) throws EtatMissionIncompatibleException {
+		etat.enlever(this, mission, personne);
 	}
 }

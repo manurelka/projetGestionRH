@@ -1,5 +1,6 @@
 package missions;
 
+import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
 
@@ -18,6 +19,11 @@ public abstract class EtatMission implements IEtatMission {
 	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes liste) throws EtatMissionIncompatibleException{
 		throw new EtatMissionIncompatibleException();
 	}
+	
+	@Override
+	public ListePersonnes recommander(int nbPersonnes, ListeCompetences prerequis, ListePersonnes liste) throws EtatMissionIncompatibleException{
+		throw new EtatMissionIncompatibleException();
+	}
 
 	@Override
 	public void affecter(ContexteMission contexte, Mission mission, Personne personne) {
@@ -31,7 +37,12 @@ public abstract class EtatMission implements IEtatMission {
 	}
 
 	@Override
-	public void etatSuivant(ContexteMission contexte) {
-		contexte.setEtat(new EtatMissionEnCours());
+	public void etatSuivant(ContexteMission contexte) throws EtatMissionIncompatibleException {
+		throw new EtatMissionIncompatibleException();
+	}
+	
+	@Override
+	public void enlever(ContexteMission contexte, Mission mission, Personne personne) throws EtatMissionIncompatibleException {
+		throw new EtatMissionIncompatibleException();
 	}
 }

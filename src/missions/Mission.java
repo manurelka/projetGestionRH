@@ -6,7 +6,8 @@ import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
 
-public abstract class Mission implements IMission{
+public abstract class Mission implements IMissionActions{
+	private static ListePersonnes listeTotaleOccupes = new ListePersonnes();
 	private String nom;
 	private int nbPersonnes;
 	private Date dateDebut;
@@ -66,14 +67,45 @@ public abstract class Mission implements IMission{
 	}
 	
 	@Override
-	public void affecter(Personne personne) throws EtatMissionIncompatibleException {
-		contexte.affecter(this, personne);
+	public ListePersonnes recommander(ListeCompetences prerequis, ListePersonnes personnel) throws EtatMissionIncompatibleException{
+		//System.out.println("Entrée mission"); //debug
+		return contexte.recommander(nbPersonnes, prerequis, personnel);
 	}
 	
 	@Override
-	public void affecter(ListePersonnes personnel) throws EtatMissionIncompatibleException {
-		contexte.affecter(this, personnel);
+	public void affecter(Personne personne) {
+		try {
+			contexte.affecter(this, personne);
+		} catch (EtatMissionIncompatibleException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
+	@Override
+	public void affecter(ListePersonnes personnel) {
+		try {
+			contexte.affecter(this, personnel);
+		} catch (EtatMissionIncompatibleException e) {
+			System.out.print(e.getMessage());
+			e.printStackTrace();
+		}
+	}
 	
+	@Override
+	public void enlever(Personne personne) throws EtatMissionIncompatibleException {
+		contexte.enlever(this, personne);
+	}
+	
+	public static void occuper(Personne personne){
+		Mission.listeTotaleOccupes.ajouter(personne);
+	}
+	
+	public static void listeTotaleOccupes(){
+		Mission.listeTotaleOccupes.afficher();
+	}
+	
+	public static boolean estOccupe(Personne personne){
+		return Mission.listeTotaleOccupes.estAjoute(personne);
+	}
 }

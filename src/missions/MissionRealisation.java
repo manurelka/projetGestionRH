@@ -15,20 +15,11 @@ public class MissionRealisation extends Mission {
 		try {
 			return super.recommander(plan, personnel);
 		} catch (EtatMissionIncompatibleException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		
 		return null;
-	}
-	
-	public void affecter(ListePersonnes personnel){
-		System.out.println("Entrée mission réalisation");
-		
-		try {
-			super.affecter(personnel);
-		} catch (EtatMissionIncompatibleException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void addPlan(Competence cmpt, int nbPersonnes){
