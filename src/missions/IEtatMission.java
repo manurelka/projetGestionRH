@@ -20,7 +20,7 @@ public interface IEtatMission {
 	 * @param mission La mission
 	 * @param personne La personne à afecter
 	 */
-	public void affecter(ContexteMission contexte, Mission mission, Personne personne);
+	public void affecter(ContexteMission contexte, Mission mission, Personne personne)  throws EtatMissionIncompatibleException;
 	
 	/**
 	 * Affecter une liste de personnes à une mission
@@ -28,5 +28,5 @@ public interface IEtatMission {
 	 * @param mission La mission
 	 * @param liste La liste de personnes à affecter
 	 */
-	public void affecter(ContexteMission contexte, Mission mission, ListePersonnes liste);
+	public void affecter(ContexteMission contexte, Mission mission, ListePersonnes liste)  throws EtatMissionIncompatibleException;
 }

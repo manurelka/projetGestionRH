@@ -15,6 +15,8 @@ public class ContexteMission {
 	}
 	
 	public void setEtat(EtatMission etat){
+		System.out.println("set etat");
+		System.out.println(etat.toString());
 		this.etat = etat;
 	}
 	
@@ -32,8 +34,8 @@ public class ContexteMission {
 		return etat.recommander(plan, personnel);
 	}
 	
-	public void affecter(Mission mission, ListePersonnes personnel){
-		System.out.println("contexte");
+	public void affecter(Mission mission, ListePersonnes personnel) throws EtatMissionIncompatibleException{
+		//System.out.println("contexte");
 		etat.affecter(this, mission, personnel);
 	}
 }

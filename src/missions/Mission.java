@@ -6,7 +6,7 @@ import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
 
-public abstract class Mission {
+public abstract class Mission implements IMission{
 	private String nom;
 	private int nbPersonnes;
 	private Date dateDebut;
@@ -47,25 +47,10 @@ public abstract class Mission {
 		this.nbPersonnes = nbPersonnes;
 	}
 	
-	public void affecter(Personne personne){
-		System.out.println("mission");
-		contexte.affecter(this, personne);
-	}
-	
 	public void afficherPersonnel(){
 		this.personnel.afficher();
 	}
-	
-	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel) throws EtatMissionIncompatibleException{
-		//System.out.println("Entrée mission"); //debug
-		return contexte.recommander(plan, personnel);
-	}
-	
-	public void affecter(ListePersonnes personnel){
-		System.out.println("mission");
-		contexte.affecter(this, personnel);
-	}
-	
+
 	ListePersonnes getPersonnel(){
 		return personnel;
 	}
@@ -73,5 +58,22 @@ public abstract class Mission {
 	int getNbPersonnesEffectif(){
 		return personnel.taille();
 	}
+	
+	@Override
+	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel) throws EtatMissionIncompatibleException{
+		//System.out.println("Entrée mission"); //debug
+		return contexte.recommander(plan, personnel);
+	}
+	
+	@Override
+	public void affecter(Personne personne) throws EtatMissionIncompatibleException {
+		contexte.affecter(this, personne);
+	}
+	
+	@Override
+	public void affecter(ListePersonnes personnel) throws EtatMissionIncompatibleException {
+		contexte.affecter(this, personnel);
+	}
+	
 	
 }

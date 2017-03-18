@@ -26,9 +26,8 @@ public abstract class EtatMission implements IEtatMission {
 	}
 
 	@Override
-	public void affecter(ContexteMission contexte, Mission mission, ListePersonnes liste) {
-		// TODO Auto-generated method stub
-		
+	public void affecter(ContexteMission contexte, Mission mission, ListePersonnes liste) throws EtatMissionIncompatibleException{
+		throw new EtatMissionIncompatibleException();
 	}
 
 	@Override

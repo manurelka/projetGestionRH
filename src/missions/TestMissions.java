@@ -19,7 +19,7 @@ public class TestMissions {
 		mission.addPlan(competenceC, 5);
 		
 		ListePersonnes personnes = new ListePersonnes();
-		/*personnes.ajouter(new Personne("Manuela", "Ivanova", 1, 9, 8, 2011));
+		personnes.ajouter(new Personne("Manuela", "Ivanova", 1, 9, 8, 2011));
 		personnes.get(1).ajouterCompetence(competenceC);
 		personnes.ajouter(new Personne("Pepi", "Nikolov", 2, 10, 8, 2011));
 		personnes.get(2).ajouterCompetence(competenceC);
@@ -41,8 +41,8 @@ public class TestMissions {
 		personnes.get(10).ajouterCompetence(competenceB);
 		personnes.ajouter(new Personne("Peter", "Manev", 11, 20, 8, 2008));
 		personnes.get(10).ajouterCompetence(competenceB);
-		*/
 		
+		/*
 		personnes.ajouter(new Personne("Manuela", "Ivanova", 1, 9, 8, 2011));
 		personnes.get(1).ajouterCompetence(competenceC);
 		personnes.get(1).ajouterCompetence(competenceB);
@@ -72,9 +72,10 @@ public class TestMissions {
 		personnes.get(10).ajouterCompetence(competenceB);
 		personnes.ajouter(new Personne("Peter", "Manev", 11, 20, 8, 2008));
 		personnes.get(10).ajouterCompetence(competenceB);
-		
+		*/
 		mission.recommander(personnes).afficher();
-		//mission.recommander(personnes).afficher();
+		mission.affecter(mission.recommander(personnes));
+		mission.recommander(personnes).afficher(); // n'est plus possible puisqu'on a affecté du personnel :) 
 		
 	}
 
