@@ -18,6 +18,14 @@ public abstract class Couple<T, S> implements Comparable{
 		return this.sec;
 	}
 	
+	protected void setPrem(T obj){
+		this.prem = obj;
+	}
+	
+	protected void setSec(S obj){
+		this.sec = obj;
+	}
+	
 	@Override
 	public boolean equals(Object o){
 		boolean rep = false;

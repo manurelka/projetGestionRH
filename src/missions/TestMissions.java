@@ -19,7 +19,7 @@ public class TestMissions {
 		mission.addPlan(competenceC, 5);
 		
 		ListePersonnes personnes = new ListePersonnes();
-		personnes.ajouter(new Personne("Manuela", "Ivanova", 1, 9, 8, 2011));
+		/*personnes.ajouter(new Personne("Manuela", "Ivanova", 1, 9, 8, 2011));
 		personnes.get(1).ajouterCompetence(competenceC);
 		personnes.ajouter(new Personne("Pepi", "Nikolov", 2, 10, 8, 2011));
 		personnes.get(2).ajouterCompetence(competenceC);
@@ -41,8 +41,8 @@ public class TestMissions {
 		personnes.get(10).ajouterCompetence(competenceB);
 		personnes.ajouter(new Personne("Peter", "Manev", 11, 20, 8, 2008));
 		personnes.get(10).ajouterCompetence(competenceB);
+		*/
 		
-		/*ListePersonnes personnes = new ListePersonnes();
 		personnes.ajouter(new Personne("Manuela", "Ivanova", 1, 9, 8, 2011));
 		personnes.get(1).ajouterCompetence(competenceC);
 		personnes.get(1).ajouterCompetence(competenceB);
@@ -54,12 +54,27 @@ public class TestMissions {
 		personnes.get(3).ajouterCompetence(competenceC);
 		personnes.ajouter(new Personne("Ivan", "Ivanov", 4, 10, 8, 2011));
 		personnes.get(4).ajouterCompetence(competenceB);
-		personnes.get(4).ajouterCompetence(competenceC);*/
+		personnes.get(4).ajouterCompetence(competenceC);
+		personnes.ajouter(new Personne("Ivan", "Petrov", 5, 10, 8, 2008));
+		personnes.get(5).ajouterCompetence(competenceB);
+		personnes.get(5).ajouterCompetence(competenceC);
+		personnes.ajouter(new Personne("Peter", "Petrov", 6, 10, 8, 2008));
+		personnes.get(6).ajouterCompetence(competenceB);
+		personnes.get(6).ajouterCompetence(competenceA);
+		personnes.ajouter(new Personne("Peter", "Nikolov", 7, 10, 8, 2008));
+		personnes.get(7).ajouterCompetence(competenceB);
+		personnes.get(7).ajouterCompetence(competenceA);
+		personnes.ajouter(new Personne("Alexander", "Manev", 8, 10, 8, 2008));
+		personnes.get(8).ajouterCompetence(competenceB);
+		personnes.ajouter(new Personne("George", "Kostov", 9, 10, 8, 2008));
+		personnes.get(9).ajouterCompetence(competenceB);
+		personnes.ajouter(new Personne("Peter", "Todorov", 10, 20, 8, 2008));
+		personnes.get(10).ajouterCompetence(competenceB);
+		personnes.ajouter(new Personne("Peter", "Manev", 11, 20, 8, 2008));
+		personnes.get(10).ajouterCompetence(competenceB);
 		
 		mission.recommander(personnes).afficher();
-		System.out.println("after list");
-		//personnes.afficher();
-		mission.recommander(personnes).afficher();
+		//mission.recommander(personnes).afficher();
 		
 	}
 

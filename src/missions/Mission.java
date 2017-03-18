@@ -56,8 +56,8 @@ public abstract class Mission {
 		this.personnel.afficher();
 	}
 	
-	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel){
-		System.out.println("Entrée mission");
+	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel) throws EtatMissionIncompatibleException{
+		//System.out.println("Entrée mission"); //debug
 		return contexte.recommander(plan, personnel);
 	}
 	

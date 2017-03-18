@@ -27,8 +27,8 @@ public class ContexteMission {
 		etat.affecter(this, mission, personne);
 	}
 	
-	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel){
-		System.out.println("Entrée contexte");
+	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes personnel) throws EtatMissionIncompatibleException{
+		//System.out.println("Entrée contexte");//debug
 		return etat.recommander(plan, personnel);
 	}
 	

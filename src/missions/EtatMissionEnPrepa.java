@@ -9,7 +9,7 @@ import ressources.ListePersonnes;
 import ressources.Personne;
 import ressources.Ressource;
 
-public class EtatMissionEnPrepa extends EtatMission implements IMission {
+public class EtatMissionEnPrepa extends EtatMission implements IEtatMission {
 
 	protected EtatMissionEnPrepa() {
 		super(EtatMissionType.EnPreparation);
@@ -17,54 +17,110 @@ public class EtatMissionEnPrepa extends EtatMission implements IMission {
 
 	@Override
 	public ListePersonnes recommander(PlanCompetences plan, ListePersonnes liste) {
-		System.out.println("Entrée état en préparation");
-		//liste.afficher();
-		ListePersonnes listeRep = new ListePersonnes();
-		//Liste temporaire des competences
-		ListeCompetences listeCompetences = new ListeCompetences();
-		listeCompetences.ajouter(plan.keySet());
-		//listeCompetences.afficher();
-		//Tableau temporaire des personnes
-		ListePersonnes personnes = new ListePersonnes();
-		personnes.ajouter(liste);
-		//personnes.afficher();
-		Personne candidat = null;
-		Compatibilite compa, compaMax;
+		//System.out.println("Entrée état en préparation"); // debug
 		
-		while ((!listeCompetences.isEmpty()) && (personnes.taille() != 0)) {
-			compa = new Compatibilite();
-			compaMax = new Compatibilite();
-			candidat = null;
+		//Liste temporaire de personnes
+		ListePersonnes candidats = new ListePersonnes();
+		candidats.ajouter(liste);
+		
+		//La liste des personnes compatibles
+		ListePersonnes propo = new ListePersonnes();
+		
+		//Plan de competences temporaire
+		PlanCompetences planClone = new PlanCompetences(plan);
+		
+		//Compatibilités
+		Compatibilite compatMax = new Compatibilite();
+		Compatibilite compatCour = new Compatibilite();
+		
+		//Candidat courant
+		Personne candidatMax = null;
+		
+		//Tant qu'il y a encore des compétences à satifaire et la liste des candidats n'est pas vide 
+		while((!planClone.isEmpty()) && (!candidats.isEmpty())) {
 			
-			for (Personne personne : (Personne[]) personnes.getTab()) {
-				compa = personne.compatible(listeCompetences);
-				if (compa.getTaux() > compaMax.getTaux()) {
-					candidat = personne;
-					compaMax = personne.compatible(listeCompetences);
+			//Rechercher parmi les candidats la personne la plus compatible
+			for (Personne personne : candidats.getTab()) {
+				//Calculer la compatibilité courante
+				compatCour = personne.compatible(planClone);
+				
+				/*System.out.println("for"); // debug
+				personne.afficher(); // debug
+				System.out.println("compat cour :"); // debug
+				compatCour.afficher(); // debug
+				System.out.println("compat max :"); // debug
+				compatMax.afficher(); // debug
+*/				
+				//Si elle est plus grande que le compatibilité maximale
+				if (compatCour.getTaux() > compatMax.getTaux()){
+					//System.out.println("if"); // debug
+					
+					//Mettre à jour la valeur de la compatibilité maximale
+					compatMax = (Compatibilite) compatCour.clone();
+					//Enrégistrer le candidat compatible
+					candidatMax = personne;
+					
+					/*System.out.println("candidat max :"); // debug
+					candidatMax.afficher(); // debug
+*/				}
+			}
+			
+			//Si un candidat a été choisi
+			if (candidatMax != null) {
+				//Aouter le candidat compatible à la liste des propositions
+				/*System.out.println("Ajouter candidat"); // debug
+				System.out.println("candidat max :"); // debug
+				candidatMax.afficher(); // debug
+*/				
+				propo.ajouter(candidatMax);
+				
+				//propo.afficher(); // debug
+				
+				//Supprimer le candidat compatible de la liste des candidats
+				candidats.supprimer(candidatMax);
+				
+				//candidats.afficher(); // debug
+				
+				//Réinitialiser le candidat choisi pour une nouvelle recherche
+				candidatMax = null;
+				
+				//Mettre à jour le plan des compétences
+				//Pour chaque compétence que le candidat choisi satisfait
+				for (Competence cmpt : compatMax.getCompetences()) {
+					//diminuer le nombre de personnes recherhcées
+					int value = planClone.get(cmpt) - 1;
+					
+					/*System.out.println("Competence maj"); //debug
+					cmpt.afficher(); //debug
+					System.out.println(value); //debug
+*/					
+					//Si aucune personne n'est plus nécessaire
+					if(value == 0) {
+						//supprimer la compétence de la liste
+						planClone.remove(cmpt);
+					} else {
+						//sinon mettre à jour le nombre de personnes nécessaires
+						planClone.put(cmpt, value);
+					}
 				}
-			}
+				
+				//Réinitialiser la compatibilité maximale pour une nouvelle recherche
+				compatMax = new Compatibilite();
+				
+				/*compatCour.afficher(); //debug
+				compatMax.afficher(); //debug
+*/			}	
 			
-			if (candidat != null) {
-				listeRep.ajouter(candidat);
-				personnes.supprimer(candidat);
-			}
-			
-			for (Competence cmpt : compaMax.getCompetences()) {
-				plan.put(cmpt, plan.get(cmpt) - 1);
-				if (plan.get(cmpt) == 0){
-					listeCompetences.supprimer(cmpt);
-				}
-			}
 		}
-		System.out.println("avant sortie d'état en préparation");
-		listeRep.afficher();
-		return listeRep;
+		
+		//Retourner la liste des propositions
+		return propo;
 	}
 
 	@Override
 	public void affecter(ContexteMission contexte, Mission mission, Personne personne) {
-		System.out.println("etat : mono");
 		mission.getPersonnel().ajouter(personne);
+		
 		if ( mission.getNbPersonnes() == mission.getNbPersonnesEffectif()) {
 			contexte.setEtat(new EtatMissionPlanifiee());
 		}
@@ -72,7 +128,7 @@ public class EtatMissionEnPrepa extends EtatMission implements IMission {
 	
 	@Override
 	public void affecter(ContexteMission contexte, Mission mission, ListePersonnes liste) {
-		System.out.println("etat : liste");
+		
 		for (Personne personne : (Personne[]) liste.getTab()) {
 			affecter(contexte, mission, personne);
 		}

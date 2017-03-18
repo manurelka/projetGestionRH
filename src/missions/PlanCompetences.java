@@ -6,6 +6,17 @@ import ressources.Competence;
 
 public class PlanCompetences extends TreeMap<Competence, Integer>{
 	
+	public PlanCompetences(){
+		super();
+	}
+	
+	public PlanCompetences(PlanCompetences plan){
+		for(Competence cmpt : plan.keySet()){
+			int value = plan.get(cmpt);
+			this.put(cmpt, value);
+		}
+	}
+	
 	public int sommePersonnes(){
 		int somme = 0;
 		

@@ -13,7 +13,14 @@ public class MissionRealisation extends Mission {
 
 	public ListePersonnes recommander(ListePersonnes personnel){
 		System.out.println("Entrée mission réalisation");
-		return super.recommander(plan, personnel);
+		
+		try {
+			return super.recommander(plan, personnel);
+		} catch (EtatMissionIncompatibleException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public void addPlan(Competence cmpt, int nbPersonnes){

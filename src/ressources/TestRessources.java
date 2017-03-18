@@ -194,8 +194,8 @@ public class TestRessources {
 		
 		System.out.println("-- Lecture des personnes --");
 		LecteurPersonnel reader = LecteurPersonnel.Instance();
-		lpers = reader.lirePersonnel();
-		lpers.afficher();
+		//lpers = reader.lirePersonnel();
+		//lpers.afficher();
 		
 		// TODO Gestion de la liste du personnel
 		

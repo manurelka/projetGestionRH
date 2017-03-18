@@ -2,6 +2,8 @@ package ressources;
 
 import java.util.ArrayList;
 
+import missions.PlanCompetences;
+
 /**
  * La classe Personne représente un collaborateur de la liste du personnel.
  * Elle permet de réaliser les fonctionnalités suivantes :
@@ -96,16 +98,29 @@ public class Personne extends Ressource<Integer> implements Comparable {
 	 */
 	public Compatibilite compatible(ListeCompetences liste){
 		int nb = 0, total = liste.taille();
-		Compatibilite compat;
+		Compatibilite compat = new Compatibilite();
 		
-		ArrayList<Competence> listeCompat = new ArrayList<Competence>();
 		for (Competence cmpt : (Competence[]) liste.getTab()) {
 			if (this.aCompetence(cmpt)) {
 				nb ++;
-				listeCompat.add((Competence) cmpt.clone());
+				compat.add((Competence) cmpt.clone());
 			} 
 		}
-		compat = new Compatibilite((double) nb/total, listeCompat);
+		compat.add((double) nb/total);
+		return compat;
+	}
+	
+	public Compatibilite compatible(PlanCompetences plan){
+		int nb = 0, total = plan.size();
+		Compatibilite compat = new Compatibilite();
+		
+		for (Competence cmpt : plan.keySet()) {
+			if (this.aCompetence(cmpt)) {
+				nb ++;
+				compat.add((Competence) cmpt.clone());
+			} 
+		}
+		compat.add((double) nb/total);
 		return compat;
 	}
 
