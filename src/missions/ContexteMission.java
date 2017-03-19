@@ -3,7 +3,11 @@ package missions;
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
-
+/**
+ * Le contexte d'une mission qui fait le lien entre la mission et ses états
+ * @author Manuela
+ *
+ */
 public class ContexteMission {
 	private EtatMission etat;
 	
@@ -11,6 +15,9 @@ public class ContexteMission {
 		etat = new EtatMissionEnPrepa();
 	}
 	
+	/**
+	 * Passer à l'état suivant du déroulement d'une mission
+	 */
 	public void etatSuivant(){
 		try {
 			etat.etatSuivant(this);
@@ -21,7 +28,7 @@ public class ContexteMission {
 	}
 	
 	public void setEtat(EtatMission etat){
-		System.out.println("set etat");
+		System.out.println("contexte : set etat");
 		System.out.println(etat.toString());
 		this.etat = etat;
 	}
@@ -31,7 +38,6 @@ public class ContexteMission {
 	}
 	
 	public void affecter(Mission mission, Personne personne) throws EtatMissionIncompatibleException {
-		System.out.println("contexte");
 		etat.affecter(this, mission, personne);
 	}
 	
@@ -52,5 +58,13 @@ public class ContexteMission {
 	
 	public void enlever(Mission mission, Personne personne) throws EtatMissionIncompatibleException {
 		etat.enlever(this, mission, personne);
+	}
+	
+	public void attribuer(Mission mission, ListeCompetences competences) throws EtatMissionIncompatibleException {
+		etat.attribuer(mission, competences);
+	}
+	
+	public void majTemps(Mission mission){
+		etat.majTemps(this, mission);
 	}
 }

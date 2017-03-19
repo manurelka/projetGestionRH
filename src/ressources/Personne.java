@@ -63,6 +63,15 @@ public class Personne extends Ressource<Integer> implements Comparable {
 		return this;
 	}
 	
+	public Personne ajouterCompetence(ListeCompetences cmpts){
+		
+		for (Competence cmpt : cmpts.getTab()) {
+			ajouterCompetence(cmpt);
+		}
+		
+		return this;
+	}
+	
 	/**
 	 * renvoyer le liste des compétences d'une personne dous forme de tableau
 	 * @return Un tableau de compétences

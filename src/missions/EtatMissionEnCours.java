@@ -13,5 +13,11 @@ public class EtatMissionEnCours extends EtatMission {
 	public void etatSuivant(ContexteMission contexte) {
 		contexte.setEtat(new EtatMissionTerminee());
 	}
-
+	
+	@Override
+	public void majTemps(ContexteMission contexte, Mission mission){
+		if(mission.dateFinPassee()){
+			etatSuivant(contexte);
+		}
+	}
 }

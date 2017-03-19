@@ -51,4 +51,19 @@ public interface IEtatMission {
 	 * @throws EtatMissionIncompatibleException
 	 */
 	public void enlever(ContexteMission contexte, Mission mission, Personne personne) throws EtatMissionIncompatibleException;
+	
+	/**
+	 * Attribuer des compétences aux personnel impliqué dans la réalisation d'une mission ou une formation
+	 * @param mission
+	 * @param competences
+	 * @throws EtatMissionIncompatibleException
+	 */
+	public void attribuer(Mission mission, ListeCompetences competences) throws EtatMissionIncompatibleException;
+	
+	/**
+	 * Mettre à jour l'état de la mission en fonction du temps (date de début, date de fin)
+	 * @param contexte Le contexte de la mission 
+	 * @param mission La mission
+	 */
+	public void majTemps(ContexteMission contexte, Mission mission);
 }

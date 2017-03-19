@@ -6,7 +6,11 @@ import ressources.Competence;
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
-
+/**
+ * Une mission de formation caractérisée par une liste de prérequis et une liste de compétences visées (objectifs)
+ * @author Manuela
+ *
+ */
 public class MissionFormation extends Mission {
 	private ListeCompetences prerequis;
 	private ListeCompetences objectifs;
@@ -45,5 +49,32 @@ public class MissionFormation extends Mission {
 	 */
 	public void add(ListeCompetences prerequis){
 		this.prerequis.ajouter(prerequis);
+	}
+	
+	/**
+	 * Ajouter une compétence aux objectifs de la mission
+	 * @param prerequis La compétence à ajouter
+	 */
+	public void objectif(Competence objectif){
+		this.objectifs.ajouter(prerequis);
+	}
+	
+	/**
+	 * Ajouter une liste de compétences aux objectifs pour la formation
+	 * @param prerequis La liste de compétences à ajouter 
+	 */
+	public void objectif(ListeCompetences objectifs){
+		this.objectifs.ajouter(objectifs);
+	}
+	
+	/**
+	 * Attribuer des compétences aux personnes à la fin de la formation
+	 */
+	public void attribuer(){
+		try {
+			super.attribuer(objectifs);
+		} catch (EtatMissionIncompatibleException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

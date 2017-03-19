@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class Calendrier {
 	private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	private static final long J = 86400000; // la longueur d'un jour en millisecondes
-	private static final long H = 3600000; // la longueur d'une heure en millisecondes
+	public static final long J = 86400000; // la longueur d'un jour en millisecondes
+	public static final long H = 3600000; // la longueur d'une heure en millisecondes
 	
 	public static Date aujourdhui(){
 		return new Date();
@@ -31,5 +31,9 @@ public class Calendrier {
 	
 	public static Date dateFin(Date dateDebut, int nbJours){
 		return new Date(dateDebut.getTime() + J*nbJours);
+	}
+	
+	public static boolean estPassee(Date date){
+		return (date(aujourdhui()).compareTo(date(date)) >= 0);
 	}
 }

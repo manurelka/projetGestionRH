@@ -45,4 +45,20 @@ public abstract class EtatMission implements IEtatMission {
 	public void enlever(ContexteMission contexte, Mission mission, Personne personne) throws EtatMissionIncompatibleException {
 		throw new EtatMissionIncompatibleException();
 	}
+	
+	@Override
+	public void majTemps(ContexteMission contexte, Mission mission){
+		if (mission.dateFinPassee()) {
+			contexte.setEtat(new EtatMissionTerminee());
+		}
+		
+		if (mission.dateDebutPassee()) {
+			contexte.setEtat(new EtatMissionEnCours());
+		}
+	}
+	
+	@Override
+	public void attribuer(Mission mission, ListeCompetences competences) throws EtatMissionIncompatibleException {
+		throw new EtatMissionIncompatibleException();
+	}
 }

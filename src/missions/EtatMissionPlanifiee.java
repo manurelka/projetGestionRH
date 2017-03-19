@@ -35,4 +35,11 @@ public class EtatMissionPlanifiee extends EtatMission {
 			affecter(contexte, mission, personne);
 		}
 	}
+	
+	@Override
+	public void majTemps(ContexteMission contexte, Mission mission){
+		if (mission.dateDebutPassee() && (mission.getNbPersonnes() == mission.getNbPersonnesEffectif())) {
+			etatSuivant(contexte);
+		}
+	}
 }

@@ -77,11 +77,13 @@ public abstract class ListeRessources<T, E extends Ressource<T>> implements ILis
 	public boolean isEmpty() {
 		return ressources.isEmpty();
 	}
-
+	
+	@Override
 	public void addModifEcouteur(IModifEcouteur e){
 		this.ecouteurs.add(e);
 	}
 	
+	@Override
 	public void removeModifEcouteur(IModifEcouteur e){
 		this.ecouteurs.remove(e);
 	}

@@ -189,7 +189,7 @@ public class EtatMissionEnPrepa extends EtatMission {
 			Mission.occuper(personne);
 			
 			if ( mission.getNbPersonnes() == mission.getNbPersonnesEffectif()) {
-				contexte.setEtat(new EtatMissionPlanifiee());
+				etatSuivant(contexte);
 			}
 		}
 	}
@@ -205,6 +205,13 @@ public class EtatMissionEnPrepa extends EtatMission {
 	@Override
 	public void etatSuivant(ContexteMission contexte){
 		contexte.setEtat(new EtatMissionPlanifiee());
+	}
+	
+	@Override
+	public void majTemps(ContexteMission contexte, Mission mission){
+		if (mission.dateDebutPassee()) {
+			etatSuivant(contexte);
+		}
 	}
 
 }
