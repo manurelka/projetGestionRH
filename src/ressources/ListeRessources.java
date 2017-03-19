@@ -57,7 +57,7 @@ public abstract class ListeRessources<T, E extends Ressource<T>> implements ILis
 	@SuppressWarnings("unchecked")
 	@Override
 	public void afficher(){
-		System.out.println("-- Liste de personnes --");
+		System.out.println("-- Liste de ressources --");
 		
 		for (T key : ressources.keySet()) {
 			((Ressource<T>) ressources.get(key)).afficher();

@@ -1,7 +1,9 @@
 package ressources;
 
 import reader_writer.EcriteurCompetences;
+import reader_writer.IHMPersonnelAccessor;
 import reader_writer.LecteurCompetences;
+import reader_writer.LecteurPersCmp;
 import reader_writer.LecteurPersonnel;
 
 /**
@@ -196,6 +198,15 @@ public class TestRessources {
 		LecteurPersonnel reader = LecteurPersonnel.Instance();
 		lpers = reader.lirePersonnel();
 		lpers.afficher();
+		
+		// TODO Personnel et liste de compétence		
+		System.out.println("-- Lecture des personnes et leur compétence --");
+		LecteurPersCmp readerPC = LecteurPersCmp.Instance();
+		readerPC.lirePersCmp();
+		for (int i= 0;i<IHMPersonnelAccessor.personnes_init.taille() ;i++ ){
+			IHMPersonnelAccessor.personnes_init.getTab()[i].afficher();
+			IHMPersonnelAccessor.personnes_init.getTab()[i].afficherCompetences();
+		}
 		
 		// TODO Gestion de la liste du personnel
 		

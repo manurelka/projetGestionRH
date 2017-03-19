@@ -6,8 +6,8 @@ import java.io.IOException;
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 
-public class LecteurPersCmp extends Lecteur implements ILecteurPersonnel{
-	private static final String CHEMIN = "fichConfig/liste_personnel.csv";
+public class LecteurPersCmp extends Lecteur implements ILecteurPersCmp{
+	private static final String CHEMIN = "fichConfig/competences_personnel.csv";
 	private static LecteurPersCmp instance = null;
 
 	private LecteurPersCmp() {
@@ -22,10 +22,8 @@ public class LecteurPersCmp extends Lecteur implements ILecteurPersonnel{
 	}
 
 	@Override
-	public  ListePersonnes lirePersonnel() {
-		// System.out.println("Je lis les personnes");//debug
-				ListePersonnes liste = new ListePersonnes();
-				ListeCompetences listeC = new ListeCompetences();
+	public void lirePersCmp () {
+		// System.out.println("Je lis les personnes et leur liste de compétences");//debug
 				try {
 					// Ovrir le flux d'entrée
 					openFlux();
@@ -38,7 +36,7 @@ public class LecteurPersCmp extends Lecteur implements ILecteurPersonnel{
 					// Utiliser un splitter pour extraire la liste des personnes du
 					// conteneur
 					SplitterPersCmp splitter = new SplitterPersCmp();
-					listeC = splitter.getCompetences(conteneur);
+					splitter.affecterCompetences(conteneur);
 					
 
 				} catch (FileNotFoundException e) {
@@ -57,7 +55,5 @@ public class LecteurPersCmp extends Lecteur implements ILecteurPersonnel{
 						e.printStackTrace();
 					}
 				}
-
-				return liste;
 	}
 }

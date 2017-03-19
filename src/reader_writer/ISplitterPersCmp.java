@@ -5,5 +5,5 @@ import ressources.ListeCompetences;
 public interface ISplitterPersCmp extends ISplitter{
 	public abstract Integer getID();
 	
-	public abstract ListeCompetences getCompetences(ConteneurStr conteneur);
+	public abstract ListeCompetences getCompetences();
 }
