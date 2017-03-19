@@ -2,6 +2,8 @@ package vues;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JMenuItem;
+
 import reader_writer.LecteurCompetences;
 import ressources.ListeCompetences;
 
@@ -37,11 +39,17 @@ public class Principale extends javax.swing.JFrame {
     	jpan_affecter_comp = new Affecter_comp();
     	jpan_supprimer_pers = new Supprimer_pers();
     	jpan_modifier_emp = new Modifier_emp();
+    	
+    	
+    	jpan_Miss_Affect_pers = new Mission_Affect_pers();
+    	
+    	
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenuMissions = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -51,6 +59,7 @@ public class Principale extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItemMiss1 = new JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +72,8 @@ public class Principale extends javax.swing.JFrame {
         jMenu3.setText("Compétence");
         
         jMenu4.setText("Personnel");
+        jMenuMissions.setText("Missions");
+        jMenuBar1.add(jMenuMissions);
         
         jMenuItem1.setText("Liste");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -249,6 +260,7 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenuMissions;
     //private javax.swing.JMenu jMenu5;
     
     
@@ -262,7 +274,7 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    //private javax.swing.JMenuItem jMenuItemComp1;
+    private javax.swing.JMenuItem jMenuItemMiss1;
     //private javax.swing.JMenuItem jMenuItemComp2;
     
     private Ajouter2 jpan_ajouter_cpt;
@@ -274,6 +286,7 @@ public class Principale extends javax.swing.JFrame {
     private Affecter_comp jpan_affecter_comp;
     private Supprimer_pers jpan_supprimer_pers;
     private Modifier_emp jpan_modifier_emp;
+    private Mission_Affect_pers jpan_Miss_Affect_pers;
    
     // End of variables declaration                   
 }
