@@ -5,6 +5,9 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
+import ressources.ModifEvenement;
+import ressources.Personne;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,12 +18,13 @@ import javax.swing.JPanel;
  *
  * @author bertr
  */
-public class ListePers extends javax.swing.JPanel {
+public class ListePers extends PannelPersonnel {
 
     /**
      * Creates new form ListePers
      */
     public ListePers() {
+    	initPersonnes();
         initComponents();
     }
 
@@ -57,10 +61,10 @@ public class ListePers extends javax.swing.JPanel {
 
         
 
-        jListPers.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jListPers.setModel(new javax.swing.AbstractListModel<Personne>() {
+            
+            public int getSize() { return personnes.length; }
+            public Personne getElementAt(int i) { return personnes[i]; }
         });
         jScrollPane_Pers.setViewportView(jListPers);
         
@@ -110,11 +114,17 @@ public class ListePers extends javax.swing.JPanel {
     // Variables declaration - do not modify                     
     private javax.swing.JLabel LabelListe_Pers;
     private javax.swing.JLabel LabelListe_Comp;
-    private javax.swing.JList<String> jListPers;
+    private javax.swing.JList<Personne> jListPers;
     private javax.swing.JList<String> jListComp;
     private javax.swing.JScrollPane jScrollPane_Pers;
     private javax.swing.JScrollPane jScrollPane_Comp;
     private JPanel paneldroit;
     private JPanel panelgauche;
     // End of variables declaration                   
+	@Override
+	public void reagir(ModifEvenement evt) {
+		initPersonnes();
+		repaint();
+		
+	}
 }

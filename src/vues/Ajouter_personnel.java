@@ -1,5 +1,12 @@
 package vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import ressources.Competence;
+import ressources.DomaineCompetences;
+import ressources.ModifEvenement;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +18,7 @@ package vues;
  *
  * @author bertr
  */
-public class Ajouter_personnel extends javax.swing.JPanel {
+public class Ajouter_personnel extends PannelPersonnel {
 
     /**
      * Creates new form Ajouter_personnel
@@ -286,6 +293,36 @@ public class Ajouter_personnel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel_LCE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+        //ecouteur du boutton d'ajout d'une personne
+        jButton_Vali.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				jButton_ValiActPerf(evt);
+			}
+        });
+        public void jButton_ValiActPerf(ActionEvent evt){
+        	
+        	
+        	
+        	
+        	if (jtf_libelleGB.getText().trim().equals("") || jtf_libelleGB.getText().trim().equals(libGB_TEXTE) || jtf_libelleFR.getText().trim().equals("") || jtf_libelleGB.getText().trim().equals(libFR_TEXTE) ){
+        		jlab_feedback.setText("Ajoutez au moins un libellé pour votre compétence.");
+        		
+        	} else if (jcombo_domaines.getSelectedItem().equals(DomaineCompetences.UNDEFINED)) {
+        		jlab_feedback.setText("Selectionnez un domaine pour votre compétence.");
+        		
+        	} else {
+        		ajouter(new Competence((DomaineCompetences) jcombo_domaines.getSelectedItem(), jtf_libelleGB.getText(), jtf_libelleFR.getText()));
+    	    	jtf_libelleGB.setText(libGB_TEXTE);
+    	        jtf_libelleFR.setText(libFR_TEXTE);
+    	        jcombo_domaines.setSelectedItem(DomaineCompetences.UNDEFINED);
+    	        jlab_feedback.setText("La nouvelle compétence a bien été joutée à la liste. Veuillez vérifier la liste des compétences.");
+        	}
+        	
+        	this.repaint();
+        }
+    
+    
     }// </editor-fold>                        
 
     private void jTextField_prenomActionPerformed(java.awt.event.ActionEvent evt) {                                                  
@@ -319,4 +356,10 @@ public class Ajouter_personnel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_date;
     private javax.swing.JTextField jTextField_prenom;
     // End of variables declaration                   
+	@Override
+	public void reagir(ModifEvenement evt) {
+		initPersonnes();
+		repaint();
+		
+	}
 }
