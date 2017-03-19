@@ -152,7 +152,7 @@ public class TestRessources {
 		// Personne (collaborateur)
 		System.out.println();
 		System.out.println("--- Test class Personne ---");
-		Personne manu = new Personne("Manuela", "Ivanova", 1, 30, 9, 2016);
+		Personne manu = new Personne("Manuela", "Ivanova", 1, "30/9/2016");
 		manu.afficher();
 		
 		// TODO Gestion des compétences d'une personne
@@ -194,8 +194,8 @@ public class TestRessources {
 		
 		System.out.println("-- Lecture des personnes --");
 		LecteurPersonnel reader = LecteurPersonnel.Instance();
-		//lpers = reader.lirePersonnel();
-		//lpers.afficher();
+		lpers = reader.lirePersonnel();
+		lpers.afficher();
 		
 		// TODO Gestion de la liste du personnel
 		

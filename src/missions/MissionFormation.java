@@ -1,4 +1,7 @@
 package missions;
+import java.util.Date;
+
+import ressources.Calendrier;
 import ressources.Competence;
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
@@ -8,8 +11,12 @@ public class MissionFormation extends Mission {
 	private ListeCompetences prerequis;
 	private ListeCompetences objectifs;
 	
-	public MissionFormation(String nom, int nbPersonnes, int jour, int mois, int annee, int duree){
-		super(nom, nbPersonnes, jour, mois, annee, duree);
+	public MissionFormation(String nom, int nbPersonnes, String ddMMyyyy, int duree){
+		this(nom, nbPersonnes, Calendrier.date(ddMMyyyy), duree);
+	}
+	
+	public MissionFormation(String nom, int nbPersonnes, Date date, int duree){
+		super(nom, nbPersonnes, date, duree);
 		this.prerequis = new ListeCompetences();
 		this.objectifs = new ListeCompetences();
 	}

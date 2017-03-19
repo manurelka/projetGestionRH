@@ -1,7 +1,7 @@
 package missions;
 
-import ressources.Date;
-import ressources.DateErronneeException;
+import ressources.Calendrier;
+import java.util.Date;
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
 import ressources.Personne;
@@ -15,14 +15,14 @@ public abstract class Mission implements IMissionActions{
 	protected ContexteMission contexte;
 	private ListePersonnes personnel;
 	
-	public Mission(String nom, int nbPersonnes, int jour, int mois, int annee, int duree){
+	public Mission(String nom, int nbPersonnes, String ddMMyyyy, int duree){
+		this(nom, nbPersonnes, Calendrier.date(ddMMyyyy), duree);
+	}
+	
+	public Mission(String nom, int nbPersonnes, Date date, int duree){
 		this.nom = nom;
 		this.nbPersonnes  = nbPersonnes;
-		try {
-			this.dateDebut = new Date(jour, mois, annee);
-		} catch (DateErronneeException e) {
-			e.printStackTrace();
-		}
+		this.dateDebut = date;
 		this.duree = duree;
 		this.contexte = new ContexteMission();
 		personnel = new ListePersonnes();
@@ -31,13 +31,17 @@ public abstract class Mission implements IMissionActions{
 	public String toString(){
 		String rep = nom + ";";
 		rep += nbPersonnes + ";";
-		rep += dateDebut.toString() + ";";
+		rep += Calendrier.date(dateDebut) + ";";
 		rep += contexte.toString();
 		return rep;
 	}
 	
 	public void afficher(){
 		System.out.println("Mission : " + toString());
+	}
+	
+	public Date getDateFin(){
+		return Calendrier.dateFin(dateDebut, duree);
 	}
 	
 	public int getNbPersonnes(){

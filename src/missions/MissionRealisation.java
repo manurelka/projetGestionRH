@@ -1,13 +1,20 @@
 package missions;
 
+import java.util.Date;
+
+import ressources.Calendrier;
 import ressources.Competence;
 import ressources.ListePersonnes;
 
 public class MissionRealisation extends Mission {
 	private PlanCompetences plan;
 	
-	public MissionRealisation(String nom, int nbPersonnes, int jour, int mois, int annee, int duree){
-		super(nom, nbPersonnes, jour, mois, annee, duree);
+	public MissionRealisation(String nom, int nbPersonnes, String ddMMyyyy, int duree){
+		this(nom, nbPersonnes, Calendrier.date(ddMMyyyy), duree);
+	}
+	
+	public MissionRealisation(String nom, int nbPersonnes, Date date, int duree){
+		super(nom, nbPersonnes, date, duree);
 		this.plan = new PlanCompetences();
 	}
 

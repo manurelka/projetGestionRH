@@ -1,7 +1,7 @@
 package ressources;
 
 import java.util.ArrayList;
-
+import java.util.Date;
 import missions.PlanCompetences;
 
 /**
@@ -21,15 +21,15 @@ public class Personne extends Ressource<Integer> implements Comparable {
 	private Date dateEntree;
 	private ListeCompetences competences = new ListeCompetences();
 	
-	public Personne(String prenom, String nom, Integer id, int jour, int mois, int annee) {
+	public Personne(String prenom, String nom, Integer id, String ddMMyyyy) {
+		this(prenom, nom, id, Calendrier.date(ddMMyyyy));
+	}
+	
+	public Personne(String prenom, String nom, Integer id, Date date) {
 		this.prenom = prenom;
 		this.nom = nom; 
 		this.ID = id;
-		try {
-			this.dateEntree = new Date(jour, mois, annee);
-		} catch (DateErronneeException e) {
-			System.out.println(e.getMessage());
-		}
+		this.dateEntree = date;
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class Personne extends Ressource<Integer> implements Comparable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		String str = prenom + ";" + nom + ";" + dateEntree.toString() + ";" + ID; 
+		String str = prenom + ";" + nom + ";" + Calendrier.date(dateEntree) + ";" + ID; 
 		return str;
 	}
 	
