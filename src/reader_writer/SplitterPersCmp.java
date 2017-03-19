@@ -1,8 +1,10 @@
 package reader_writer;
 
-public class SplitterPersCmp extends ObjectSplitter implements ISplitter{
+import ressources.ListeCompetences;
+
+public class SplitterPersCmp extends ObjectSplitter implements ISplitterPersCmp{
 	private static final int NB_ID = 0;
-	//private static final int NB_CMP = mots.getMot().lenght()-1;
+	private static final int NB_PREM_CMP = 1;
 
 	protected SplitterPersCmp() {
 		super();
@@ -10,10 +12,29 @@ public class SplitterPersCmp extends ObjectSplitter implements ISplitter{
 
 	@Override
 	public void splitLine(String line) {
-		// TODO Auto-generated method stub
-		
+		setMots(line.split(getRegex()));
+	}
+
+	@Override
+	public Integer getID() {
+		return Integer.parseInt(getMot(NB_ID));
+	}
+
+	@Override
+	public ListeCompetences getCompetences(ConteneurStr conteneur) {
+		ListeCompetences rendu = new ListeCompetences();
+		for( int i =NB_PREM_CMP; i<getLength(); i++){
+			rendu.ajouter(IHMCompetencesAccessor.competences_init.get(getMot(i)));
+		}
+		return rendu;
 	}
 	
-	
-
+	public void affecterCompetences (ConteneurStr conteneur){
+		for (line : lines[] ){
+			this.splitLine(line);
+			IHMPersonnelAccessor.personnes_init.get(getID());
+			ajouterCompetences(getCompetences(conteneur));
+			
+		}
+	}
 }

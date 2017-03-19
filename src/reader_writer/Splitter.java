@@ -21,6 +21,10 @@ public abstract class Splitter implements ISplitter{
 		return mots[index];
 	}
 	
+	protected int getLength(){
+		return mots.length;
+	}
+	
 	protected void setMot(String mot, int nbCase){
 		mots[nbCase] = mot;
 	}
