@@ -1,6 +1,8 @@
 package reader_writer;
 
 import java.util.regex.Pattern;
+
+import ressources.DomaineCompetences;
 /**
  * Utiliser cette classe pour séparer le domaine et le code d'une compétence.
  * L'état initial du string étant "Domaine.Code. ", le but est d'avoir
@@ -33,4 +35,11 @@ public class SplitterCodeDomaine extends PointSplitter implements ISplitterCodeD
 		return getMot(NB_CODE);
 	}
 
+	public DomaineCompetences getDomaineDCComp() {
+		return DomaineCompetences.parseDomaine(getMot(NB_DOMAINE));
+	}
+
+	public Integer getCodeInt() {
+		return Integer.parseInt(getMot(NB_CODE));
+	}
 }

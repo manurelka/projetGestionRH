@@ -28,7 +28,7 @@ public class SplitterPersCmp extends ObjectSplitter implements ISplitterPersCmp{
 		for( int i =NB_PREM_CMP; i<getLength(); i++){
 			DCCompetence cmp;
 			pointSplitter.splitLine(getMot(i));
-			cmp = new DCCompetence(pointSplitter.getDomaine(), pointSplitter.getCode())
+			cmp = new DCCompetence(pointSplitter.getDomaineDCComp(), pointSplitter.getCodeInt());
 			rendu.ajouter(IHMCompetencesAccessor.competences_init.get(getMot(i)));
 		}
 		return rendu;

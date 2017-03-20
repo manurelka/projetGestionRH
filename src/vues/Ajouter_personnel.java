@@ -297,30 +297,8 @@ public class Ajouter_personnel extends PannelPersonnel {
         jButton_Vali.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				jButton_ValiActPerf(evt);
 			}
         });
-        public void jButton_ValiActPerf(ActionEvent evt){
-        	
-        	
-        	
-        	
-        	if (jtf_libelleGB.getText().trim().equals("") || jtf_libelleGB.getText().trim().equals(libGB_TEXTE) || jtf_libelleFR.getText().trim().equals("") || jtf_libelleGB.getText().trim().equals(libFR_TEXTE) ){
-        		jlab_feedback.setText("Ajoutez au moins un libellé pour votre compétence.");
-        		
-        	} else if (jcombo_domaines.getSelectedItem().equals(DomaineCompetences.UNDEFINED)) {
-        		jlab_feedback.setText("Selectionnez un domaine pour votre compétence.");
-        		
-        	} else {
-        		ajouter(new Competence((DomaineCompetences) jcombo_domaines.getSelectedItem(), jtf_libelleGB.getText(), jtf_libelleFR.getText()));
-    	    	jtf_libelleGB.setText(libGB_TEXTE);
-    	        jtf_libelleFR.setText(libFR_TEXTE);
-    	        jcombo_domaines.setSelectedItem(DomaineCompetences.UNDEFINED);
-    	        jlab_feedback.setText("La nouvelle compétence a bien été joutée à la liste. Veuillez vérifier la liste des compétences.");
-        	}
-        	
-        	this.repaint();
-        }
     
     
     }// </editor-fold>                        
