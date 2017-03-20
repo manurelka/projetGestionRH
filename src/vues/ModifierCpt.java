@@ -16,15 +16,15 @@ import javax.swing.event.ListSelectionListener;
 import ressources.Competence;
 import ressources.ModifEvenement;
 
-public class Supprimer2 extends PanelCompetences {
+public class ModifierCpt extends PanelCompetences {
 
     /**
      * Creates new form Modifier
      */
-    public Supprimer2() {
+    public ModifierCpt() {
     	initCompetences();
         initComponents();
-      //ajouter à la liste des ecouteurs de modification de la liste des compétences
+        //ajouter à la liste des ecouteurs de modification de la liste des compétences
         abonnerModif();
     }
 
@@ -43,21 +43,19 @@ public class Supprimer2 extends PanelCompetences {
         jpan_competences = new javax.swing.JPanel(); 
         
         jlab_competences = new javax.swing.JLabel();
-        jlab_suprcpt = new javax.swing.JLabel();
         jscroll_competences = new javax.swing.JScrollPane();
         jlist_competences = new javax.swing.JList<Competence>();
         jlab_libFR = new javax.swing.JLabel();
-        jlab_domaine = new javax.swing.JLabel();
+        jtf_libFR = new javax.swing.JTextField();
         jlab_libGB = new javax.swing.JLabel();
-        jlab_code = new javax.swing.JLabel();
-        jbtn_supprimer = new javax.swing.JButton();        
+        jtf_libGB = new javax.swing.JTextField();
+        jbtn_valider = new javax.swing.JButton();        
         
         
         //
         jlab_titre.setText(TITRE);
-        
         jlab_titre.setFont(new java.awt.Font("Tahoma", 1, 14));
-
+        
         jlist_competences.setModel(new javax.swing.AbstractListModel<Competence>() {
            public int getSize() { return competences.length; }
            public Competence getElementAt(int i) { return competences[i]; }
@@ -68,18 +66,18 @@ public class Supprimer2 extends PanelCompetences {
         jscroll_competences.setViewportView(jlist_competences);
         
         jlab_competences.setText(competences_TEXTE);
-        
-        jlab_suprcpt.setText(competence_TEXTE);
 
         jlab_libFR.setText(libFR_TEXTE);
 
-        jlab_domaine.setText(domaine_TEXTE);
-        
-        jlab_code.setText(code_TEXTE);
+        jtf_libFR.setText(VIDE);
+        jtf_libGB.setMaximumSize(new Dimension(300, 15));
         
         jlab_libGB.setText(libGB_TEXTE);
+
+        jtf_libGB.setText(VIDE);
+        jtf_libGB.setMaximumSize(new Dimension(300, 15));
         
-        jbtn_supprimer.setText(supprimer_TEXTE);
+        jbtn_valider.setText(valider_TEXTE);
         
       
         //Layout
@@ -92,26 +90,24 @@ public class Supprimer2 extends PanelCompetences {
         
         layoutOptions.setVerticalGroup(
         		layoutOptions.createSequentialGroup()
-        			.addComponent(jlab_suprcpt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addComponent(jlab_domaine, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		           .addComponent(jlab_code, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addComponent(jlab_libGB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		           .addComponent(jtf_libGB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		           .addComponent(jlab_libFR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		           .addComponent(jlab_libGB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		           .addComponent(jbtn_supprimer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		           .addComponent(jtf_libFR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		           .addComponent(jbtn_valider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		           .addGap(400)
      	);
         
         layoutOptions.setHorizontalGroup(
         		layoutOptions.createParallelGroup()
-        			.addComponent(jlab_suprcpt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		           .addComponent(jlab_domaine, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		           .addComponent(jlab_code, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		           .addComponent(jlab_libFR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		           .addComponent(jlab_libGB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		           .addComponent(jbtn_supprimer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		           .addComponent(jtf_libGB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		           .addComponent(jlab_libFR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		           .addComponent(jtf_libFR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		           .addComponent(jbtn_valider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		);
         
-        jbtn_supprimer.setMinimumSize(new Dimension(180, 15));
+        jbtn_valider.setMinimumSize(new Dimension(180, 15));
         
         jpan_general.setLayout(new GridLayout(1, 2, 20, 20));
         jpan_general.add(jpan_competences);
@@ -132,10 +128,10 @@ public class Supprimer2 extends PanelCompetences {
 			}
         	
         });
-        jbtn_supprimer.addActionListener(new ActionListener(){
+        jbtn_valider.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				jbtn_supprimerActPerf(evt);
+				jbtn_validerActPerf(evt);
 			}
         });
 
@@ -153,24 +149,19 @@ public class Supprimer2 extends PanelCompetences {
     private JList<Competence> jlist_competences;
     private javax.swing.JScrollPane jscroll_competences;
     
-    private javax.swing.JLabel jlab_suprcpt;
-    private javax.swing.JLabel jlab_domaine;
-    private javax.swing.JLabel jlab_code;
     private javax.swing.JLabel jlab_libFR;
     private javax.swing.JLabel jlab_libGB;
+    private javax.swing.JTextField jtf_libFR;
+    private javax.swing.JTextField jtf_libGB;
     
-    private javax.swing.JButton jbtn_supprimer;
+    private javax.swing.JButton jbtn_valider;
     
     private final String competences_TEXTE = "Liste des compétences";
-    private final String competence_TEXTE = "Compétence à supprimer : ";
-    private final String libFR_TEXTE = "Libellé en Francais : ";
-    private final String libGB_TEXTE = "Libellé en Anglais : ";
-    private final String domaine_TEXTE = "Domaine : ";
-    private final String code_TEXTE = "Code : ";
+    private final String libFR_TEXTE = "Libelé en Francais";
     private final String VIDE = "";
-   
-    private final String supprimer_TEXTE = "Supprimer";
-    private final String TITRE = "Supprimer la compétence";
+    private final String libGB_TEXTE = "Libelé en Anglais";
+    private final String valider_TEXTE = "Valider";
+    private final String TITRE = "Modifier la compétence";
    
     // End of variables declaration 
     
@@ -184,21 +175,17 @@ public class Supprimer2 extends PanelCompetences {
 	// Gestion des événements
 	// Sélection d'un élément de la liste des competences
 	public void jlist_competencesVelueChanged(ListSelectionEvent e){
-		if (!e.getValueIsAdjusting() && jlist_competences.getSelectedValue() != null) {
-			jlab_domaine.setText( domaine_TEXTE + jlist_competences.getSelectedValue().getDomaine());
-			jlab_code.setText( code_TEXTE + jlist_competences.getSelectedValue().getCode());
-			jlab_libFR.setText( libFR_TEXTE + jlist_competences.getSelectedValue().getLibFR());
-			jlab_libGB.setText(libGB_TEXTE + jlist_competences.getSelectedValue().getLibGB());
+		if (!e.getValueIsAdjusting()) {
+			//cptCourante = jlist_competences.getSelectedValue();
+			jtf_libFR.setText(jlist_competences.getSelectedValue().getLibFR());
+			jtf_libGB.setText(jlist_competences.getSelectedValue().getLibGB());
 			this.repaint();
 		}
 	}
 	
-	public void jbtn_supprimerActPerf(ActionEvent evt){
-		jlab_domaine.setText( domaine_TEXTE );
-		jlab_code.setText( code_TEXTE );
-		jlab_libFR.setText( libFR_TEXTE );
-		jlab_libGB.setText(libGB_TEXTE );
-		supprimer(jlist_competences.getSelectedValue());
+	public void jbtn_validerActPerf(ActionEvent evt){
+		jlist_competences.getSelectedValue().setLibFR(jtf_libFR.getText());
+		jlist_competences.getSelectedValue().setLibGB(jtf_libGB.getText());
 		this.repaint();
 	}
                       

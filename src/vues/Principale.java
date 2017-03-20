@@ -30,10 +30,10 @@ public class Principale extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-    	jpan_ajouter_cpt = new Ajouter2();
-    	jpan_modifier_cpt = new Modifier2();
-    	jpan_supprimer_cpt = new Supprimer2();
-    	jpan_liste_cpt = new Listecpt2();
+    	jpan_ajouter_cpt = new AjouterCpt();
+    	jpan_modifier_cpt = new ModifierCpt();
+    	jpan_supprimer_cpt = new SupprimerCpt();
+    	jpan_liste_cpt = new ListeCpt();
     	jpan_lis_perComp = new ListePers();
     	jpan_ajouter_pers = new Ajouter_personnel();
     	jpan_affecter_comp = new Affecter_comp();
@@ -42,6 +42,7 @@ public class Principale extends javax.swing.JFrame {
     	
     	
     	jpan_Miss_Affect_pers = new Mission_Affect_pers();
+    	jpan_miss_recom = new Missions_recom();
     	
     	
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -60,7 +61,8 @@ public class Principale extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItemMiss1 = new JMenuItem();
-
+        jMenuItemMiss2 = new JMenuItem();
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("File");
@@ -72,8 +74,35 @@ public class Principale extends javax.swing.JFrame {
         jMenu3.setText("Compétence");
         
         jMenu4.setText("Personnel");
+        
+        //Missions
         jMenuMissions.setText("Missions");
         jMenuBar1.add(jMenuMissions);
+        
+        //Afecter personnel
+        jMenuItemMiss1.setText("Affecter personnel");
+        jMenuItemMiss1.addActionListener(new java.awt.event.ActionListener(){
+
+			public void actionPerformed(ActionEvent evt) {
+				// TODO Auto-generated method stub
+				jMenuItem1ActionPerformed(evt);
+			}
+        	
+        });
+        jMenuMissions.add(jMenuItemMiss1);
+        
+        //Recommander personnel
+        jMenuItemMiss2.setText("Recommander personnel");
+        jMenuItemMiss2.addActionListener(new java.awt.event.ActionListener(){
+
+			public void actionPerformed(ActionEvent evt) {
+				// TODO Auto-generated method stub
+				jMenuItem1ActionPerformed(evt);
+			}
+        	
+        });
+        jMenuMissions.add(jMenuItemMiss2);
+        
         
         jMenuItem1.setText("Liste");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +243,12 @@ public class Principale extends javax.swing.JFrame {
         if(e==jMenuItem9){
         	this.setContentPane(jpan_affecter_comp);
         }
-        
+        if(e==jMenuItemMiss1){
+        	this.setContentPane(jpan_Miss_Affect_pers);
+        }
+        if(e==jMenuItemMiss2){
+        	this.setContentPane(jpan_miss_recom);
+        }
         
         this.repaint();
         this.revalidate();
@@ -275,18 +309,20 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemMiss1;
+    private javax.swing.JMenuItem jMenuItemMiss2;
     //private javax.swing.JMenuItem jMenuItemComp2;
     
-    private Ajouter2 jpan_ajouter_cpt;
-    private Modifier2 jpan_modifier_cpt;
-    private Supprimer2 jpan_supprimer_cpt;
-    private Listecpt2 jpan_liste_cpt;
+    private AjouterCpt jpan_ajouter_cpt;
+    private ModifierCpt jpan_modifier_cpt;
+    private SupprimerCpt jpan_supprimer_cpt;
+    private ListeCpt jpan_liste_cpt;
     private ListePers jpan_lis_perComp;
     private Ajouter_personnel jpan_ajouter_pers;
     private Affecter_comp jpan_affecter_comp;
     private Supprimer_pers jpan_supprimer_pers;
     private Modifier_emp jpan_modifier_emp;
     private Mission_Affect_pers jpan_Miss_Affect_pers;
+    private Missions_recom jpan_miss_recom;
    
     // End of variables declaration                   
 }

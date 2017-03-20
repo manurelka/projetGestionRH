@@ -12,6 +12,7 @@ public class ListePersonnes extends ListeRessources<Integer, Personne> implement
 
 	@Override
 	public Personne get(int code) {
+		System.out.println(ressources.keySet().toString());
 		return (Personne) ressources.get(code);
 	}
 

@@ -25,12 +25,12 @@ import ressources.IModifEcouteur;
 import ressources.ListeCompetences;
 import ressources.ModifEvenement;
 
-public class Listecpt2 extends PanelCompetences implements IModifEcouteur{
+public class ListeCpt extends PanelCompetences implements IModifEcouteur{
 
     /**
      * Creates new form Listecpt
      */
-    public Listecpt2() {
+    public ListeCpt() {
     	initCompetences();
         initComponents();
       //ajouter à la liste des ecouteurs de modification de la liste des compétences

@@ -38,10 +38,7 @@ public class SplitterPersCmp extends ObjectSplitter implements ISplitterPersCmp{
 		System.out.println("--- splitter ---");
 		for (String ligne : conteneur.getDonnees() ){
 			this.splitLine(ligne);
-			System.out.println(ligne);
-			//IHMPersonnelAccessor.personnes_init.get(getID()).ajouterCompetence(getCompetences());
-			IHMPersonnelAccessor.personnes_init.get(getID()).afficher();
-			getCompetences().afficher();
+			IHMPersonnelAccessor.personnes_init.get(getID()).ajouterCompetence(getCompetences());
 		}
 	}
 }

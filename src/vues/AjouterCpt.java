@@ -17,12 +17,12 @@ import ressources.DomaineCompetences;
 import ressources.ListeCompetences;
 import ressources.ModifEvenement;
 
-public class Ajouter2 extends PanelCompetences {
+public class AjouterCpt extends PanelCompetences {
 
     /**
      * Creates new form Modifier
      */
-    public Ajouter2() {
+    public AjouterCpt() {
         initCompetences();
         initComponents();
     }

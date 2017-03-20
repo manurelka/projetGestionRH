@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import ressources.ListeCompetences;
 import ressources.ListePersonnes;
+import ressources.Personne;
 
 public class LecteurPersonnel extends Lecteur implements ILecteurPersonnel {
 	private static final String CHEMIN = "fichConfig/liste_personnel.csv";
@@ -36,6 +37,7 @@ public class LecteurPersonnel extends Lecteur implements ILecteurPersonnel {
 
 			// Utiliser un splitter pour extraire la liste des personnes du
 			// conteneur
+			Personne.initPersonnes(); // initialiser le compteur des identifiants des personnes
 			SplitterPersonnel splitter = new SplitterPersonnel();
 			liste = splitter.getPersonnel(conteneur);
 

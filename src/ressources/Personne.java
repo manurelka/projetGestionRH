@@ -55,6 +55,10 @@ public class Personne extends Ressource<Integer> implements Comparable {
 		setID.add(ID);
 	}
 	
+	public static void initPersonnes(){
+		setID = new TreeSet<Integer>();
+	} 
+	
 	private static boolean existeID(int id){
 		return setID.contains(id);
 	}
