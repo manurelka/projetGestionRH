@@ -1,15 +1,22 @@
 package vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import ressources.ModifEvenement;
+import ressources.Personne;
 
 /**
  *
  * @author bertr
  */
-public class Supprimer_pers extends javax.swing.JPanel {
+public class Supprimer_pers extends PannelPersonnel {
 
     /** Creates new form Supprimer_pers */
     public Supprimer_pers() {
+    	initPersonnes();
         initComponents();
+        abonnerModif();
     }
 
     /** This method is called from within the constructor to
@@ -37,10 +44,9 @@ public class Supprimer_pers extends javax.swing.JPanel {
         jLabelTitre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelTitre.setText("Supprimer un employé");
 
-        jListEmp.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jListEmp.setModel(new javax.swing.AbstractListModel<Personne>() {
+            public int getSize() { return personnes.length; }
+            public Personne getElementAt(int i) { return personnes[i]; }
         });
         jScrollPaneEmp.setViewportView(jListEmp);
 
@@ -148,6 +154,12 @@ public class Supprimer_pers extends javax.swing.JPanel {
                 .addComponent(jPanelBas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jButtonSupp.addActionListener(new ActionListener(){
+    		@Override
+    		public void actionPerformed(ActionEvent evt) {
+    			jButtonSuppActPerf(evt);
+    		}
+        });
     }// </editor-fold>                        
 
     private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -156,7 +168,8 @@ public class Supprimer_pers extends javax.swing.JPanel {
 
     private void jTextFieldPrenActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // TODO add your handling code here:
-    }                                              
+    }   
+    
 
 
     // Variables declaration - do not modify                     
@@ -165,7 +178,7 @@ public class Supprimer_pers extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelNom;
     private javax.swing.JLabel jLabelPren;
     private javax.swing.JLabel jLabelTitre;
-    private javax.swing.JList<String> jListEmp;
+    private javax.swing.JList<Personne> jListEmp;
     private javax.swing.JPanel jPanelBas;
     private javax.swing.JPanel jPanelHaut;
     private javax.swing.JScrollPane jScrollPaneEmp;
@@ -173,5 +186,14 @@ public class Supprimer_pers extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldNom;
     private javax.swing.JTextField jTextFieldPren;
     // End of variables declaration                   
+    public void jButtonSuppActPerf(ActionEvent evt){
+    	
+    }
 
+	@Override
+	public void reagir(ModifEvenement evt) {
+		// TODO Auto-generated method stub
+		initPersonnes();
+		repaint();
+	}
 }

@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
+import reader_writer.IHMPersonnelAccessor;
 import ressources.ModifEvenement;
 import ressources.Personne;
 
@@ -26,6 +27,7 @@ public class ListePers extends PannelPersonnel {
     public ListePers() {
     	initPersonnes();
         initComponents();
+        abonnerModif();
     }
 
     /**
@@ -125,6 +127,5 @@ public class ListePers extends PannelPersonnel {
 	public void reagir(ModifEvenement evt) {
 		initPersonnes();
 		repaint();
-		
 	}
 }

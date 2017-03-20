@@ -17,6 +17,12 @@ public abstract class PannelPersonnel extends JPanel implements IModifEcouteur{
 	protected void ajouter(Personne p) {
 		IHMPersonnelAccessor.personnes_init.ajouter(p);
     }
+	protected void abonnerModif(){
+		IHMPersonnelAccessor.addModifEcouteur(this);
+    }
+	protected void supprimer(Personne ps){
+		IHMPersonnelAccessor.personnes_init.supprimer(ps);
+    }
 	
 	
 	

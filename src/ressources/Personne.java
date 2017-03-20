@@ -2,7 +2,11 @@ package ressources;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
+import java.util.TreeSet;
+
 import missions.PlanCompetences;
+import reader_writer.IHMCompetencesAccessor;
 
 /**
  * La classe Personne représente un collaborateur de la liste du personnel.
@@ -14,8 +18,8 @@ import missions.PlanCompetences;
  * @version 0.0
  */
 public class Personne extends Ressource<Integer> implements Comparable {
-	//TODO créer une date par défaut
-	private final Integer ID;
+	private static Set<Integer> setID = new TreeSet<Integer>();
+	private Integer ID;
 	private String nom;
 	private String prenom;
 	private Date dateEntree;
@@ -28,8 +32,36 @@ public class Personne extends Ressource<Integer> implements Comparable {
 	public Personne(String prenom, String nom, Integer id, Date date) {
 		this.prenom = prenom;
 		this.nom = nom; 
-		this.ID = id;
 		this.dateEntree = date;
+		this.initID(id);
+	}
+	
+	public Personne(String prenom, String nom, Date date) {
+		this(prenom, nom, null, date);
+	}
+	
+	
+	public Personne(String prenom, String nom, String ddMMyyyy) {
+		this(prenom, nom, null, Calendrier.date(ddMMyyyy));
+	}
+	
+	private void initID(Integer id){
+		if ((id != null) && (! existeID(id))) {
+			this.ID = id;
+		} else {
+			this.ID = nextID();
+		}
+		
+		setID.add(ID);
+	}
+	
+	private static boolean existeID(int id){
+		return setID.contains(id);
+	}
+	
+	private static int nextID(){
+		int last = setID.toArray(new Integer[setID.size()])[setID.size() - 1];
+		return ++last;
 	}
 	
 	/**

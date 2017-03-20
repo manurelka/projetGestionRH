@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import ressources.Competence;
 import ressources.DomaineCompetences;
 import ressources.ModifEvenement;
+import ressources.Personne;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -297,8 +298,10 @@ public class Ajouter_personnel extends PannelPersonnel {
         jButton_Vali.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent evt) {
+				jButton_ValiActPerf(evt);
 			}
         });
+       
     
     
     }// </editor-fold>                        
@@ -340,4 +343,15 @@ public class Ajouter_personnel extends PannelPersonnel {
 		repaint();
 		
 	}
+	
+	
+	 public void jButton_ValiActPerf(ActionEvent evt){
+     	this.ajouter(new Personne(jTextField_prenom.getText(), jTextField_Nom.getText(), jTextField_date.getText()));
+     	
+     	//String prenom, String nom, Integer id, String ddMMyyyy
+     	
+     	
+     	
+     	this.repaint();
+     }
 }

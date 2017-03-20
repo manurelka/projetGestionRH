@@ -8,6 +8,6 @@ public interface IHMPersonnelAccessor {
 	//TODO public static final EcriteurPersonnel EP = EcriteurPersonnel.Instance();
 	public static ListePersonnes personnes_init = LP.lirePersonnel();
 	public static void addModifEcouteur(IModifEcouteur e){
-		//TODO personnes_init.addModifEcouteur(e);
+		personnes_init.addModifEcouteur(e);
 	}
 }
