@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 
 import reader_writer.IHMPersonnelAccessor;
+import ressources.Competence;
 import ressources.ModifEvenement;
 import ressources.Personne;
 
@@ -64,10 +65,11 @@ public class ListePers extends PannelPersonnel {
         
 
         jListPers.setModel(new javax.swing.AbstractListModel<Personne>() {
-            
             public int getSize() { return personnes.length; }
             public Personne getElementAt(int i) { return personnes[i]; }
         });
+        jListPers.setListData(personnes);
+        
         jScrollPane_Pers.setViewportView(jListPers);
         
 
@@ -126,6 +128,7 @@ public class ListePers extends PannelPersonnel {
 	@Override
 	public void reagir(ModifEvenement evt) {
 		initPersonnes();
+		jListPers.setListData(personnes);
 		repaint();
 	}
 }
