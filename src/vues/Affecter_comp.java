@@ -1,5 +1,14 @@
 package vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.event.ListSelectionEvent;
+
+import ressources.Competence;
+import ressources.ModifEvenement;
+import ressources.Personne;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,13 +16,16 @@ package vues;
  */
 
 
-public class Affecter_comp extends javax.swing.JPanel {
+public class Affecter_comp extends PannelPersonnel {
 
    /**
     * Creates new form Ajouter_personnel
     */
    public Affecter_comp() {
+	   competencescour = new Competence[1];
+	   initPersonnes();
        initComponents();
+       abonnerModif();
    }
 
    /**
@@ -30,13 +42,13 @@ public class Affecter_comp extends javax.swing.JPanel {
        jPanel_NPD = new javax.swing.JPanel();
        jLabel1 = new javax.swing.JLabel();
        jScrollPane3 = new javax.swing.JScrollPane();
-       jList3 = new javax.swing.JList<>();
+       jListEmp = new javax.swing.JList<>();
        jPanel_LCE = new javax.swing.JPanel();
        jButton_Vali = new javax.swing.JButton();
        jPanelLC = new javax.swing.JPanel();
        jLab_comp_emp = new javax.swing.JLabel();
        jScrollPane1 = new javax.swing.JScrollPane();
-       jList1 = new javax.swing.JList<>();
+       jListCompEmp = new javax.swing.JList<>();
        jPanel_boutVali = new javax.swing.JPanel();
        jButdroite = new javax.swing.JButton();
        jButdroite_tout = new javax.swing.JButton();
@@ -45,7 +57,7 @@ public class Affecter_comp extends javax.swing.JPanel {
        jPanel_boutComp = new javax.swing.JPanel();
        jLab_liste_comp = new javax.swing.JLabel();
        jScrollPane2 = new javax.swing.JScrollPane();
-       jList2 = new javax.swing.JList<>();
+       jListComp = new javax.swing.JList<>();
 
        jLabel_Titre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
        jLabel_Titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,12 +82,11 @@ public class Affecter_comp extends javax.swing.JPanel {
 
        jLabel1.setText("Choisir un employé");
 
-       jList3.setModel(new javax.swing.AbstractListModel<String>() {
-           String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+       jListEmp.setModel(new javax.swing.AbstractListModel<Competence>() {
            public int getSize() { return strings.length; }
-           public String getElementAt(int i) { return strings[i]; }
+           public Competence getElementAt(int i) { return strings[i]; }
        });
-       jScrollPane3.setViewportView(jList3);
+       jScrollPane3.setViewportView(jListEmp);
 
        javax.swing.GroupLayout jPanel_NPDLayout = new javax.swing.GroupLayout(jPanel_NPD);
        jPanel_NPD.setLayout(jPanel_NPDLayout);
@@ -122,12 +133,11 @@ public class Affecter_comp extends javax.swing.JPanel {
        jLab_comp_emp.setMinimumSize(new java.awt.Dimension(200, 20));
        jLab_comp_emp.setPreferredSize(new java.awt.Dimension(200, 40));
 
-       jList1.setModel(new javax.swing.AbstractListModel<String>() {
-           String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-           public int getSize() { return strings.length; }
-           public String getElementAt(int i) { return strings[i]; }
+       jListCompEmp.setModel(new javax.swing.AbstractListModel<Competence>() {
+           public int getSize() { return competencescour.length; }
+           public Competence getElementAt(int i) { return competencescour[i]; }
        });
-       jScrollPane1.setViewportView(jList1);
+       jScrollPane1.setViewportView(jListCompEmp);
 
        javax.swing.GroupLayout jPanelLCLayout = new javax.swing.GroupLayout(jPanelLC);
        jPanelLC.setLayout(jPanelLCLayout);
@@ -193,12 +203,12 @@ public class Affecter_comp extends javax.swing.JPanel {
        jLab_liste_comp.setText("<html>Liste des compétences <br /> disponibles</html>");
        jLab_liste_comp.setPreferredSize(new java.awt.Dimension(108, 20));
 
-       jList2.setModel(new javax.swing.AbstractListModel<String>() {
-           String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-           public int getSize() { return strings.length; }
-           public String getElementAt(int i) { return strings[i]; }
+       jListComp.setModel(new javax.swing.AbstractListModel<Competence>() {
+           
+           public int getSize() { return competencescour.length; }
+           public Competence getElementAt(int i) { return competencescour[i]; }
        });
-       jScrollPane2.setViewportView(jList2);
+       jScrollPane2.setViewportView(jListComp);
 
        javax.swing.GroupLayout jPanel_boutCompLayout = new javax.swing.GroupLayout(jPanel_boutComp);
        jPanel_boutComp.setLayout(jPanel_boutCompLayout);
@@ -251,6 +261,40 @@ public class Affecter_comp extends javax.swing.JPanel {
                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(jPanel_LCE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
        );
+       jListEmp.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+           public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        	   jListEmpValueChanged(evt);
+           }
+       });
+       jListCompEmp.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+           public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        	   jListCompEmpValueChanged(evt);
+           }
+       });
+       jButdroite.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				jButdroiteActPerf(evt);
+			}
+       });
+       jButdroite_tout.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				jButdroite_toutActPerf(evt);
+			}
+       });
+       jButtonguauche.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				jButtonguaucheActPerf(evt);
+			}
+       });
+       jButtonguauchetout.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				jButtonguauchetoutActPerf(evt);
+			}
+       });
    }// </editor-fold>                        
 
 
@@ -264,9 +308,9 @@ public class Affecter_comp extends javax.swing.JPanel {
    private javax.swing.JLabel jLab_liste_comp;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel_Titre;
-   private javax.swing.JList<String> jList1;
-   private javax.swing.JList<String> jList2;
-   private javax.swing.JList<String> jList3;
+   private javax.swing.JList<Competence> jListCompEmp;
+   private javax.swing.JList<Competence> jListComp;
+   private javax.swing.JList<Personne> jListEmp;
    private javax.swing.JPanel jPanelLC;
    private javax.swing.JPanel jPanel_LCE;
    private javax.swing.JPanel jPanel_NPD;
@@ -277,4 +321,33 @@ public class Affecter_comp extends javax.swing.JPanel {
    private javax.swing.JScrollPane jScrollPane2;
    private javax.swing.JScrollPane jScrollPane3;
    // End of variables declaration                   
+@Override
+	public void reagir(ModifEvenement evt) {
+		initPersonnes();
+		jListEmp.setListData(personnes);
+		repaint();
+	}
+	private void jListEmpValueChanged(ListSelectionEvent evt){
+		if (!evt.getValueIsAdjusting() && jListCompEmp.getSelectedValue() != null){
+			persCourante = jListEmp.getSelectedValue();
+			competencescour = persCourante.getTabCompetences();
+			jListCompEmp.setListData(competencescour);
+			repaint();
+		}
+	}
+	private void jListCompEmpValueChanged(ListSelectionEvent evt){
+		
+	}
+	private void jButdroiteActPerf(ActionEvent evt){
+		jListCompEmp.getSelectedValue()
+	}
+	private void jButdroite_toutActPerf(ActionEvent evt){
+		
+	}
+	private void jButtonguaucheActPerf(ActionEvent evt){
+		
+	}
+	private void jButtonguauchetoutActPerf(ActionEvent evt){
+		
+	}
 }
