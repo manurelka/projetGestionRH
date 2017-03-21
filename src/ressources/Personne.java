@@ -68,6 +68,29 @@ public class Personne extends Ressource<Integer> implements Comparable {
 		return ++last;
 	}
 	
+	//Getters et setters
+	public Integer getID(){
+		return ID;
+	}
+	public String getPrenom(){
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+	public String getNom(){
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getDate(){
+		return Calendrier.date(this.dateEntree);
+	}
+	public void setDateEntree(String date) {
+		this.dateEntree = Calendrier.date(date);
+	}
+	
 	/**
 	 * Renvoie un String représentant les données d'un employé sous la forme suivante :
 	 * "prenom;nom;date d'entrée en entreprise;identifiant"
@@ -85,9 +108,6 @@ public class Personne extends Ressource<Integer> implements Comparable {
 		System.out.println(getClass().getSimpleName() + " : " + toString());
 	}
 	
-	public Integer getID(){
-		return ID;
-	}
 	
 	/**
 	 * ajouter une compétence à la liste des compétences d'une personne

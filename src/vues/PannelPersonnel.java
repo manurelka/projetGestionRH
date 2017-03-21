@@ -10,8 +10,10 @@ import ressources.Personne;
 
 public abstract class PannelPersonnel extends JPanel implements IModifEcouteur{
 	protected Personne[] personnes;
-	protected Personne persCourantes;
+	protected Personne persCourante;
+	protected Competence [] competencescour;
 	protected void initPersonnes(){
+		IHMPersonnelAccessor.lireCompetences();
 		personnes = IHMPersonnelAccessor.personnes_init.getTab();
     }
 	protected void ajouter(Personne p) {

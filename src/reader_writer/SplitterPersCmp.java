@@ -35,7 +35,6 @@ public class SplitterPersCmp extends ObjectSplitter implements ISplitterPersCmp{
 	}
 	
 	public void affecterCompetences (ConteneurStr conteneur){
-		System.out.println("--- splitter ---");
 		for (String ligne : conteneur.getDonnees() ){
 			this.splitLine(ligne);
 			IHMPersonnelAccessor.personnes_init.get(getID()).ajouterCompetence(getCompetences());

@@ -3,6 +3,8 @@ package vues;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.event.ListSelectionEvent;
+
 import ressources.ModifEvenement;
 import ressources.Personne;
 
@@ -48,6 +50,8 @@ public class Supprimer_pers extends PannelPersonnel {
             public int getSize() { return personnes.length; }
             public Personne getElementAt(int i) { return personnes[i]; }
         });
+        jListEmp.setListData(personnes);
+        
         jScrollPaneEmp.setViewportView(jListEmp);
 
         javax.swing.GroupLayout jPanelHautLayout = new javax.swing.GroupLayout(jPanelHaut);
@@ -160,6 +164,11 @@ public class Supprimer_pers extends PannelPersonnel {
     			jButtonSuppActPerf(evt);
     		}
         });
+        jListEmp.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+            	jListEmpValueChanged(evt);
+            }
+        });
     }// </editor-fold>                        
 
     private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -185,8 +194,10 @@ public class Supprimer_pers extends PannelPersonnel {
     private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldNom;
     private javax.swing.JTextField jTextFieldPren;
-    // End of variables declaration                   
+    // End of variables declaration 
+    private int idselect;
     public void jButtonSuppActPerf(ActionEvent evt){
+    	this.supprimer(personnes[idselect]);
     	
     }
 
@@ -194,6 +205,16 @@ public class Supprimer_pers extends PannelPersonnel {
 	public void reagir(ModifEvenement evt) {
 		// TODO Auto-generated method stub
 		initPersonnes();
+		jListEmp.setListData(personnes);
 		repaint();
+	}
+	private void jListEmpValueChanged(ListSelectionEvent evt){
+		if (!evt.getValueIsAdjusting() && jListEmp.getSelectedValue() != null){
+			Personne p = jListEmp.getSelectedValue();
+			jTextFieldPren.setText(p.getPrenom());
+			jTextFieldNom.setText(p.getNom());
+			jTextFieldDate.setText(p.getDate());
+			idselect = p.getID();
+		}
 	}
 }

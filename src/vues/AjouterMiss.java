@@ -144,10 +144,10 @@ public class AjouterMiss extends PanelMissions {
     		jlab_feedback.setText("Définisez la duree de la mission.");
     		
     	} else {
-    		ajouter(new Mission((DomaineCompetences) jtf_nom.getText(), jtf_libelleFR.getText()));
+    		/*ajouter(new Mission((DomaineCompetences) jtf_nom.getText(), jtf_libelleFR.getText()));
 	    	jtf_libelleGB.setText(libGB_TEXTE);
 	        jtf_libelleFR.setText(libFR_TEXTE);
-	        jcombo_domaines.setSelectedItem(DomaineCompetences.UNDEFINED);
+	        jcombo_domaines.setSelectedItem(DomaineCompetences.UNDEFINED);*/
 	        jlab_feedback.setText("La nouvelle compétence a bien été joutée à la liste. Veuillez vérifier la liste des compétences.");
     	}
     	

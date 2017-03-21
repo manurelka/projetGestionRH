@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
 
 import reader_writer.IHMPersonnelAccessor;
 import ressources.Competence;
@@ -26,6 +27,7 @@ public class ListePers extends PannelPersonnel {
      * Creates new form ListePers
      */
     public ListePers() {
+    	competencescour = new Competence[1];
     	initPersonnes();
         initComponents();
         abonnerModif();
@@ -73,11 +75,13 @@ public class ListePers extends PannelPersonnel {
         jScrollPane_Pers.setViewportView(jListPers);
         
 
-        jListComp.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jListComp.setModel(new javax.swing.AbstractListModel<Competence>() {
+        	
+            public int getSize() { return competencescour.length; }
+            public Competence getElementAt(int i) { return competencescour[i]; }
         });
+       // jListComp.setListData(competences);
+        
         jScrollPane_Comp.setViewportView(jListComp);
 
         panelgauche.add(jScrollPane_Pers, BorderLayout.CENTER);
@@ -112,6 +116,12 @@ public class ListePers extends PannelPersonnel {
                         .addComponent(jScrollPane_Comp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(87, Short.MAX_VALUE))*/
    //     );
+        jListPers.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+            	jListPersValueChanged(evt);
+            }
+        });
+    
     }// </editor-fold>                        
 
 
@@ -119,16 +129,28 @@ public class ListePers extends PannelPersonnel {
     private javax.swing.JLabel LabelListe_Pers;
     private javax.swing.JLabel LabelListe_Comp;
     private javax.swing.JList<Personne> jListPers;
-    private javax.swing.JList<String> jListComp;
+    private javax.swing.JList<Competence> jListComp;
     private javax.swing.JScrollPane jScrollPane_Pers;
     private javax.swing.JScrollPane jScrollPane_Comp;
     private JPanel paneldroit;
     private JPanel panelgauche;
+    
+    
     // End of variables declaration                   
 	@Override
 	public void reagir(ModifEvenement evt) {
 		initPersonnes();
 		jListPers.setListData(personnes);
 		repaint();
+	}
+	private void jListPersValueChanged(ListSelectionEvent evt){
+		
+		if (!evt.getValueIsAdjusting() && jListPers.getSelectedValue() != null){
+			persCourante = jListPers.getSelectedValue();
+			competencescour = persCourante.getTabCompetences();
+			jListComp.setListData(competencescour);
+			
+			repaint();
+		}
 	}
 }

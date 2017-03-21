@@ -1,14 +1,24 @@
 package vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.event.ListSelectionEvent;
+
+import ressources.ModifEvenement;
+import ressources.Personne;
+
 /**
 *
 * @author bertr
 */
-public class Modifier_emp extends javax.swing.JPanel {
+public class Modifier_emp extends PannelPersonnel {
 
    /** Creates new form Supprimer_pers */
    public Modifier_emp() {
+	   initPersonnes();
        initComponents();
+       abonnerModif();
    }
 
    /** This method is called from within the constructor to
@@ -36,10 +46,9 @@ public class Modifier_emp extends javax.swing.JPanel {
        jLabelTitre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
        jLabelTitre.setText("Modifier employé");
 
-       jListEmp.setModel(new javax.swing.AbstractListModel<String>() {
-           String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-           public int getSize() { return strings.length; }
-           public String getElementAt(int i) { return strings[i]; }
+       jListEmp.setModel(new javax.swing.AbstractListModel<Personne>() {
+           public int getSize() { return personnes.length; }
+           public Personne getElementAt(int i) { return personnes[i]; }
        });
        jScrollPaneEmp.setViewportView(jListEmp);
 
@@ -148,6 +157,19 @@ public class Modifier_emp extends javax.swing.JPanel {
                .addComponent(jPanelBas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
        );
+       jListEmp.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+           public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+           	jListEmpValueChanged(evt);
+           }
+       });
+       
+       jButtonModif.addActionListener(new ActionListener(){
+   		@Override
+   		public void actionPerformed(ActionEvent evt) {
+   			jButtonSuppActPerf(evt);
+   		}
+       });
+       
        
    }// </editor-fold>                        
 
@@ -166,13 +188,37 @@ public class Modifier_emp extends javax.swing.JPanel {
    private javax.swing.JLabel jLabelNom;
    private javax.swing.JLabel jLabelPren;
    private javax.swing.JLabel jLabelTitre;
-   private javax.swing.JList<String> jListEmp;
+   private javax.swing.JList<Personne> jListEmp;
    private javax.swing.JPanel jPanelBas;
    private javax.swing.JPanel jPanelHaut;
    private javax.swing.JScrollPane jScrollPaneEmp;
    private javax.swing.JTextField jTextFieldDate;
    private javax.swing.JTextField jTextFieldNom;
    private javax.swing.JTextField jTextFieldPren;
-   // End of variables declaration                   
-
+   private int idselect;                  
+@Override
+	public void reagir(ModifEvenement evt) {
+		initPersonnes();
+		jListEmp.setListData(personnes);
+		repaint();
+	
+	}
+	private void jListEmpValueChanged(ListSelectionEvent evt){
+		if (!evt.getValueIsAdjusting() && jListEmp.getSelectedValue() != null){
+			Personne p = jListEmp.getSelectedValue();
+			jTextFieldPren.setText(p.getPrenom());
+			jTextFieldNom.setText(p.getNom());
+			jTextFieldDate.setText(p.getDate());
+			idselect = p.getID();
+		}
+	}
+	public void jButtonSuppActPerf(ActionEvent evt){
+		System.out.println(jTextFieldPren.getText());
+		//vérifier idselect
+    	personnes[idselect].setPrenom(jTextFieldPren.getText());
+    	personnes[idselect].setNom(jTextFieldNom.getText());
+    	personnes[idselect].setDateEntree(jTextFieldDate.getText());
+		repaint();
+    	
+    }
 }
