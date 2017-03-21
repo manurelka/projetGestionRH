@@ -1,10 +1,12 @@
 package vues;
 
+import ressources.ModifEvenement;
+
 /**
  *
  * @author bertr
  */
-public class Missions_recom extends javax.swing.JPanel {
+public class Missions_recom extends PanelMissions {
 
     /**
      * Creates new form Missions_recom
@@ -228,5 +230,10 @@ public class Missions_recom extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration                   
+	@Override
+	public void reagir(ModifEvenement evt) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
